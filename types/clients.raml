@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: Clients
+version: 0.0
+baseUri: http://localhost:8081/api
+
+uses:
+  assets:  assets.lib.raml
+
+/clients:
+  displayName: clients
+  description: clients collection resource used to create new clients.
+  get:
+    is: [ assets.paging ]
+    description: lists all clients of a specific user
+    queryParameters:
+      userId:
+        type: string
+        description: use to query all clients of a user
+        required: true
+        example: "1964401a-a8b3-40c1-b86e-d8b9f75b5842"
+    responses:
+      200:
+        body:
+          application/json:
+            type: assets.clients
+            examples:
+              single-order:
+                clients:
+                  -
+                    order_id: "ORDER-437563756"
+                    creation_date: "2016-03-30"
+                    items:
+                      -
+                        product_id: "PRODUCT-1"
+                        quantity: 5
+                      -
+                        product_id: "PRODUCT-2"
+                        quantity: 2
+             

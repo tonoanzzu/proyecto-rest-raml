@@ -1,0 +1,57 @@
+#%RAML 1.0
+title: Pet Shop Api
+version: 0.0
+baseUri: http://localhost:8081/api
+
+uses:
+  assets:  assets.lib.raml
+
+/sales:
+  displayName: sales
+  description: sales collection resource used to create new sales.
+  get:
+    is: [ assets.paging ]
+    description: lists all sales of a specific user
+    queryParameters:
+      userId:
+        type: string
+        description: use to query all sales of a user
+        required: true
+        example: "1964401a-a8b3-40c1-b86e-d8b9f75b5842"
+    responses:
+      200:
+        body:
+          application/json:
+            type: assets.sales
+            examples:
+              single-order:
+                sales:
+                  -
+                    order_id: "ORDER-437563756"
+                    creation_date: "2016-03-30"
+                    items:
+                      -
+                        product_id: "PRODUCT-1"
+                        quantity: 5
+                      -
+                        product_id: "PRODUCT-2"
+                        quantity: 2
+              multiple-sales:
+                  sales:
+                    -
+                      order_id: "ORDER-437563756"
+                      creation_date: "2016-03-30"
+                      items:
+                        -
+                          product_id: "PRODUCT-1"
+                          quantity: 5
+                        -
+                          product_id: "PRODUCT-2"
+                          quantity: 2
+                    -
+                      order_id: "ORDER-437542111"
+                      creation_date: "2016-03-30"
+                      items:
+                        -
+                          product_id: "PRODUCT-7"
+                          quantity: 6
