@@ -5,6 +5,7 @@ baseUri: http://localhost:8081/api
 
 uses:
   assets:  assets.lib.raml
+  serviceProvider: types/accesories.raml
 
 /animals:
   displayName: animals
@@ -12,6 +13,10 @@ uses:
   get:
     is: [ assets.paging ]
     description: lists all animals of a specific user
+    body:
+      application/json:
+        type: 
+        example: !include examples/.....
     queryParameters:
       userId:
         type: string
