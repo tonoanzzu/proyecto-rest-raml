@@ -1,0 +1,58 @@
+#%RAML 1.0 Library
+uses:
+  annotations: ../../annotations/annotationsLibrary.raml
+  customControlAttributes: ../customControlAttributes.raml
+
+types:
+  customer:
+    type: customControlAttributes.customControlAttributes
+    discriminatorValue: CUSTOMER_ACCESS_CONTROL
+    description: |
+      Ensure that the specified client can only access the resources to which he has permissions.
+    properties:
+      mask?:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "PUT"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "DELETE"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: string
+        description: You can specify regular expression patterns that match sets of keys and restrict their values.
+        example: "(^[0-9]+)-([0-9]+$)"
+  contract:
+    type: customControlAttributes.customControlAttributes
+    discriminatorValue: CONTRACT_ACCESS_CONTROL
+    description: |
+      Ensure that the specified customer can only access the contracts to which he has permissions.
+    properties:
+      mask?:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "PUT"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "DELETE"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: string
+        description: You can specify regular expression patterns that match sets of keys and restrict their values.
+        example: "(^[0-9]+)-([0-9]+$)"

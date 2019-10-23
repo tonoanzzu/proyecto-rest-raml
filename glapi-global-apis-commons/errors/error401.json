@@ -1,0 +1,7 @@
+{
+  "apiVersion": "1",
+  "result": {
+    "status": 401,
+    "info": "Unauthorized."
+  }
+}

@@ -1,0 +1,17 @@
+#%RAML 1.0 Library
+uses:
+  customControlAttributes: ../customControlAttributes.raml
+
+types:
+  user:
+    type: customControlAttributes.customControlAttributes
+    discriminatorValue: USER_CHANNEL_CONTROL
+    description: To customize the visualization, operative, limits, permissions, etc. that user will have about the resource based on the channel he is using.
+  contract:
+    type: customControlAttributes.customControlAttributes
+    discriminatorValue: CONTRACT_CHANNEL_CONTROL
+    description: To customize the visualization, operative, limits, permissions, etc. of the contracts that a client will have on the resource based on the channel he is using.
+  amount:
+    type: customControlAttributes.customControlAttributes
+    discriminatorValue: AMOUNT_CHANNEL_CONTROL
+    description: To customize the limits, permissions, etc. of the amounts of the contracts that a client will have on the resource based on the channel he is using.

@@ -1,0 +1,7 @@
+{
+  "apiVersion": "1",
+  "result": {
+    "status": 503,
+    "info": "Service Unavailable."
+  }
+}

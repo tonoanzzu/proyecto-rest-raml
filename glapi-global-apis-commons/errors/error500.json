@@ -1,0 +1,7 @@
+{
+  "apiVersion": "1",
+  "result": {
+    "status": 500,
+    "info": "Server Error."
+  }
+}

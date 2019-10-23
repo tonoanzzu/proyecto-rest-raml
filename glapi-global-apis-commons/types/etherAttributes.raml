@@ -1,0 +1,38 @@
+#%RAML 1.0 Library
+
+types:
+  etherAttributes:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: Identifier of the resource within a service and a namespace/collection
+        required: true
+      _locator:
+        type: string
+        description: Unique ID across multiple services identifying the resource (//service/namespace/collection/resourceid)
+        required: true
+      _parent:
+        type: string
+        description: Identifier of the parent collection where the resource "_id" is contained
+        required: true
+      _createdBy:
+        type: string
+        description: Consumer identifier that created the resource
+        required: true
+      _type:
+        type: string
+        description: Identifier of the type of the resource
+        required: true
+      _ac:
+        type: boolean
+        description: Flag indicating if it is possible to set permissions in this resource (it is possible to set permissions)
+        required: true
+      _createdAt:
+        type: datetime
+        description: Resource creation Timestamp. Dates should follow ISO 8601 using UTC. with a profile RFC 3339
+        required: true
+      _updatedAt:
+        type: datetime
+        description: Resource last update Timestamp. Dates should follow ISO 8601 using UTC. with a profile RFC 3339
+        required: true

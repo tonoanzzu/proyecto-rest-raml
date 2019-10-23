@@ -1,0 +1,8 @@
+#%RAML 1.0 Trait
+queryParameters:
+  simulated:
+    description: "It indicates that the operation to try to perform around the entity <<resourcePathName | !singularize>> is a simulation and therefore it does not represent a change in the state of it. Each value returned by a simulated operation reflect the possible state of the entity in the hypothetical case that had actually been executed the operation itself."
+    type: boolean
+    default: false
+    required: false
+    example: true
