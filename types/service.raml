@@ -1,0 +1,25 @@
+#%RAML 1.0
+types:
+  service:
+    type: object
+    description: Entity that represent a service
+    properties:
+      id:
+        type: number
+        description: identify of the service
+        required: true
+      pet:
+        type: enum
+        description: identify of the type of pet
+        required: true
+      duration:
+        type: number
+        description: identify the duration of the service
+        required: false
+      price:
+        type: string
+        description: describe the price of Service
+        required: false
+    
+      
+    
