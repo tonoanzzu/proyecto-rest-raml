@@ -1,0 +1,32 @@
+#%RAML 1.0
+types:
+Sale:
+  type:object
+  description: Entity that represent a sale
+  properties:
+    id:
+      type: number
+      description: identify of the sale
+      required: false
+    num_ticket:
+      type: number
+      description: number of the ticket
+      required: false
+    total_amount:
+      type: number
+      description: identify the total amount
+      required: false
+    invoice:
+      type: string
+      description: identify the invoice
+      required: false
+    sale_date:
+      type: string
+      description: identify the date sale
+      required: false
+    method_payment:
+      type: string
+      description: identify of method of payment
+      required: false
+      
+    
