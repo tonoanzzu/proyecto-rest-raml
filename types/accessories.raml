@@ -1,0 +1,26 @@
+#%RAML 1.0
+types:
+  accessories:
+    type:array
+    description: Entity that represent an accessories
+    properties:
+      id:
+        type: number
+        description: identify of the accessories
+        required: true
+      type:
+        type: string
+        description: accessories type
+        required:false
+      color:
+        type: string
+        description: accessories color
+        required: false
+      material:
+        type: string
+        description: identify of the material accessories
+        required: false
+      brand:
+        type: string
+        description: identify the color of the accessories
+        required: false
