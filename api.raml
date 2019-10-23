@@ -15,6 +15,26 @@ resourceTypes:
   description: |
     petshops in the town
   type: collection
+  post:
+    body:
+      application/json:
+        properties:
+          petshop.address:
+            type: string
+            required: true
+            example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+          petshop.contact:
+            type: number
+            required: true
+            example: 55674309
+          petshop.schedule:
+            type: string
+            required: true
+            example: "Lunes a Domingo de 9:00am a 8:00pm"
+          petshop.logo:
+            type: string
+            required: true
+            example: "logo.jpg"
   get:
     description: |
       petshops lists
@@ -118,7 +138,7 @@ resourceTypes:
           body:
             application/json:
               type: petshops
-              example: !include examples/petshops/get_200.json
+              example: !include examples/petshops/petshop_id/put.json
     patch:
       body:
         application/json:
@@ -131,26 +151,6 @@ resourceTypes:
               type: number
               required: true
               example: 55674309
-    post:
-      body:
-        application/json:
-          properties:
-            petshop.address:
-              type: string
-              required: true
-              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-            petshop.contact:
-              type: number
-              required: true
-              example: 55674309
-            petshop.schedule:
-              type: string
-              required: true
-              example: "Lunes a Domingo de 9:00am a 8:00pm"
-            petshop.logo:
-              type: string
-              required: true
-              example: "logo.jpg"
     delete:
 
 
@@ -186,75 +186,75 @@ resourceTypes:
           application/json:
             type: services
             example: !include examples/services/get_200.json
+  post:
   /{service-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /sales:
   get: 
+  post:
   /{sale-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /clients:
   get: 
+  post:
   /{client-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /employees:
   get: 
+  post:
   /{employee-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /dates:
   get: 
+  post:
   /{date-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /accesories:
   get: 
+  post:
   /{accesory-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /food:
   get: 
+  post:
   /{food-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /animals:
   get: 
+  post:
   /{animal-id}:
     get:
     put:
     patch:
-    post:
     delete:
 /products:
   get:
+  post:
   /{product-id}:
     get:
     put:
     patch:
-    post:
     delete:
 
 # Servicio restless (Vacunas)
