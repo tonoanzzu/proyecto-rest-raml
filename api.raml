@@ -1,11 +1,12 @@
 #%RAML 1.0
-title: petShop
+title: petshop
 description: Pet Shop Api
 version: 0.0
 baseUri: http://localhost:8081/petshop/v0
 
 uses:
   petshops:  types/petshops.raml
+  services:  types/services.raml
 
 resourceTypes: 
   collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
@@ -18,33 +19,33 @@ resourceTypes:
     description: |
       petshops lists
     queryParameters:
-      petshops.id:
+      petshop.id:
         description: |
-          petshops id
+          petshop id
         type: number
         required: true
         example: 1
-      petshops.address:
+      petshop.address:
         description: |
-          petshops address
+          petshop address
         type: string
         required: true
         example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-      petshops.contact:
+      petshop.contact:
         description: |
-          petshops contact
+          petshop contact
         type: number
         required: true
         example: 55674309
-      petshops.schedule:
+      petshop.schedule:
         description: |
-          petshops schedule
+          petshop schedule
         type: string
         required: true
         example: "Lunes a Domingo de 9:00am a 8:00pm"
-      petshops.logo:
+      petshop.logo:
         description: |
-          petshops logo
+          petshop logo
         type: string
         required: true
         example: "logo.jpg"
@@ -52,12 +53,111 @@ resourceTypes:
       200:
         body:
           application/json:
-            example: !include examples/get_200.json
+            type: petshops
+            example: !include examples/petshops/get_200.json
+  /{petshop-id}:
+    get:
+      queryParameters:
+        petshop.id:
+          description: |
+            petshop id
+          type: number
+          required: true
+          example: 1
+        petshop.address:
+          description: |
+            petshop address
+          type: string
+          required: true
+          example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+        petshop.contact:
+          description: |
+            petshop contact
+          type: number
+          required: true
+          example: 55674309
+        petshop.schedule:
+          description: |
+            petshop schedule
+          type: string
+          required: true
+          example: "Lunes a Domingo de 9:00am a 8:00pm"
+        petshop.logo:
+          description: |
+            petshop logo
+          type: string
+          required: true
+      uriParameters:
+        petshop-id:
+          type: string
+          description: petshop identifier
+          # minLength: 1
+          # maxLength: 10
+    put:
+      body:
+        application/json:
+          properties:
+            petshop.address:
+              type: string
+              required: true
+              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+            petshop.contact:
+              type: number
+              required: true
+              example: 55674309
+            petshop.schedule:
+              type: string
+              required: true
+              example: "Lunes a Domingo de 9:00am a 8:00pm"
+            petshop.logo:
+              type: string
+              required: true
+              example: "logo.jpg"
+      responses:
+        200:
+          body:
+            application/json:
+              type: petshops
+              example: !include examples/petshops/get_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            petshop.address:
+              type: string
+              required: true
+              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+            petshop.contact:
+              type: number
+              required: true
+              example: 55674309
+    post:
+      body:
+        application/json:
+          properties:
+            petshop.address:
+              type: string
+              required: true
+              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+            petshop.contact:
+              type: number
+              required: true
+              example: 55674309
+            petshop.schedule:
+              type: string
+              required: true
+              example: "Lunes a Domingo de 9:00am a 8:00pm"
+            petshop.logo:
+              type: string
+              required: true
+              example: "logo.jpg"
+    delete:
+
 
 /services:
   description: |
     services collection resource used to create new services
-  type: collection
+  type: services
   get:
     is: [ assets.paging ]
     description: |
@@ -84,36 +184,79 @@ resourceTypes:
       200:
         body:
           application/json:
-            type: assets.services
-            examples:
-              single-order:
-                services:
-                  -
-                    order_id: "ORDER-437563756"
-                    creation_date: "2016-03-30"
-                    items:
-                      -
-                        product_id: "PRODUCT-1"
-                        quantity: 5
-                      -
-                        product_id: "PRODUCT-2"
-                        quantity: 2
-              multiple-services:
-                  services:
-                    -
-                      order_id: "ORDER-437563756"
-                      creation_date: "2016-03-30"
-                      items:
-                        -
-                          product_id: "PRODUCT-1"
-                          quantity: 5
-                        -
-                          product_id: "PRODUCT-2"
-                          quantity: 2
-                    -
-                      order_id: "ORDER-437542111"
-                      creation_date: "2016-03-30"
-                      items:
-                        -
-                          product_id: "PRODUCT-7"
-                          quantity: 6
+            type: services
+            example: !include examples/services/get_200.json
+  /{service-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/sales:
+  get: 
+  /{sale-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/clients:
+  get: 
+  /{client-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/employees:
+  get: 
+  /{employee-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/dates:
+  get: 
+  /{date-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/accesories:
+  get: 
+  /{accesory-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/food:
+  get: 
+  /{food-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/animals:
+  get: 
+  /{animal-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+/products:
+  get:
+  /{product-id}:
+    get:
+    put:
+    patch:
+    post:
+    delete:
+
+# Servicio restless (Vacunas)
+/getDatesReport:
+  get:
