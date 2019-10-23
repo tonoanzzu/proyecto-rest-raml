@@ -1,6 +1,6 @@
 #%RAML 1.0
 types:
-sale:
+Sale:
   type:object
   description: Entity that represent a sale
   properties:
@@ -9,7 +9,7 @@ sale:
       description: identify of the sale
       required: false
     num_ticket:
-      type: string
+      type: number
       description: number of the ticket
       required: false
     total_amount:
@@ -18,7 +18,7 @@ sale:
       required: false
     invoice:
       type: string
-      description: identify of 
+      description: identify the invoice
       required: false
     sale_date:
       type: string
