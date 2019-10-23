@@ -1,0 +1,25 @@
+#%RAML 1.0
+types:
+Date:
+  type:object
+  description: Entity that represent a date
+  properties:
+    id:
+      type: number
+      description: identify of the date
+      required: false
+    type:
+      type: enum
+      description: identify of the type of the date
+      required: false
+    schedule:
+      type: number
+      description: identify the schedule of the date
+      required: false
+    description:
+      type: string
+      description: describe the Dates
+      required: false
+    
+      
+    
