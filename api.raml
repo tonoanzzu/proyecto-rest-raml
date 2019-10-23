@@ -1,31 +1,93 @@
 #%RAML 1.0
-title: Pet Shop Api
+title: petShop
+description: Pet Shop Api
 version: 0.0
 baseUri: http://localhost:8081/petshop/v0
 
 uses:
-  assets:  assets.lib.raml
+  petshops:  types/petshops.raml
 
-/orders:
-  displayName: Orders
-  description: Orders collection resource used to create new orders.
+resourceTypes: 
+  collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
+
+/petshops:
+  description: |
+    petshops in the town
+  type: collection
   get:
-    is: [ assets.paging ]
-    description: lists all orders of a specific user
+    description: |
+      petshops lists
     queryParameters:
-      userId:
-        type: string
-        description: use to query all orders of a user
+      petshops.id:
+        description: |
+          petshops id
+        type: number
         required: true
-        example: "1964401a-a8b3-40c1-b86e-d8b9f75b5842"
+        example: 1
+      petshops.address:
+        description: |
+          petshops address
+        type: string
+        required: true
+        example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+      petshops.contact:
+        description: |
+          petshops contact
+        type: number
+        required: true
+        example: 55674309
+      petshops.schedule:
+        description: |
+          petshops schedule
+        type: string
+        required: true
+        example: "Lunes a Domingo de 9:00am a 8:00pm"
+      petshops.logo:
+        description: |
+          petshops logo
+        type: string
+        required: true
+        example: "logo.jpg"
     responses:
       200:
         body:
           application/json:
-            type: assets.Orders
+            example: !include examples/get_200.json
+
+/services:
+  description: |
+    services collection resource used to create new services
+  type: collection
+  get:
+    is: [ assets.paging ]
+    description: |
+      lists all services of a specific user
+    queryParameters:
+      services.id:
+        description: |
+          services id
+        type: number
+        required: true
+        example: 1964401a
+      services.pet:
+        description: |
+          services pet
+        enum:
+          - dog 
+          - cat 
+          - fish 
+          - rodent
+          - bird
+        required: true
+        example: [dog, cat, fish, rodent, bird]
+    responses:
+      200:
+        body:
+          application/json:
+            type: assets.services
             examples:
               single-order:
-                orders:
+                services:
                   -
                     order_id: "ORDER-437563756"
                     creation_date: "2016-03-30"
@@ -36,8 +98,8 @@ uses:
                       -
                         product_id: "PRODUCT-2"
                         quantity: 2
-              multiple-orders:
-                  orders:
+              multiple-services:
+                  services:
                     -
                       order_id: "ORDER-437563756"
                       creation_date: "2016-03-30"
