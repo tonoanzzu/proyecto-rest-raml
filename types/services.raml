@@ -3,23 +3,20 @@ types:
   services:
     type: array
     description: Entity that represent a services
-    properties:
-      id:
-        type: number
-        description: identify of the services
-        required: true
-      pet:
-        type: enum
-        description: identify of the type of pet
-        required: true
-      duration:
-        type: number
-        description: identify the duration of the services
-        required: false
-      price:
-        type: string
-        description: describe the price of Services
-        required: false
+    items:
+      properties:
+        id:
+          type: number
+          description: identify of the services
+          required: true
+        type:
+          type: enum
+          description: type of service
+          required: true
+        petshop-id:
+          type: number
+          description: petshop that provides the service
+          required: true
     
       
     
