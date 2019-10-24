@@ -1,5 +1,5 @@
 {
-	"data": [
+	"data": 
 		{
 			"id": 1,
 			"address": "Insurgentes Sur 345, Hipódromo, 06170, CDMX",
@@ -7,5 +7,4 @@
 			"schedule": "Lunes a Domingo de 9:00am a 8:00pm",
 			"logo": "logo.jpg"
 		}
-	]
 }

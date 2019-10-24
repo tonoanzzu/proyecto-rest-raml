@@ -5,37 +5,30 @@ version: 0.0
 baseUri: http://localhost:8081/petshop/v0
 
 uses:
-  petshops:  types/petshops.raml
-  services:  types/services.raml
+  petshop:  !include types/petshop.raml
+  service:  types/service.raml
+  accesory:  types/accesory.raml
+  animal:  types/animal.raml
+  client:  types/client.raml
+  date:  types/date.raml
+  employee:  types/employee.raml
+  food:  types/food.raml
+  product:  types/product.raml
+  sale:  types/sale.raml
+  pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
 resourceTypes: 
   collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
+
+traits: 
+  pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
 /petshops:
   description: |
     petshops in the town
   type: collection
-  post:
-    body:
-      application/json:
-        properties:
-          petshop.address:
-            type: string
-            required: true
-            example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-          petshop.contact:
-            type: number
-            required: true
-            example: 55674309
-          petshop.schedule:
-            type: string
-            required: true
-            example: "Lunes a Domingo de 9:00am a 8:00pm"
-          petshop.logo:
-            type: string
-            required: true
-            example: "logo.jpg"
   get:
+    is: [pageable]
     description: |
       petshops lists
     queryParameters:
@@ -75,44 +68,46 @@ resourceTypes:
           application/json:
             type: petshops
             example: !include examples/petshops/get_200.json
+  post:
+    body:
+      application/json:
+        properties:
+          petshop.address:
+            type: string
+            required: true
+            example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+          petshop.contact:
+            type: number
+            required: true
+            example: 55674309
+          petshop.schedule:
+            type: string
+            required: true
+            example: "Lunes a Domingo de 9:00am a 8:00pm"
+          petshop.logo:
+            type: string
+            required: false
+            example: "logo.jpg"
+    responses:
+        200:
+          body:
+            application/json:
+              type: petshop
+              example: !include examples/petshops/petshop_id/post_200.json
   /{petshop-id}:
     get:
-      queryParameters:
-        petshop.id:
-          description: |
-            petshop id
-          type: number
-          required: true
-          example: 1
-        petshop.address:
-          description: |
-            petshop address
-          type: string
-          required: true
-          example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-        petshop.contact:
-          description: |
-            petshop contact
-          type: number
-          required: true
-          example: 55674309
-        petshop.schedule:
-          description: |
-            petshop schedule
-          type: string
-          required: true
-          example: "Lunes a Domingo de 9:00am a 8:00pm"
-        petshop.logo:
-          description: |
-            petshop logo
-          type: string
-          required: true
       uriParameters:
         petshop-id:
           type: string
           description: petshop identifier
           # minLength: 1
           # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: petshop
+              example: !include examples/petshops/petshop_id/get_200.json
     put:
       body:
         application/json:
@@ -127,9 +122,13 @@ resourceTypes:
               example: 55674309
             petshop.schedule:
               type: string
-              required: true
+              required: false
               example: "Lunes a Domingo de 9:00am a 8:00pm"
             petshop.logo:
+              type: string
+              required: false
+              example: "logo.jpg"
+            petshop.name:
               type: string
               required: true
               example: "logo.jpg"
@@ -137,22 +136,50 @@ resourceTypes:
         200:
           body:
             application/json:
-              type: petshops
-              example: !include examples/petshops/petshop_id/put.json
+              example: !include examples/petshops/petshop_id/put_200.json
     patch:
       body:
         application/json:
           properties:
             petshop.address:
               type: string
-              required: true
+              required: false
               example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
             petshop.contact:
               type: number
-              required: true
+              required: false
               example: 55674309
+            petshop.schedule:
+              type: string
+              required: false
+              example: "Lunes a Domingo de 9:00am a 8:00pm"
+            petshop.logo:
+              type: string
+              required: false
+              example: "logo.jpg"
+            petshop.name:
+              type: string
+              required: false
+              example: "logo.jpg"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/petshops/petshop_id/patch_200.json
     delete:
-
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/petshops/petshop_id/delete_200.json
+    /clients:
+      get:
+    /employees:
+      get:
+    /products:
+      get:
+    /dates:
+      get:
 
 /services:
   description: |
@@ -163,28 +190,26 @@ resourceTypes:
     description: |
       lists all services of a specific user
     queryParameters:
-      services.id:
+      service.id:
         description: |
           services id
         type: number
         required: true
         example: 1964401a
-      services.pet:
+      service.type:
         description: |
-          services pet
+          type of service
         enum:
-          - dog 
-          - cat 
-          - fish 
-          - rodent
-          - bird
+          - vaccine 
+          - beauty 
+          - consultation
         required: true
-        example: [dog, cat, fish, rodent, bird]
+        example: [vaccine, beauty, consultation]
     responses:
       200:
         body:
           application/json:
-            type: services
+            type: service
             example: !include examples/services/get_200.json
   post:
   /{service-id}:
@@ -249,6 +274,11 @@ resourceTypes:
     patch:
     delete:
 /products:
+  type: union
+  of:
+    - animal
+    - accesory
+    - food
   get:
   post:
   /{product-id}:

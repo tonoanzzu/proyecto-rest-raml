@@ -1,6 +1,6 @@
 #%RAML 1.0
 types:
-  petShop:
+  petshop:
     type: object
     description: Entity that represent a petShop
     properties:
@@ -23,6 +23,10 @@ types:
       logo:
         type: string
         description: petShop logo
+        required: true
+      name:
+        type: string
+        description: petShop name
         required: true
     
       
