@@ -23,11 +23,164 @@ resourceTypes:
 traits: 
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
+
 /clients:
-  get: 
+  description: |
+    clients in the town
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      clients lists
+    queryParameters:
+      client.id:
+        description: |
+          client id
+        type: number
+        required: true
+        example: 1
+      client.name:
+        description: |
+          client name
+        type: string
+        required: true
+        example: "Antonio Anzures"
+      client.age:
+        description: |
+          client age
+        type: number
+        required: true
+        example: 31
+      client.pet:
+        description: |
+          client pet
+        type: string
+        required: true
+        example: "Dog"
+      client.contact:
+        description: |
+          contact number of client
+        type: number
+        required: true
+        example: 5536553644
+      client.petshop-id:
+        description: |
+          petshop subscribed
+        type: number
+        required: true
+        example: 1
+    responses:
+      200:
+        body:
+          application/json:
+            type: clients
+            example: !include examples/clients/get_200.json
   post:
+    body:
+      application/json:
+        properties:
+          client.name:
+            type: string
+            required: true
+            example: "Antonio Anzures"
+          client.age:
+            type: number
+            required: true
+            example: 31
+          client.contact:
+            type: string
+            required: true
+            example: 5536553644
+          client.pet:
+            type: string
+            required: true
+            example: "Dog"
+          client.petshop-id:
+            type: string
+            required: true
+            example: 1
+            
+    responses:
+        200:
+          body:
+            application/json:
+              type: client
+              example: !include examples/clients/client_id/post_200.json
   /{client-id}:
     get:
+      uriParameters:
+        client-id:
+          type: string
+          description: client identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: client
+              example: !include examples/clients/client_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            client.name:
+            type: string
+            required: true
+            example: "Antonio Anzures"
+          client.age:
+            type: number
+            required: true
+            example: 31
+          client.contact:
+            type: string
+            required: true
+            example: 5536553644
+          client.pet:
+            type: string
+            required: true
+            example: "Dog"
+          client.petshop-id:
+            type: string
+            required: true
+            example: 1
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients/client_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            client.name:
+            type: string
+            required: true
+            example: "Antonio Anzures"
+          client.age:
+            type: number
+            required: true
+            example: 31
+          client.contact:
+            type: string
+            required: true
+            example: 5536553644
+          client.pet:
+            type: string
+            required: true
+            example: "Dog"
+          client.petshop-id:
+            type: string
+            required: true
+            example: 1
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients/client_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients/client_id/delete_200.json
