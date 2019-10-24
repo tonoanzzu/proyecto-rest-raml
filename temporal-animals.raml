@@ -5,16 +5,16 @@ version: 0.0
 baseUri: http://localhost:8081/petshop/v0
 
 uses:
-  petshop:  !include types/petshop.raml
-  service:  types/service.raml
-  accesory:  types/accesory.raml
-  animal:  types/animal.raml
-  client:  types/client.raml
-  date:  types/date.raml
-  employee:  types/employee.raml
-  food:  types/food.raml
-  product:  types/product.raml
-  sale:  types/sale.raml
+  petshop: !include types/petshop.raml
+  service: !include types/service.raml
+  accesory: !include types/accesory.raml
+  animal: !include types/animal.raml
+  client: !include types/client.raml
+  date: !include types/date.raml
+  employee: !include types/employee.raml
+  food: !include types/food.raml
+  product: !include types/product.raml
+  sale: !include types/sale.raml
   pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
 resourceTypes: 
@@ -24,10 +24,261 @@ traits:
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
 /animals:
+  description: |
+    animals in the shop
   get: 
+    is: [pageable]
+    description: |
+      animals list
+    queryParameters: 
+      animal.id:
+        description: |
+          animal id
+        type: number
+        required: true
+        example: 1
+      animal.specie:
+        description: |
+          animal species
+        type: enum
+        enum: 
+          - dog
+          - cat
+          - bird
+          - fish
+          - reptile
+        required: true
+        example: [dog, cat, bird, fish, reptile]
+      animal.age:
+        description: |
+          animal's age
+        type: number
+        required: true
+        example: 2
+      animal.weight:
+        description: |
+          animal's weight
+        type: number
+        required: false
+        example: 5
+      animal.size:
+        description: |
+          animal's size
+        type: enum
+        enum:
+          - small
+          - medium
+          - big
+        required: true
+        example: [small, medium, big] 
+      animal.color:
+        description: |
+          animal's color
+        type: string
+        required: false
+        example: "beige"
+      animal.type:
+        description: |
+          animal's type
+        type: enum
+        enum: 
+          - husky
+          - labrador
+          - persian
+          - siamese
+          - turtle
+          - chamaleon
+          - parakeet
+          - canary
+          - goldfish
+          - angelfish
+        required: true
+        example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+    responses: 
+        200:
+          body: 
+            application/json:
+              type: animals
+              example: !include examples/animals/get_200.json
   post:
+    body: 
+      application/json:
+        properties:
+          animal.specie:
+            type: enum
+            enum: 
+              - dog
+              - cat
+              - bird
+              - fish
+              - reptile
+            required: true
+            example: [dog, cat, bird, fish, reptile]
+          animal.age:
+            type: number
+            required: true
+            example: 2
+          animal.weight:
+            type: number
+            required: false
+            example: 5
+          animal.size:
+            type: enum
+            enum:
+              - small
+              - medium
+              - big
+            required: true
+            example: [small, medium, big] 
+          animal.color:
+            type: string
+            required: false
+            example: "beige"
+          animal.type:
+            type: enum
+            enum: 
+              - husky
+              - labrador
+              - persian
+              - siamese
+              - turtle
+              - chamaleon
+              - parakeet
+              - canary
+              - goldfish
+              - angelfish
+            required: true
+            example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+    responses: 
+        200:
+          body: 
+            application/json:
+              type: animals
+              example: !include examples/animals/post_200.json
+      
   /{animal-id}:
     get:
+      uriParameters:
+        animal-id:
+          type: string
+          description: animal's identifier
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: animal
+              example: !include examples/animals/animal_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            animal.specie:
+              type: enum
+              enum: 
+                - dog
+                - cat
+                - bird
+                - fish
+                - reptile
+              required: true
+              example: [dog, cat, bird, fish, reptile]
+            animal.age:
+              type: number
+              required: true
+              example: 2
+            animal.weight:
+              type: number
+              required: false
+              example: 5
+            animal.size:
+              type: enum
+              enum:
+                - small
+                - medium
+                - big
+              required: true
+              example: [small, medium, big] 
+            animal.color:
+              type: string
+              required: false
+              example: "beige"
+            animal.type:
+              type: enum
+              enum: 
+                - husky
+                - labrador
+                - persian
+                - siamese
+                - turtle
+                - chamaleon
+                - parakeet
+                - canary
+                - goldfish
+                - angelfish
+              required: true
+              example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/animals/animal_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            animal.specie:
+              type: enum
+              enum: 
+                - dog
+                - cat
+                - bird
+                - fish
+                - reptile
+              required: true
+              example: [dog, cat, bird, fish, reptile]
+            animal.age:
+              type: number
+              required: true
+              example: 2
+            animal.weight:
+              type: number
+              required: false
+              example: 5
+            animal.size:
+              type: enum
+              enum:
+                - small
+                - medium
+                - big
+              required: true
+              example: [small, medium, big] 
+            animal.color:
+              type: string
+              required: false
+              example: "beige"
+            animal.type:
+              type: enum
+              enum: 
+                - husky
+                - labrador
+                - persian
+                - siamese
+                - turtle
+                - chamaleon
+                - parakeet
+                - canary
+                - goldfish
+                - angelfish
+              required: true
+              example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/animals/animal_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/animals/animal_id/delete_200.json

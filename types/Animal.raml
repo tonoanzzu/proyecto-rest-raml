@@ -4,27 +4,32 @@ types:
     type:object
     description: Entity that represent an animal
     properties:
+    properties:
       id:
         type: number
         description: identify of the animal
         required: true
-      type:
-        type: union
-        description: animal type
-        required:true
+      specie:
+        type: enum
+        description: animal specie
+        required: true
       age:
         type: number
         description: animal age
         required: true
       weight:
         type: number
-        description: identify the animal weight
+        description: animal's weight
         required: false
       size:
         type: enum
-        description: identify the animal size
+        description: animal's size
         required: true
       color:
         type: string
-        description: identify the animal color
+        description: animal color
         required: false
+      type:
+        type: enum
+        description: animal type
+        required: true

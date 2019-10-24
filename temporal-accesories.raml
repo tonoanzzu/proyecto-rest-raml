@@ -24,10 +24,141 @@ traits:
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
 /accesories:
+  description: |
+    accesories in the shop
+  type: collection
   get: 
+    is: [pageable]
+    description: |
+      accesories list
+    queryParameters:
+      accesory.id:
+        description: |
+          accesory id
+        type: number
+        required: true
+        example: 1
+      accesory.type:
+        description: |
+          accesory type
+        type: string
+        required: true
+        example: "Food plate"
+      accesory.color:
+        description: |
+          accesory color
+        type: string
+        required: true
+        example: "Blue"
+      accesory.material:
+        description: |
+          accesory material
+        type: string
+        required: true
+        example: "plastic"
+      accesory.brand:
+        description: |
+          accesory brand
+        type: string
+        required: true
+        example: "Cobe"
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: accesories
+            example: !include examples/accesories/get_200.json
   post:
+    body: 
+      application/json:
+        properties: 
+          accesory.type:
+            type: string
+            required: true
+            example: "Food plate"
+          accesory.color:
+            type: string
+            required: true
+            example: "Orange"
+          accesory.material:
+            type: string
+            required: true
+            example: "Plastic"
+          accesory.brand:
+            type: string
+            required: true
+            example: "Cobe"
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: accesory
+            example: !include examples/accesories/post_200.json
   /{accesory-id}:
     get:
+      uriParameters:
+        accesory-id:
+          type: string
+          description: accesory identifier
+      responses:
+        200:
+          body: 
+            application/json:
+              type: accesory
+              example: !include examples/accesories/accesory_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            accesory.type:
+              type: string
+              required: true
+              example: "Food plate"
+            accesory.color:
+              type: string
+              required: true
+              example: "Blue"
+            accesory.material:
+              type: string
+              required: true
+              example: "Plastic"
+            accesory.brand:
+              type: string
+              required: true
+              example: "Cobe"
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/accesories/accesory_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            accesory.type:
+              type: string
+              required: true
+              example: "Food plate"
+            accesory.color:
+              type: string
+              required: true
+              example: "Brown"
+            accesory.material:
+              type: string
+              required: true
+              example: "Plastic"
+            accesory.brand:
+              type: string
+              required: true
+              example: "Cobe"
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/accesories/accesory_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/accesories/accesory_id/delete_200.json

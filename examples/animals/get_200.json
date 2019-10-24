@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "specie": "dog",
+      "age": 2,
+      "weight": 3,
+      "size": "big",
+      "color": "beige",
+      "type": "labrador"
+    },
+    {
+      "id": 2,
+      "specie": "cat",
+      "age": 3,
+      "weight": 1,
+      "size": "small",
+      "color": "white",
+      "type": "persian"
+    },
+    {
+      "id": 3,
+      "specie": "bird",
+      "age": 1,
+      "weight": 1,
+      "size": "medium",
+      "color": "green",
+      "type": "parakeet"
+    }
+  ]
+}
