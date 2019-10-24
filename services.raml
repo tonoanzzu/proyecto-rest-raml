@@ -1,0 +1,61 @@
+#%RAML 1.0
+title: petshop
+description: Pet Shop Api
+version: 0.0
+baseUri: http://localhost:8081/petshop/v0
+
+uses:
+  petshop:  !include types/petshop.raml
+  service:  types/service.raml
+  accesory:  types/accesory.raml
+  animal:  types/animal.raml
+  client:  types/client.raml
+  date:  types/date.raml
+  employee:  types/employee.raml
+  food:  types/food.raml
+  product:  types/product.raml
+  sale:  types/sale.raml
+  pagination: glapi-global-apis-commons-commons/types/pagination.raml
+
+resourceTypes: 
+  collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
+
+traits: 
+  pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
+
+/services:
+  description: |
+    services collection resource used to create new services
+  type: services
+  get:
+    is: [ assets.paging ]
+    description: |
+      lists all services of a specific user
+    queryParameters:
+      service.id:
+        description: |
+          services id
+        type: number
+        required: true
+        example: 1964401a
+      service.type:
+        description: |
+          type of service
+        enum:
+          - vaccine 
+          - beauty 
+          - consultation
+        required: true
+        example: [vaccine, beauty, consultation]
+    responses:
+      200:
+        body:
+          application/json:
+            type: service
+            example: !include examples/services/get_200.json
+  post:
+  /{service-id}:
+    get:
+    put:
+    patch:
+    delete:
