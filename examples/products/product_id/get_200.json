@@ -1,0 +1,10 @@
+{
+	"data": 
+        {
+            "id": 1,
+            "type": "Pechera",
+            "price": 400.00,
+            "quantity": 350,
+            "description": "Pechera de cuero para perro, raza grande, adulto"
+        }
+}
