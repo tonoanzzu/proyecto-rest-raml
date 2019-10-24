@@ -6,16 +6,16 @@ baseUri: http://localhost:8081/petshop/v0
 
 uses:
   petshop:  !include types/petshop.raml
-  service:  types/service.raml
-  accesory:  types/accesory.raml
-  animal:  types/animal.raml
-  client:  types/client.raml
-  date:  types/date.raml
-  employee:  types/employee.raml
-  food:  types/food.raml
-  product:  types/product.raml
-  sale:  types/sale.raml
-  pagination: glapi-global-apis-commons-commons/types/pagination.raml
+  service:  !include types/service.raml
+  accesory:  !include types/accesory.raml
+  animal:  !include types/animal.raml
+  client:  !include types/client.raml
+  date:  !include types/date.raml
+  employee:  !include types/employee.raml
+  food:  !include types/food.raml
+  product:  !include types/product.raml
+  sale:  !include types/sale.raml
+  pagination: !include glapi-global-apis-commons-commons/types/pagination.raml
 
 resourceTypes: 
   collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
@@ -30,14 +30,14 @@ traits:
   get:
     is: [ assets.paging ]
     description: |
-      lists all services of a specific user
+      lists all services of a specific shop
     queryParameters:
       service.id:
         description: |
-          services id
+          service id
         type: number
-        required: true
-        example: 1964401a
+        required: false
+        example: 1964401
       service.type:
         description: |
           type of service
@@ -45,8 +45,14 @@ traits:
           - vaccine 
           - beauty 
           - consultation
-        required: true
+        required: false
         example: [vaccine, beauty, consultation]
+      petshop-id:
+        description: |
+          petshop id
+        type: number
+        required: false
+        example: 589
     responses:
       200:
         body:
@@ -54,8 +60,236 @@ traits:
             type: service
             example: !include examples/services/get_200.json
   post:
+    description: |
+      Post a new service
+    body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+    responses:
+      200:
+        body:
+          application/json:
+            type: service
+            example: !include examples/services/post_200.json
   /{service-id}:
     get:
+      description: |
+        Get a specific service
+      uriParameters:
+        service-id:
+          type: number
+          description: service identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/get_200.json
     put:
+      description: |
+        Put a specific service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/put_200.json
     patch:
+      description: |
+        Patch a specific service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/delete_200.json
+  /{type}:
+    get:
+      description: |
+        Get a type of service
+      uriParameters:
+        type:
+          type: enum
+          description: service type
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/get_200.json
+    put:
+      description: |
+        Put a type of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/put_200.json
+    patch:
+      description: |
+        Patch a type of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/delete_200.json
+  /{petshop-id}:
+    get:
+      description: |
+        Get a petShop id of Service
+      uriParameters:
+        type:
+          type: number
+          description: petShop id type
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/get_200.json
+    put:
+      description: |
+        Put a petShop of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/put_200.json
+    patch:
+      description: |
+        Patch a petShop of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/delete_200.json
+    
+  
+    
