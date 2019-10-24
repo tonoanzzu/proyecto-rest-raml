@@ -1,24 +1,29 @@
 #%RAML 1.0
 types:
   product:
-    type:object
+    type: array
     description: Entity that represent a Product
-    properties:
-      id:
-        type: number
-        description: identify of the Product
-        required: false
-      type:
-        type: union
-        description: number of the ticket
-        required: false
-      quantity:
-        type: number
-        description: identify the quantity of product 
-        required: false
-      description:
-        type: string
-        description: describes the product
-        required: false
+    items:
+      properties:
+        id:
+          type: number
+          description: identify of the Product
+          required: false
+        type:
+          type: union
+          description: number of the ticket
+          required: false
+        price:
+          type: union
+          description: number of the ticket
+          required: false
+        quantity:
+          type: number
+          description: identify the quantity of product 
+          required: false
+        description:
+          type: string
+          description: describes the product
+          required: false
       
     

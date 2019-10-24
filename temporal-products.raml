@@ -29,10 +29,143 @@ traits:
     - animal
     - accesory
     - food
+    - petshop
+  description: |
+    product types in store
   get:
+    is: [pageable]
+    description: |
+      products lists
+    queryParameters:
+      product.id:
+        description: |
+          product id
+        type: number
+        required: true
+        example: 1
+      product.type:
+        description: |
+          product type
+        type: string
+        required: true
+        example: "Pechera"
+      product.price:
+        description: |
+          product price
+        type: number
+        required: true
+        example: 450.00
+      product.quantity:
+        description: |
+          products in stock
+        type: number
+        required: true
+        example: 30
+      product.description:
+        description: |
+          product description
+        type: string
+        required: true
+        example: "Pechera de cuero para perro raza grande, adulto"      
+    responses:
+      200:
+        body:
+          application/json:
+            type: products
+            example: !include examples/products/get_200.json
   post:
+    body:
+      application/json:
+        properties:
+          product.type:
+            type: string
+            required: true
+            example: "Pechera"
+          product.price:
+            type: number
+            required: true
+            example: 450.00
+          product.description:
+            type: string
+            required: true
+            example: "Pechera de cuero para perro, raza grande, adulto"
+          product.quantity:
+            type: number
+            required: false
+            example: 30
+    responses:
+        200:
+          body:
+            application/json:
+              type: petshop
+              example: !include examples/products/product_id/post_200.json
   /{product-id}:
     get:
+      uriParameters:
+        product-id:
+          type: string
+          description: product identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: product
+              example: !include examples/products/product_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            product.type:
+              type: string
+              required: true
+              example: "Pechera"
+            product.price:
+              type: number
+              required: true
+              example: 400.00
+            product.quantity:
+              type: number
+              required: false
+              example: 30
+            product.description:
+              type: string
+              required: false
+              example: "Pechera de cuero para perro, raza grande, adulto"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            product.type:
+              type: string
+              required: true
+              example: "Pechera"
+            product.price:
+              type: number
+              required: true
+              example: 400.00
+            product.quantity:
+              type: number
+              required: false
+              example: 30
+            product.description:
+              type: string
+              required: false
+              example: "Pechera de cuero para perro, raza grande, adulto"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/delete_200.json

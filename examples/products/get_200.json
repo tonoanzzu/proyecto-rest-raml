@@ -1,0 +1,25 @@
+{
+	"data": [
+		{
+			"id": 1,
+			"type": "Pechera",
+			"price": 400.00,
+			"quantity": 350,
+			"description": "Pechera de cuero para perro, raza grande, adulto"
+		},
+		{
+			"id": 2,
+			"type": "Collar",
+			"price": 100.00,
+			"quantity": 200,
+			"description": "Collar de cuero para perro, raza grande, adulto"
+		},
+		{
+			"id": 3,
+			"type": "Correa",
+			"price": 150.00,
+			"quantity": 150,
+			"description": "Correa de tela para perro, raza grande, adulto"
+		}
+	]
+}
