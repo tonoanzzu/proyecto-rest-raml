@@ -1,0 +1,28 @@
+{
+	"data": [
+		{
+			"id": 1,
+			"name": "Antonio Anzures",
+			"age": 5567430932,
+			"pet": "Dog",
+			"contact": 555555555, 
+			"petshop-id":1
+		},
+		{
+			"id": 2,
+			"name": "Javier Jaramillo",
+			"age": 5567430952,
+			"pet": "Cat",
+			"contact": 555555555, 
+			"petshop-id":1
+		},
+		{
+			"id": 3,
+			"name": "Edgar Castillo",
+			"age": 556656234,
+			"pet": "Dog",
+			"contact": 555555555, 
+			"petshop-id":1
+		}
+	]
+}
