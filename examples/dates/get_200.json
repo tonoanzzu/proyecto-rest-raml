@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "schedule": "Algo",
+      "description": "Para vacunas",
+      "price": 300,
+      "service_id": 1,
+      "petshop_id": 1,
+      "client_id": 1
+    },
+    {
+      "id": 2,
+      "schedule": "Algo algo",
+      "description": "Para vacunas y corte de pelo",
+      "price": 1000,
+      "service_id": 2,
+      "petshop_id": 1,
+      "client_id": 5
+    },
+    {
+      "id": 3,
+      "schedule": "Algo algo algo",
+      "description": "Para 2 vacunas",
+      "price": 1500,
+      "service_id": 3,
+      "petshop_id": 1,
+      "client_id": 3
+    }
+  ]
+}
