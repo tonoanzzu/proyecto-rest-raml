@@ -1,32 +1,19 @@
-// TODO pasar a json
-single-order:
-services:
-  -
-    order_id: "ORDER-437563756"
-    creation_date: "2016-03-30"
-    items:
-      -
-        product_id: "PRODUCT-1"
-        quantity: 5
-      -
-        product_id: "PRODUCT-2"
-        quantity: 2
-multiple-services:
-  services:
-    -
-      order_id: "ORDER-437563756"
-      creation_date: "2016-03-30"
-      items:
-        -
-          product_id: "PRODUCT-1"
-          quantity: 5
-        -
-          product_id: "PRODUCT-2"
-          quantity: 2
-    -
-      order_id: "ORDER-437542111"
-      creation_date: "2016-03-30"
-      items:
-        -
-          product_id: "PRODUCT-7"
-          quantity: 6
+{
+	"data": [
+		{
+			"id": 1,
+			"type": "Caccine",
+			"petshop-id": 155
+		},
+		{
+			"id": 2,
+			"type": "Beauty",
+			"petshop-id": 190
+		},
+		{
+			"id": 3,
+			"type": "Consultation",
+			"petshop-id": 198
+		}
+	]
+}
