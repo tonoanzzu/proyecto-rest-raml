@@ -24,10 +24,143 @@ traits:
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
 /employees:
+  description: |
+    employees of the petshop
+  type: collection
   get: 
+    is: [pageable]
+    description: |
+      employee list
+    queryParameters:
+      employee.id:
+        description: |
+          employee id
+        type: number
+        required: false
+        example: 1
+      employee.name:
+        description: |
+          employee name
+        type: string
+        required: false
+        example: "Juan Carlos Martinez Hernandez"
+      employee.age:
+        description: |
+          employee age
+        type: number
+        required: false
+        example: 25
+      employee.position:
+        description: |
+          employee position in petshop
+        type: string
+        required: false
+        example: "Vendedor"
+      employee.contact:
+        description: |
+          employee contact number
+        type: number
+        required: false
+        example: 5553344334
+    responses:
+      200:
+        body:
+          application/json:
+            type: employees
+            example: !include examples/employees/get_200.json
   post:
+    body: 
+      application/json:
+        properties:
+          employee.name:
+            type: string
+            required: true
+            example: "Juan Carlos Martinez Hernandez"
+          employee.age:
+            type: number
+            required: true
+            example: 25
+          petemployeeshop.position:
+            type: string
+            required: true
+            example: "vendedor"
+          employee.contact:
+            type: string
+            required: false
+            example: 3323234434
+    responses:
+      200:
+        body:
+          application/json:
+            type: employee
+            example: !include examples/employees/post_200.json
   /{employee-id}:
     get:
+      uriParameters:
+        employee-id:
+          type: string
+          description: employee identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: employee
+              example: !include examples/employees/employee_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            employee.name:
+              type: string
+              required: true
+              example: "Francisco Arellano Torres"
+            employee.age:
+              type: number
+              required: true
+              example: 30
+            employee.position:
+              type: string
+              required: false
+              example: "Veterinario"
+            employee.contact:
+              type: string
+              required: false
+              example: 3392849394
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/employees/employee_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            employee.name:
+              type: string
+              required: true
+              example: "Francisco Arellano Torres"
+            employee.age:
+              type: number
+              required: true
+              example: 30
+            employee.position:
+              type: string
+              required: false
+              example: "Veterinario"
+            employee.contact:
+              type: string
+              required: false
+              example: 3392849394
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/employees/employee_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/employees/employee_id/delete_200.json
