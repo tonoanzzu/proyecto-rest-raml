@@ -255,7 +255,7 @@ traits:
     get:
       uriParameters:
         accesory-id:
-          type: string
+          type: number
           description: accesory identifier
       responses:
         200:
@@ -322,6 +322,7 @@ traits:
 /animals:
   description: |
     animals in the shop
+  type: collection
   get: 
     is: [pageable]
     description: |
@@ -1491,13 +1492,126 @@ traits:
               type: service
               example: !include examples/services/petshop/delete_200.json
 /food:
+  description: |
+    food in the shop
+  type: collection
   get: 
+    is: [pageable]
+    description: |
+      food list
+    queryParameters: 
+      food.id:
+        description: |
+          food id
+        type: number
+        required: true
+        example: 1
+      food.pet:
+        description: |
+        type: string
+        required: true
+        example: ""
+      food.brand:
+        description: |
+        type: string
+        required: true
+        example: ""
+      food.presentation:
+        description: |
+        type: string
+        required: true
+        example: ""
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: foods
+            example: !include examples/foods/get_200.json
   post:
+    body: 
+      application/json:
+        food.id:
+          type: number
+          required: true
+          example: 1
+        food.pet:
+          type: string
+          required: true
+          example: ""
+        food.brand:
+          type: string
+          required: true
+          example: ""
+        food.presentation:
+          type: string
+          required: true
+          example: ""
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: food
+            example: !include examples/foods/post_200.json
   /{food-id}:
     get:
+      uriParameters:
+        food-id:
+          type: number
+          description: food identifier
+      responses:
+        200:
+          body: 
+            application/json:
+              type: food
+              example: !include examples/foods/food_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            food.pet:
+              type: string
+              required: true
+              example: ""
+            food.brand:
+              type: string
+              required: true
+              example: ""
+            food.presentation:
+              type: string
+              required: true
+              example: ""
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/foods/food_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            food.pet:
+              type: string
+              required: true
+              example: ""
+            food.brand:
+              type: string
+              required: true
+              example: ""
+            food.presentation:
+              type: string
+              required: true
+              example: ""
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/foods/food_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/foods/food_id/delete_200.json
 # Servicio restless (Vacunas)
 /getDatesReport:
   get:
