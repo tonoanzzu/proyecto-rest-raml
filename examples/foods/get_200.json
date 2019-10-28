@@ -1,0 +1,22 @@
+{
+    "data": [
+      {
+        "id": 1,
+        "pet": "dog",
+        "brand": "Pro Plan",
+        "presentation": "bolsa"
+      },
+      {
+        "id": 2,
+        "pet": "cat",
+        "brand": "minino",
+        "presentation": "bolsa"
+      },
+      {
+        "id": 3,
+        "pet": "fish",
+        "brand": "Supervit",
+        "presentation": "bote"
+      }
+    ]
+  }

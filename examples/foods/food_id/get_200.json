@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "pet": "dog",
+      "brand": "Pro Plan",
+      "presentation": "bolsa"
+    }
+  ]
+}
