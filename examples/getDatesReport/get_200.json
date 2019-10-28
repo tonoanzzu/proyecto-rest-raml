@@ -1,0 +1,31 @@
+{
+	"data": [
+		{
+			"date-id": 1,
+			"schedule": "8-10",
+			"description": "Cita para de estetica para un perro",
+			"price": 300,
+			"service-id": 2,
+			"petshop-id": 1,
+			"client-id": 12
+		},
+		{
+			"date-id": 2,
+			"schedule": "8-12",
+			"description": "Consulta medica general",
+			"price": 100,
+			"service-id": 2,
+			"petshop-id": 1,
+			"client-id": 12
+        },
+        {
+			"date-id": 2,
+			"schedule": "8-11",
+			"description": "Consulta medica general",
+			"price": 200,
+			"service-id": 2,
+			"petshop-id": 1,
+			"client-id": 12
+		}
+	]
+}

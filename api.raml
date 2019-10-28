@@ -746,6 +746,69 @@ traits:
           body:
             application/json:
               example: !include examples/clients/client_id/delete_200.json
+  /purchases:
+    get:
+      is: [pageable]
+        description: |
+          List of purchases for a specific client
+        queryParameters:
+          employee.id:
+            description: |
+              employee id
+            type: number
+            required: false
+            example: 1964401
+          product.id:
+            description: |
+              product id
+            type: number
+            required: false
+            example: 1964401
+          petshop.id:
+            description: |
+              petshop id
+            type: number
+            required: false
+            example: 1964401
+          sale.method_payment:
+            description: |
+             payment method
+            type: string
+            required: true
+            example: "plastic"
+          sale.sale_date:
+            description: |
+              date when the purchase was made
+            type: string
+            required: true
+            example: "Cobe"
+          sale.total_amount:
+            description: |
+              total amount for the sale
+            type: string
+            required: true
+            example: "Cobe"
+      responses:
+        200:
+          body:
+            application/json:
+              type: client
+              example: !include examples/clients/client_id/purchases/get_200.json
+    /{sale-id}:
+      description: Detail of a purchase of a client
+      type: collection-item
+      get:
+        uriParameters:
+          sale-id:
+            type: number
+            description: Sale id
+            example: 1
+        responses:
+          200:
+            body:
+              application/json:
+                type: collection-item
+                example: !include examples/clients/client_id/purchases/sale_id/get_200.json 
 /dates:
   description: Used for interact with information about dates
   type: collection
@@ -1438,3 +1501,31 @@ traits:
 # Servicio restless (Vacunas)
 /getDatesReport:
   get:
+  is: [ assets.paging ]
+  description: |
+    
+  queryParameters:
+    client.id:
+      description: |
+        client id
+      type: number
+      required: false
+      example: 1964401
+    petshop.id:
+      description: |
+        petshop id
+      type: number
+      required: false
+      example: 1964401
+    service.id:
+      description: |
+        service id
+      type: number
+      required: false
+      example: 1964401
+  responses:
+    200:
+      body:
+        application/json:
+          type: service
+          example: !include examples/getDatesReport/get_200.json
