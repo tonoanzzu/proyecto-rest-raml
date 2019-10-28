@@ -486,6 +486,59 @@ pre code {
 			"code": 1,
             "message": "El cliente ha sido borrada con exito"
 		}
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_clients__client_id__purchases"><span class="parent">/clients/{client-id}</span>/purchases</a> <span class="methods"><a href="#clients__client_id__purchases_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_clients__client_id__purchases" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#clients__client_id__purchases_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of purchases for a specific client</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="clients__client_id__purchases_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/clients/{client-id}</span>/purchases</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of purchases for a specific client</p></div><ul class="nav nav-tabs"><li class="active"><a href="#clients__client_id__purchases_get_request" data-toggle="tab">Request</a></li><li><a href="#clients__client_id__purchases_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="clients__client_id__purchases_get_request"><h3>URI Parameters</h3><ul><li><strong>client-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>employee.id</strong>: <em>(number)</em><p>employee id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1964401</code></pre></div></li><li><strong>product.id</strong>: <em>(number)</em><p>product id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1964401</code></pre></div></li><li><strong>petshop.id</strong>: <em>(number)</em><p>petshop id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1964401</code></pre></div></li><li><strong>sale.method_payment</strong>: <em><span class="required">required</span>(string)</em><p>payment method</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>plastic</code></pre></div></li><li><strong>sale.sale_date</strong>: <em><span class="required">required</span>(string)</em><p>date when the purchase was made</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Cobe</code></pre></div></li><li><strong>sale.total_amount</strong>: <em><span class="required">required</span>(string)</em><p>total amount for the sale</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Cobe</code></pre></div></li></ul></div><div class="tab-pane" id="clients__client_id__purchases_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: client</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": [
+		{
+			"sale-id": 1,
+			"num_ticket": "81AEFA0AEFGAE13114",
+			"total_amount": 560,
+			"invoice": "AEOGJAEOJ135R",
+			"sale_date": "14/08/19",
+			"method_payment": "Credit Card",
+			"client-id": 1,
+			"petshop-id": 2,
+			"employee-id": 3,
+			"product-id": 43
+		},
+		{
+			"sale-id": 1,
+			"num_ticket": "81AEFA0AEFGAE13114",
+			"total_amount": 560,
+			"invoice": "AEOGJAEOJ135R",
+			"sale_date": "14/08/19",
+			"method_payment": "Credit Card",
+			"client-id": 1,
+			"petshop-id": 2,
+			"employee-id": 12,
+			"product-id": 6
+        },
+        {
+			"sale-id": 1,
+			"num_ticket": "81AEFA0AEFGAE13114",
+			"total_amount": 560,
+			"invoice": "AEOGJAEOJ135R",
+			"sale_date": "14/08/19",
+			"method_payment": "Credit Card",
+			"client-id": 1,
+			"petshop-id": 2,
+			"employee-id": 4,
+			"product-id": 12
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_clients__client_id__purchases__sale_id_"><span class="parent">/clients/{client-id}/purchases</span>/{sale-id}</a> <span class="methods"><a href="#clients__client_id__purchases__sale_id__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_clients__client_id__purchases__sale_id_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Detail of a purchase of a client</p></div><div class="list-group"><div onclick="window.location.href = '#clients__client_id__purchases__sale_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="clients__client_id__purchases__sale_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/clients/{client-id}/purchases</span>/{sale-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#clients__client_id__purchases__sale_id__get_request" data-toggle="tab">Request</a></li><li><a href="#clients__client_id__purchases__sale_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="clients__client_id__purchases__sale_id__get_request"><h3>URI Parameters</h3><ul><li><strong>client-id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>sale-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="clients__client_id__purchases__sale_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: collection-item</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data":
+		{
+			"sale-id": 1,
+			"num_ticket": "81AEFA0AEFGAE13114",
+			"total_amount": 560,
+			"invoice": "AEOGJAEOJ135R",
+			"sale_date": "14/08/19",
+			"method_payment": "Credit Card",
+			"client-id": 1,
+			"petshop-id": 2,
+			"employee-id": 3,
+			"product-id": 43
+		}
 }</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="dates" class="panel-title">/dates</h3></div><div class="panel-body"><div class="top-resource-description"><p>Used for interact with information about dates</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_dates"><span class="parent"></span>/dates</a> <span class="methods"><a href="#dates_get"><span class="badge badge_get">get</span></a> <a href="#dates_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_dates" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#dates_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get information about my dates</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#dates_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new date</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="dates_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/dates</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get information about my dates</p></div><ul class="nav nav-tabs"><li class="active"><a href="#dates_get_request" data-toggle="tab">Request</a></li><li><a href="#dates_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="dates_get_request"><h3>Query Parameters</h3><ul><li><strong>date.price</strong>: <em><span class="required">required</span>(number)</em><p>price of dates</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>100</code></pre></div></li><li><strong>date.service_id</strong>: <em><span class="required">required</span>(number)</em><p>depend of my service id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>date.petshop_id</strong>: <em><span class="required">required</span>(number)</em><p>depend of petshop id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>100</code></pre></div></li><li><strong>date.client_id</strong>: <em><span class="required">required</span>(number)</em><p>depend of client id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>100</code></pre></div></li></ul></div><div class="tab-pane" id="dates_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Ok</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of date</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "data": [
     {
@@ -805,4 +858,34 @@ pre code {
         "code": 1,
         "message": "El alimento ha sido borrado con éxito"
       }
-  }</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="getdatesreport" class="panel-title">/getDatesReport</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_getdatesreport"><span class="parent"></span>/getDatesReport</a> <span class="methods"><a href="#getdatesreport_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_getdatesreport" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#getdatesreport_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="getdatesreport_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/getDatesReport</h4></div><div class="modal-body"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#petshops">/petshops</a></li><li><a href="#accesories">/accesories</a></li><li><a href="#animals">/animals</a></li><li><a href="#sales">/sales</a></li><li><a href="#clients">/clients</a></li><li><a href="#dates">/dates</a></li><li><a href="#employees">/employees</a></li><li><a href="#products">/products</a></li><li><a href="#services">/services</a></li><li><a href="#food">/food</a></li><li><a href="#getdatesreport">/getDatesReport</a></li></ul></div></div></div></div></body></html>
+  }</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="getdatesreport" class="panel-title">/getDatesReport</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_getdatesreport"><span class="parent"></span>/getDatesReport</a> <span class="methods"><a href="#getdatesreport_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_getdatesreport" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#getdatesreport_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="getdatesreport_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/getDatesReport</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#getdatesreport_get_request" data-toggle="tab">Request</a></li><li><a href="#getdatesreport_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="getdatesreport_get_request"><h3>Query Parameters</h3><ul><li><strong>client.id</strong>: <em>(number)</em><p>client id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1964401</code></pre></div></li><li><strong>petshop.id</strong>: <em>(number)</em><p>petshop id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1964401</code></pre></div></li><li><strong>service.id</strong>: <em>(number)</em><p>service id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1964401</code></pre></div></li></ul></div><div class="tab-pane" id="getdatesreport_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: service</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": [
+		{
+			"date-id": 1,
+			"schedule": "8-10",
+			"description": "Cita para de estetica para un perro",
+			"price": 300,
+			"service-id": 2,
+			"petshop-id": 1,
+			"client-id": 12
+		},
+		{
+			"date-id": 2,
+			"schedule": "8-12",
+			"description": "Consulta medica general",
+			"price": 100,
+			"service-id": 2,
+			"petshop-id": 1,
+			"client-id": 12
+        },
+        {
+			"date-id": 2,
+			"schedule": "8-11",
+			"description": "Consulta medica general",
+			"price": 200,
+			"service-id": 2,
+			"petshop-id": 1,
+			"client-id": 12
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#petshops">/petshops</a></li><li><a href="#accesories">/accesories</a></li><li><a href="#animals">/animals</a></li><li><a href="#sales">/sales</a></li><li><a href="#clients">/clients</a></li><li><a href="#dates">/dates</a></li><li><a href="#employees">/employees</a></li><li><a href="#products">/products</a></li><li><a href="#services">/services</a></li><li><a href="#food">/food</a></li><li><a href="#getdatesreport">/getDatesReport</a></li></ul></div></div></div></div></body></html>

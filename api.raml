@@ -5,12 +5,14 @@ version: 0.0
 baseUri: http://localhost:8081/petshop/v0
 
 uses:
-  petshop:  !include types/petshop.raml
+  petshop:  types/petshop.raml
+  petshops:  types/petshops.raml
   service:  types/service.raml
   accesory:  types/accesory.raml
   animal:  types/animal.raml
   client:  types/client.raml
   date:  types/date.raml
+  dates:  types/dates.raml
   employee:  types/employee.raml
   food:  types/food.raml
   product:  types/product.raml
@@ -747,9 +749,9 @@ traits:
           body:
             application/json:
               example: !include examples/clients/client_id/delete_200.json
-  /purchases:
-    get:
-      is: [pageable]
+    /purchases:
+      get:
+        is: [pageable]
         description: |
           List of purchases for a specific client
         queryParameters:
@@ -773,7 +775,7 @@ traits:
             example: 1964401
           sale.method_payment:
             description: |
-             payment method
+              payment method
             type: string
             required: true
             example: "plastic"
@@ -789,27 +791,27 @@ traits:
             type: string
             required: true
             example: "Cobe"
-      responses:
-        200:
-          body:
-            application/json:
-              type: client
-              example: !include examples/clients/client_id/purchases/get_200.json
-    /{sale-id}:
-      description: Detail of a purchase of a client
-      type: collection-item
-      get:
-        uriParameters:
-          sale-id:
-            type: number
-            description: Sale id
-            example: 1
         responses:
           200:
             body:
               application/json:
-                type: collection-item
-                example: !include examples/clients/client_id/purchases/sale_id/get_200.json 
+                type: client
+                example: !include examples/clients/client_id/purchases/get_200.json
+      /{sale-id}:
+        description: Detail of a purchase of a client
+        type: collection-item
+        get:
+          uriParameters:
+            sale-id:
+              type: number
+              description: Sale id
+              example: 1
+          responses:
+            200:
+              body:
+                application/json:
+                  type: collection-item
+                  example: !include examples/clients/client_id/purchases/sale_id/get_200.json 
 /dates:
   description: Used for interact with information about dates
   type: collection
@@ -817,13 +819,13 @@ traits:
     is: [pageable]
     description: Get information about my dates
     queryParameters: 
-      date.price:
+      price:
         description: |
           price of dates
         type: number
         required: true
         example: 100
-      date.service_id:
+      service-id:
         description: |
           depend of my service id
         type: number
@@ -846,7 +848,7 @@ traits:
         description: Ok: Successful response, get dates
         body:
           application/json:
-            type: date[]
+            type: dates
             example: !include examples/dates/get_200.json
   post:
     description: Create a new date
@@ -1615,31 +1617,30 @@ traits:
 # Servicio restless (Vacunas)
 /getDatesReport:
   get:
-  is: [ assets.paging ]
-  description: |
-    
-  queryParameters:
-    client.id:
-      description: |
-        client id
-      type: number
-      required: false
-      example: 1964401
-    petshop.id:
-      description: |
-        petshop id
-      type: number
-      required: false
-      example: 1964401
-    service.id:
-      description: |
-        service id
-      type: number
-      required: false
-      example: 1964401
-  responses:
-    200:
-      body:
-        application/json:
-          type: service
-          example: !include examples/getDatesReport/get_200.json
+    is: [ assets.paging ]
+    description: |
+    queryParameters:
+      client.id:
+        description: |
+          client id
+        type: number
+        required: false
+        example: 1964401
+      petshop.id:
+        description: |
+          petshop id
+        type: number
+        required: false
+        example: 1964401
+      service.id:
+        description: |
+          service id
+        type: number
+        required: false
+        example: 1964401
+    responses:
+      200:
+        body:
+          application/json:
+            type: service
+            example: !include examples/getDatesReport/get_200.json
