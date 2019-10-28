@@ -180,43 +180,404 @@ traits:
       get:
     /dates:
       get:
-
-/services:
+/accesories:
   description: |
-    services collection resource used to create new services
-  type: services
-  get:
-    is: [ assets.paging ]
+    accesories in the shop
+  type: collection
+  get: 
+    is: [pageable]
     description: |
-      lists all services of a specific user
+      accesories list
     queryParameters:
-      service.id:
+      accesory.id:
         description: |
-          services id
+          accesory id
         type: number
         required: true
-        example: 1964401a
-      service.type:
+        example: 1
+      accesory.type:
         description: |
-          type of service
-        enum:
-          - vaccine 
-          - beauty 
-          - consultation
+          accesory type
+        type: string
         required: true
-        example: [vaccine, beauty, consultation]
-    responses:
+        example: "Food plate"
+      accesory.color:
+        description: |
+          accesory color
+        type: string
+        required: true
+        example: "Blue"
+      accesory.material:
+        description: |
+          accesory material
+        type: string
+        required: true
+        example: "plastic"
+      accesory.brand:
+        description: |
+          accesory brand
+        type: string
+        required: true
+        example: "Cobe"
+    responses: 
       200:
-        body:
+        body: 
           application/json:
-            type: service
-            example: !include examples/services/get_200.json
+            type: accesories
+            example: !include examples/accesories/get_200.json
   post:
-  /{service-id}:
+    body: 
+      application/json:
+        properties: 
+          accesory.type:
+            type: string
+            required: true
+            example: "Food plate"
+          accesory.color:
+            type: string
+            required: true
+            example: "Orange"
+          accesory.material:
+            type: string
+            required: true
+            example: "Plastic"
+          accesory.brand:
+            type: string
+            required: true
+            example: "Cobe"
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: accesory
+            example: !include examples/accesories/post_200.json
+  /{accesory-id}:
     get:
+      uriParameters:
+        accesory-id:
+          type: string
+          description: accesory identifier
+      responses:
+        200:
+          body: 
+            application/json:
+              type: accesory
+              example: !include examples/accesories/accesory_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            accesory.type:
+              type: string
+              required: true
+              example: "Food plate"
+            accesory.color:
+              type: string
+              required: true
+              example: "Blue"
+            accesory.material:
+              type: string
+              required: true
+              example: "Plastic"
+            accesory.brand:
+              type: string
+              required: true
+              example: "Cobe"
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/accesories/accesory_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            accesory.type:
+              type: string
+              required: true
+              example: "Food plate"
+            accesory.color:
+              type: string
+              required: true
+              example: "Brown"
+            accesory.material:
+              type: string
+              required: true
+              example: "Plastic"
+            accesory.brand:
+              type: string
+              required: true
+              example: "Cobe"
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/accesories/accesory_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/accesories/accesory_id/delete_200.json
+/animals:
+  description: |
+    animals in the shop
+  get: 
+    is: [pageable]
+    description: |
+      animals list
+    queryParameters: 
+      animal.id:
+        description: |
+          animal id
+        type: number
+        required: true
+        example: 1
+      animal.specie:
+        description: |
+          animal species
+        type: enum
+        enum: 
+          - dog
+          - cat
+          - bird
+          - fish
+          - reptile
+        required: true
+        example: [dog, cat, bird, fish, reptile]
+      animal.age:
+        description: |
+          animal's age
+        type: number
+        required: true
+        example: 2
+      animal.weight:
+        description: |
+          animal's weight
+        type: number
+        required: false
+        example: 5
+      animal.size:
+        description: |
+          animal's size
+        type: enum
+        enum:
+          - small
+          - medium
+          - big
+        required: true
+        example: [small, medium, big] 
+      animal.color:
+        description: |
+          animal's color
+        type: string
+        required: false
+        example: "beige"
+      animal.type:
+        description: |
+          animal's type
+        type: enum
+        enum: 
+          - husky
+          - labrador
+          - persian
+          - siamese
+          - turtle
+          - chamaleon
+          - parakeet
+          - canary
+          - goldfish
+          - angelfish
+        required: true
+        example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+    responses: 
+        200:
+          body: 
+            application/json:
+              type: animals
+              example: !include examples/animals/get_200.json
+  post:
+    body: 
+      application/json:
+        properties:
+          animal.specie:
+            type: enum
+            enum: 
+              - dog
+              - cat
+              - bird
+              - fish
+              - reptile
+            required: true
+            example: [dog, cat, bird, fish, reptile]
+          animal.age:
+            type: number
+            required: true
+            example: 2
+          animal.weight:
+            type: number
+            required: false
+            example: 5
+          animal.size:
+            type: enum
+            enum:
+              - small
+              - medium
+              - big
+            required: true
+            example: [small, medium, big] 
+          animal.color:
+            type: string
+            required: false
+            example: "beige"
+          animal.type:
+            type: enum
+            enum: 
+              - husky
+              - labrador
+              - persian
+              - siamese
+              - turtle
+              - chamaleon
+              - parakeet
+              - canary
+              - goldfish
+              - angelfish
+            required: true
+            example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+    responses: 
+        200:
+          body: 
+            application/json:
+              type: animals
+              example: !include examples/animals/post_200.json
+      
+  /{animal-id}:
+    get:
+      uriParameters:
+        animal-id:
+          type: string
+          description: animal's identifier
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: animal
+              example: !include examples/animals/animal_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+            animal.specie:
+              type: enum
+              enum: 
+                - dog
+                - cat
+                - bird
+                - fish
+                - reptile
+              required: true
+              example: [dog, cat, bird, fish, reptile]
+            animal.age:
+              type: number
+              required: true
+              example: 2
+            animal.weight:
+              type: number
+              required: false
+              example: 5
+            animal.size:
+              type: enum
+              enum:
+                - small
+                - medium
+                - big
+              required: true
+              example: [small, medium, big] 
+            animal.color:
+              type: string
+              required: false
+              example: "beige"
+            animal.type:
+              type: enum
+              enum: 
+                - husky
+                - labrador
+                - persian
+                - siamese
+                - turtle
+                - chamaleon
+                - parakeet
+                - canary
+                - goldfish
+                - angelfish
+              required: true
+              example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/animals/animal_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            animal.specie:
+              type: enum
+              enum: 
+                - dog
+                - cat
+                - bird
+                - fish
+                - reptile
+              required: true
+              example: [dog, cat, bird, fish, reptile]
+            animal.age:
+              type: number
+              required: true
+              example: 2
+            animal.weight:
+              type: number
+              required: false
+              example: 5
+            animal.size:
+              type: enum
+              enum:
+                - small
+                - medium
+                - big
+              required: true
+              example: [small, medium, big] 
+            animal.color:
+              type: string
+              required: false
+              example: "beige"
+            animal.type:
+              type: enum
+              enum: 
+                - husky
+                - labrador
+                - persian
+                - siamese
+                - turtle
+                - chamaleon
+                - parakeet
+                - canary
+                - goldfish
+                - angelfish
+              required: true
+              example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/animals/animal_id/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/animals/animal_id/delete_200.json
 /sales:
   get: 
   post:
@@ -226,37 +587,846 @@ traits:
     patch:
     delete:
 /clients:
-  get: 
+  description: |
+    clients in the town
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      clients lists
+    queryParameters:
+      client.id:
+        description: |
+          client id
+        type: number
+        required: true
+        example: 1
+      client.name:
+        description: |
+          client name
+        type: string
+        required: true
+        example: "Antonio Anzures"
+      client.age:
+        description: |
+          client age
+        type: number
+        required: true
+        example: 31
+      client.pet:
+        description: |
+          client pet
+        type: string
+        required: true
+        example: "Dog"
+      client.contact:
+        description: |
+          contact number of client
+        type: number
+        required: true
+        example: 5536553644
+      client.petshop-id:
+        description: |
+          petshop subscribed
+        type: number
+        required: true
+        example: 1
+    responses:
+      200:
+        body:
+          application/json:
+            type: clients
+            example: !include examples/clients/get_200.json
   post:
+    body:
+      application/json:
+        properties:
+          client.name:
+            type: string
+            required: true
+            example: "Antonio Anzures"
+          client.age:
+            type: number
+            required: true
+            example: 31
+          client.contact:
+            type: string
+            required: true
+            example: 5536553644
+          client.pet:
+            type: string
+            required: true
+            example: "Dog"
+          client.petshop-id:
+            type: string
+            required: true
+            example: 1
+            
+    responses:
+        200:
+          body:
+            application/json:
+              type: client
+              example: !include examples/clients/post_200.json
   /{client-id}:
     get:
+      uriParameters:
+        client-id:
+          type: string
+          description: client identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: client
+              example: !include examples/clients/client_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            client.name:
+            type: string
+            required: true
+            example: "Antonio Anzures"
+          client.age:
+            type: number
+            required: true
+            example: 31
+          client.contact:
+            type: string
+            required: true
+            example: 5536553644
+          client.pet:
+            type: string
+            required: true
+            example: "Dog"
+          client.petshop-id:
+            type: string
+            required: true
+            example: 1
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients/client_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            client.name:
+            type: string
+            required: true
+            example: "Antonio Anzures"
+          client.age:
+            type: number
+            required: true
+            example: 31
+          client.contact:
+            type: string
+            required: true
+            example: 5536553644
+          client.pet:
+            type: string
+            required: true
+            example: "Dog"
+          client.petshop-id:
+            type: string
+            required: true
+            example: 1
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients/client_id/patch_200.json
     delete:
-/employees:
-  get: 
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients/client_id/delete_200.json
+/dates:
+  description: Used for interact with information about dates
+  type: collection
+  get:
+    is: [pageable]
+    description: Get information about my dates
+    queryParameters: 
+      date.price:
+        description: |
+          price of dates
+        type: number
+        required: true
+        example: 100
+      date.service_id:
+        description: |
+          depend of my service id
+        type: number
+        required: true
+        example: 1
+      date.petshop_id:
+        description: |
+          depend of petshop id
+        type: number
+        required: true
+        example: 100
+      date.client_id:
+        description: |
+          depend of client id
+        type: number
+        required: true
+        example: 100
+    responses: 
+      200:
+        description: Ok: Successful response, get dates
+        body:
+          application/json:
+            type: date[]
+            example: !include examples/dates/get_200.json
   post:
+    description: Create a new date
+    body:
+      type: date
+      application/json:
+        example: !include examples/dates/post_200.json
+    responses: 
+      200:
+        description: Ok: Successful created
+        body:
+          application/json:
+            example: |
+              { 
+                "status": 200, 
+                "message": "Successful created!" 
+              }
+  /{date-id}:
+    description: Detail of date from id
+    type: collection-item
+    get:
+      description: Get information about date, from {date-id}
+      uriParameters:
+        date-id:
+          type: number
+          description: ID unique for my date
+          example: 1
+      responses:
+        200:
+          description: Ok: Successful response, get dates
+          body:
+            application/json:
+              type: date[]
+              example: !include examples/dates/date_id/get_200.json 
+    put:
+      description: Update all information for one register of date from {date-id}
+      uriParameters:
+        date-id:
+          type: number
+          description: ID unique for my date
+          example: 1
+      body:
+        type: date
+        application/json:
+          example: !include examples/dates/date_id/put_200.json
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: Update partial information for one register of date from {date-id}
+        uriParameters:
+          date-id:
+            type: number
+            description: ID unique for my date
+            example: 1
+        body:
+          type: date
+          application/json:
+            example: !include examples/dates/date_id/patch_200.json
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+      delete:
+        description: Delete information about date, from {date-id}
+        uriParameters:
+          date-id:
+            type: number
+            description: ID unique for my date
+            example: 1
+        responses:
+          200:
+            description: Ok: Successful response, delete date
+            body:
+              application/json:
+              type: date[]
+              example: !include examples/dates/date_id/get_200.json 
+/employees:
+  description: |
+    employees of the petshop
+  type: collection
+  get: 
+    is: [pageable]
+    description: |
+      employee list
+    queryParameters:
+      employee.id:
+        description: |
+          employee id
+        type: number
+        required: false
+        example: 1
+      employee.name:
+        description: |
+          employee name
+        type: string
+        required: false
+        example: "Juan Carlos Martinez Hernandez"
+      employee.age:
+        description: |
+          employee age
+        type: number
+        required: false
+        example: 25
+      employee.position:
+        description: |
+          employee position in petshop
+        type: string
+        required: false
+        example: "Vendedor"
+      employee.contact:
+        description: |
+          employee contact number
+        type: number
+        required: false
+        example: 5553344334
+    responses:
+      200:
+        body:
+          application/json:
+            type: employees
+            example: !include examples/employees/get_200.json
+  post:
+    body: 
+      application/json:
+        properties:
+          employee.name:
+            type: string
+            required: true
+            example: "Juan Carlos Martinez Hernandez"
+          employee.age:
+            type: number
+            required: true
+            example: 25
+          petemployeeshop.position:
+            type: string
+            required: true
+            example: "vendedor"
+          employee.contact:
+            type: string
+            required: false
+            example: 3323234434
+    responses:
+      200:
+        body:
+          application/json:
+            type: employee
+            example: !include examples/employees/post_200.json
   /{employee-id}:
     get:
+      uriParameters:
+        employee-id:
+          type: string
+          description: employee identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: employee
+              example: !include examples/employees/employee_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            employee.name:
+              type: string
+              required: true
+              example: "Francisco Arellano Torres"
+            employee.age:
+              type: number
+              required: true
+              example: 30
+            employee.position:
+              type: string
+              required: false
+              example: "Veterinario"
+            employee.contact:
+              type: string
+              required: false
+              example: 3392849394
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/employees/employee_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            employee.name:
+              type: string
+              required: true
+              example: "Francisco Arellano Torres"
+            employee.age:
+              type: number
+              required: true
+              example: 30
+            employee.position:
+              type: string
+              required: false
+              example: "Veterinario"
+            employee.contact:
+              type: string
+              required: false
+              example: 3392849394
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/employees/employee_id/patch_200.json
     delete:
-/dates:
-  get: 
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/employees/employee_id/delete_200.json
+/products:
+  type: union
+  of:
+    - animal
+    - accesory
+    - food
+    - petshop
+  description: |
+    product types in store
+  get:
+    is: [pageable]
+    description: |
+      products lists
+    queryParameters:
+      product.id:
+        description: |
+          product id
+        type: number
+        required: true
+        example: 1
+      product.type:
+        description: |
+          product type
+        type: string
+        required: true
+        example: "Pechera"
+      product.price:
+        description: |
+          product price
+        type: number
+        required: true
+        example: 450.00
+      product.quantity:
+        description: |
+          products in stock
+        type: number
+        required: true
+        example: 30
+      product.description:
+        description: |
+          product description
+        type: string
+        required: true
+        example: "Pechera de cuero para perro raza grande, adulto"      
+    responses:
+      200:
+        body:
+          application/json:
+            type: products
+            example: !include examples/products/get_200.json
   post:
-  /{date-id}:
+    body:
+      application/json:
+        properties:
+          product.type:
+            type: string
+            required: true
+            example: "Pechera"
+          product.price:
+            type: number
+            required: true
+            example: 450.00
+          product.description:
+            type: string
+            required: true
+            example: "Pechera de cuero para perro, raza grande, adulto"
+          product.quantity:
+            type: number
+            required: false
+            example: 30
+    responses:
+        200:
+          body:
+            application/json:
+              type: petshop
+              example: !include examples/products/product_id/post_200.json
+  /{product-id}:
     get:
+      uriParameters:
+        product-id:
+          type: string
+          description: product identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: product
+              example: !include examples/products/product_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            product.type:
+              type: string
+              required: true
+              example: "Pechera"
+            product.price:
+              type: number
+              required: true
+              example: 400.00
+            product.quantity:
+              type: number
+              required: false
+              example: 30
+            product.description:
+              type: string
+              required: false
+              example: "Pechera de cuero para perro, raza grande, adulto"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            product.type:
+              type: string
+              required: true
+              example: "Pechera"
+            product.price:
+              type: number
+              required: true
+              example: 400.00
+            product.quantity:
+              type: number
+              required: false
+              example: 30
+            product.description:
+              type: string
+              required: false
+              example: "Pechera de cuero para perro, raza grande, adulto"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/patch_200.json
     delete:
-/accesories:
-  get: 
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/delete_200.json
+/services:
+  description: |
+    services collection resource used to create new services
+  type: services
+  get:
+    is: [ assets.paging ]
+    description: |
+      lists all services of a specific shop
+    queryParameters:
+      service.id:
+        description: |
+          service id
+        type: number
+        required: false
+        example: 1964401
+      service.type:
+        description: |
+          type of service
+        enum:
+          - vaccine 
+          - beauty 
+          - consultation
+        required: false
+        example: [vaccine, beauty, consultation]
+      petshop-id:
+        description: |
+          petshop id
+        type: number
+        required: false
+        example: 589
+    responses:
+      200:
+        body:
+          application/json:
+            type: service
+            example: !include examples/services/get_200.json
   post:
-  /{accesory-id}:
+    description: |
+      Post a new service
+    body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+    responses:
+      200:
+        body:
+          application/json:
+            type: service
+            example: !include examples/services/post_200.json
+  /{service-id}:
     get:
+      description: |
+        Get a specific service
+      uriParameters:
+        service-id:
+          type: number
+          description: service identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/get_200.json
     put:
+      description: |
+        Put a specific service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/put_200.json
     patch:
+      description: |
+        Patch a specific service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/service_id/delete_200.json
+  /{type}:
+    get:
+      description: |
+        Get a type of service
+      uriParameters:
+        type:
+          type: enum
+          description: service type
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/get_200.json
+    put:
+      description: |
+        Put a type of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/put_200.json
+    patch:
+      description: |
+        Patch a type of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/type/delete_200.json
+  /{petshop-id}:
+    get:
+      description: |
+        Get a petShop id of Service
+      uriParameters:
+        type:
+          type: number
+          description: petShop id type
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/get_200.json
+    put:
+      description: |
+        Put a petShop of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/put_200.json
+    patch:
+      description: |
+        Patch a petShop of service
+      body:
+      application/json:
+        properties:
+          service.id:
+            type: number
+            required: true
+            example: 1964401
+          service.type:
+            type: enum
+            required: true
+            example: [vaccine, beauty, consultation]
+          service.petshop-id:
+            type: number
+            required: true
+            example: 589
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              type: service
+              example: !include examples/services/petshop/delete_200.json
 /food:
   get: 
   post:
@@ -265,28 +1435,6 @@ traits:
     put:
     patch:
     delete:
-/animals:
-  get: 
-  post:
-  /{animal-id}:
-    get:
-    put:
-    patch:
-    delete:
-/products:
-  type: union
-  of:
-    - animal
-    - accesory
-    - food
-  get:
-  post:
-  /{product-id}:
-    get:
-    put:
-    patch:
-    delete:
-
 # Servicio restless (Vacunas)
 /getDatesReport:
   get:
