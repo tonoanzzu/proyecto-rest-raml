@@ -1,0 +1,12 @@
+{
+  "sale_id": "1",
+  "num_ticket": 5543245,
+  "total_amount": 400.00,
+  "invoice": "axxx-vsdf-534-sfdf",
+  "sale_date": "2001-11-30T14:40:43",
+  "method_payment":"cash",
+  "petshop_id":"1",
+  "client_id":"106",
+  "product_id":"22",
+  "employee_id":"12"
+}

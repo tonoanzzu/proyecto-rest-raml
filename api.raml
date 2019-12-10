@@ -653,45 +653,14 @@ traits:
 
 
   post:
+    description: |
+      Service to register a pet store.
     body: 
       application/json:
-        properties: 
-          sale_id:
-            type: string
-            required: false
-            example: 1
-          num_ticket:
-            type: string
-            required: false
-            example: "5543245"
-          total_amount:
-            type: number
-            required: false
-            example: 400.00
-          invoice:
-            type: string
-            required: false
-            example: "axxx-vsdf-534-sfdf"
-          method_payment:
-            type: string
-            required: false
-            example: "cash"
-          petshop_id:
-            type: string
-            required: false
-            example: "1"
-          client_id:
-            type: string
-            required: false
-            example: "106"
-          product_id:
-            type: string
-            required: false
-            example: "22"
-          employee_id:
-            type: string
-            required: false
-            example: "12"
+        example: !include examples/sales/post_request.json
+        description: JSON input example for the call POST /sales
+        displayName: Full JSON input example
+        type: sales.sales
     responses: 
       200:
         body: 
