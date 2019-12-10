@@ -994,7 +994,11 @@ traits:
     description: |
       Service to create a employee
     body: 
-      application/json: !include examples/employees/post_200.json
+      application/json:
+        example: !include examples/employees/post_request.json
+        description: JSON input example for the call POST /employees
+        displayName: Full JSON input example
+        type: employees.employees
     responses:
       200:
         body:
