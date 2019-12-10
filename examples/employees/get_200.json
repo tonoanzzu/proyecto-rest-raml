@@ -4,20 +4,23 @@
     	"name": "Arturo Villalobos Gomez",
         "age": 28,
         "position": "vendedor",
-        "contact": 55674309
+        "contact": 55674309,
+        "petshop_id": 1
 	},
 	{
 		"id": 2,
 		"name": "Carla Gonzalez Lopez",
         "age": 25,
         "position": "Veterinario",
-        "contact": 55673343
+        "contact": 55673343,
+        "petshop_id": 1
 	},
 	{
         "id": 3,
 		"name": "Alan Perez Villa",
         "age": 28,
         "position": "Vendedor",
-        "contact": 55334423
+        "contact": 55334423,
+        "petshop_id": 2
 	}
 ]
