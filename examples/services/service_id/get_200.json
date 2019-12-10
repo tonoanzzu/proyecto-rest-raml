@@ -1,9 +1,9 @@
 {
 	"data": [
 		{
-			"id": 1,
-			"type": "Caccine",
-			"petshop-id": 155
+			"service-id": "1",
+			"kind": "Caccine",
+			"petshop-id": "155"
 		}
 	]
 }

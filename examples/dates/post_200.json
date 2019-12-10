@@ -1,9 +1,0 @@
-{
-  "id": 4,
-  "schedule": "Algo algo algo algo",
-  "description": "Cita para chequeo general y vacunas.",
-  "price": 1500,
-  "service_id": 4,
-  "petshop_id": 1,
-  "client_id": 2
-}

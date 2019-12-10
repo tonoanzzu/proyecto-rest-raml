@@ -1,18 +1,18 @@
 {
 	"data": [
 		{
-			"id": 1,
-			"type": "Caccine",
+			"service-id": "1",
+			"kind": "Caccine",
 			"petshop-id": 155
 		},
 		{
-			"id": 2,
-			"type": "Beauty",
+			"service-id": "2",
+			"kind": "Beauty",
 			"petshop-id": 190
 		},
 		{
-			"id": 3,
-			"type": "Consultation",
+			"service-id": "3",
+			"kind": "Consultation",
 			"petshop-id": 198
 		}
 	]

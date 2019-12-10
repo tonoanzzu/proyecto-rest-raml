@@ -4,11 +4,11 @@ uses:
   annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
 
 types:
-  service:
+  schedule:
     type: object
-    description: Entity that represent a service
+    description: Entity that represent a schedule
     properties:
-      service-id:
+      schedule-id:
         (annotations.bindingDefinition):
           - method: "GET"
             input: "OPTIONAL"
@@ -23,9 +23,9 @@ types:
             input: "REQUIRED"
             output: "REQUIRED"
         type: string
-        description: identify of the service
+        description: identify of the schedule
         required: false
-      kind:
+      day:
         (annotations.bindingDefinition):
           - method: "GET"
             input: "OPTIONAL"
@@ -39,10 +39,10 @@ types:
           - method: "PATCH"
             input: "OPTIONAL"
             output: "OPTIONAL"
-        type: enum
-        description: type of service
+        type: number
+        description: day of schedule
         required: false
-      petshop-id:
+      month:
         (annotations.bindingDefinition):
           - method: "GET"
             input: "REQUIRED"
@@ -57,5 +57,39 @@ types:
             input: "REQUIRED"
             output: "REQUIRED"
         type: string
-        description: petshop that provides the service
+        description: month of schedule
+        required: false
+			year:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: number
+        description: year of schedule
+        required: false
+			time:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
+        description: time of schedule
         required: false

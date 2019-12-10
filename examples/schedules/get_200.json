@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "schedule-id": "3",
+      "day": 2,
+      "month": "January",
+      "year": 2020,
+      "time": "10:00am"
+    },
+    {
+      "schedule-id": "4",
+      "day": 22,
+      "month": "December",
+      "year": 2019,
+      "time": "11:00am"
+    },
+    {
+      "schedule-id": "5",
+      "day": 15,
+      "month": "January",
+      "year": 2020,
+      "time": "03:00pm"
+    }
+  ]
+}

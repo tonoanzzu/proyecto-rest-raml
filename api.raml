@@ -8,62 +8,65 @@ uses:
   petshop:  types/petshop.raml
   petshops:  types/petshops.raml
   service:  types/service.raml
+  services:  types/services.raml
   accesory:  types/accesory.raml
   animal:  types/animal.raml
   client:  types/client.raml
-  date:  types/date.raml
-  dates:  types/dates.raml
+  appointment:  types/appointment.raml
+  appointment:  types/appointments.raml
+  schedule: types/schedule.raml
+  schedules: types/schedules.raml
   employee:  types/employee.raml
   food:  types/food.raml
   product:  types/product.raml
   sale:  types/sale.raml
   pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
+annotations:
+  annotationsLibrary: !include glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
+  enumDescription: !include glapi-global-apis-commons-commons/annotations/enumDescription.raml
+  bindingDefinition: !include glapi-global-apis-commons-commons/annotations/bindingDefinition.raml
+
 resourceTypes: 
   collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
 
 traits: 
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
+  expandable: !include glapi-global-apis-commons-commons/traits/expandable.raml
 
 /petshops:
   description: |
     petshops in the town
   type: collection
   get:
-    is: [pageable]
     description: |
       petshops lists
+    is: [pageable]
     queryParameters:
-      petshop.id:
+      petshop.city:
         description: |
-          petshop id
-        type: number
-        required: true
-        example: 1
-      petshop.address:
-        description: |
-          petshop address
+          petshop city
         type: string
-        required: true
-        example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
+        required: false
+        example: "CDMX"
       petshop.contact:
         description: |
           petshop contact
         type: number
-        required: true
+        required: false
         example: 55674309
-      petshop.schedule:
+      petshop.horary:
         description: |
-          petshop schedule
+          petshop horary
         type: string
-        required: true
-        example: "Lunes a Domingo de 9:00am a 8:00pm"
-      petshop.logo:
+        required: false
+        example: "9:00am a 8:00pm"
+      petshop.name:
         description: |
-          petshop logo
+          petshop name
         type: string
-        required: true
-        example: "logo.jpg"
+        required: false
+        example: "Central Petshop"
     responses:
       200:
         body:
@@ -74,22 +77,30 @@ traits:
     body:
       application/json:
         properties:
-          petshop.address:
-            type: string
-            required: true
-            example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-          petshop.contact:
-            type: number
-            required: true
-            example: 55674309
-          petshop.schedule:
-            type: string
-            required: true
-            example: "Lunes a Domingo de 9:00am a 8:00pm"
-          petshop.logo:
+          petshop.city:
+            description: |
+              petshop city
             type: string
             required: false
-            example: "logo.jpg"
+            example: "CDMX"
+          petshop.contact:
+            description: |
+              petshop contact
+            type: number
+            required: false
+            example: 55674309
+          petshop.horary:
+            description: |
+              petshop horary
+            type: string
+            required: false
+            example: "9:00am a 8:00pm"
+          petshop.name:
+            description: |
+              petshop name
+            type: string
+            required: false
+            example: "Central Petshop"
     responses:
         200:
           body:
@@ -180,7 +191,7 @@ traits:
       get:
     /products:
       get:
-    /dates:
+    /appointments:
       get:
 /accesories:
   description: |
@@ -770,7 +781,7 @@ traits:
           petshop.id:
             description: |
               petshop id
-            type: number
+            type: string
             required: false
             example: 1964401
           sale.method_payment:
@@ -812,50 +823,73 @@ traits:
                 application/json:
                   type: collection-item
                   example: !include examples/clients/client_id/purchases/sale_id/get_200.json 
-/dates:
-  description: Used for interact with information about dates
+/appointments:
+  description: |
+    Used for interact with information about appointments
   type: collection
   get:
-    is: [pageable]
-    description: Get information about my dates
+    description: |
+      Get information about my appointments
+    is: pageable, expandable
     queryParameters: 
+      appointment-id:
+        description: |
+          appointment id
+        type: string
+        required: false
+        example: '1964401'
+      description:
+        description: |
+          appointment description
+        type: string
+        required: false
+        example: 'Shower'
       price:
         description: |
           price of dates
         type: number
-        required: true
+        required: false
         example: 100
       service-id:
         description: |
           depend of my service id
-        type: number
-        required: true
+        type: string
+        required: false
         example: 1
-      date.petshop_id:
+      petshop-id:
         description: |
           depend of petshop id
-        type: number
-        required: true
+        type: string
+        required: false
         example: 100
-      date.client_id:
+      client-id:
         description: |
           depend of client id
-        type: number
-        required: true
+        type: string
+        required: false
         example: 100
+      schedule-id:
+        description: |
+          depend of client id
+        type: string
+        required: false
+        example: 110
     responses: 
       200:
         description: Ok: Successful response, get dates
         body:
           application/json:
-            type: dates
-            example: !include examples/dates/get_200.json
+            type: appointments
+            example: !include examples/appointments/get_200.json
   post:
-    description: Create a new date
+    description: |
+      Create a new appointment
     body:
-      type: date
       application/json:
-        example: !include examples/dates/post_200.json
+        example: !include examples/appointmets/post_request.json
+        description: JSON input example for the call POST /appointments
+        displayName: Full JSON input example
+        type: petshop.appointment
     responses: 
       200:
         description: Ok: Successful created
@@ -866,55 +900,50 @@ traits:
                 "status": 200, 
                 "message": "Successful created!" 
               }
-  /{date-id}:
-    description: Detail of date from id
+            type: appointments
+  /{appointment-id}:
+    description: |
+      Detail of appointment from id
     type: collection-item
+    uriParameters:
+      appointment-id:
+        type: string
+        description: ID unique for my date
     get:
-      description: Get information about date, from {date-id}
-      uriParameters:
-        date-id:
-          type: number
-          description: ID unique for my date
-          example: 1
+      description: |
+        Get information about date, from appointment
       responses:
         200:
           description: Ok: Successful response, get dates
           body:
             application/json:
-              type: date[]
-              example: !include examples/dates/date_id/get_200.json 
+              type: petshop.appointment
+              example: !include examples/appointments/appointment-id/get_200.json 
     put:
-      description: Update all information for one register of date from {date-id}
-      uriParameters:
-        date-id:
-          type: number
-          description: ID unique for my date
-          example: 1
+      description: | 
+        Update all information for one register of date from appointment
       body:
-        type: date
         application/json:
-          example: !include examples/dates/date_id/put_200.json
+          example: !include examples/appointments/appointment/put_request.json
+          type: petshop.appointment
       responses: 
         200:
           description: Ok: Successful response, update information (All)
           body:
             application/json:
+              type: object
               example: |
                 { 
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
       patch:
-        description: Update partial information for one register of date from {date-id}
-        uriParameters:
-          date-id:
-            type: number
-            description: ID unique for my date
-            example: 1
+        description: |
+          Update partial information for one register of date from appointment
         body:
-          type: date
           application/json:
-            example: !include examples/dates/date_id/patch_200.json
+            example: !include examples/appointments/appointment/patch_200.json
+            type: petshop.appointment
         responses: 
           200:
             description: Ok: Successful response, update information (partial)
@@ -925,20 +954,531 @@ traits:
                     "status": 200, 
                     "message": "Successful updated! (Partial)" 
                   }
+                type: petshop.appointment
+          data: 
+            type: petshop.appointment
+          204: 
+            description: No Content.
       delete:
-        description: Delete information about date, from {date-id}
-        uriParameters:
-          date-id:
-            type: number
-            description: ID unique for my date
-            example: 1
+        description: |
+          Delete information about date, from appointment
         responses:
+          204:
+          description: No Content.
+  /{description}:
+    description: |
+      Detail of description
+    type: collection-item
+    uriParameters:
+      description:
+        type: string
+        description: ID unique for my date
+    get:
+      description: |
+        Get information about description
+      responses:
+        200:
+          description: Ok: Successful response, get description
+          body:
+            application/json:
+              type: petshop.appointment
+              example: !include examples/appointments/description/get_200.json 
+    put:
+      description: | 
+        Update all information for one description
+      body:
+        application/json:
+          example: !include examples/appointments/description/put_request.json
+          type: petshop.appointment
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for one description
+        body:
+          application/json:
+            example: !include examples/appointments/description/patch_200.json
+            type: petshop.appointment
+        responses: 
           200:
-            description: Ok: Successful response, delete date
+            description: Ok: Successful response, update information (partial)
             body:
               application/json:
-              type: date[]
-              example: !include examples/dates/date_id/get_200.json 
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.appointment
+          data: 
+            type: petshop.appointment
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about date, from appointment
+        responses:
+          204:
+          description: No Content.
+  /{price}:
+    description: |
+      Detail of price
+    type: collection-item
+    uriParameters:
+      price:
+        type: string
+        description: ID unique for price
+    get:
+      description: |
+        Get information price
+      responses:
+        200:
+          description: Ok: Successful response, get price
+          body:
+            application/json:
+              type: petshop.appointment
+              example: !include examples/appointments/price/get_200.json 
+    put:
+      description: | 
+        Update all information for one price
+      body:
+        application/json:
+          example: !include examples/appointments/price/put_request.json
+          type: petshop.appointment
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for price
+        body:
+          application/json:
+            example: !include examples/appointments/price/patch_200.json
+            type: petshop.appointment
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.appointment
+          data: 
+            type: petshop.appointment
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about price
+        responses:
+          204:
+          description: No Content.
+/schedules:
+  description: |
+    Used for interact with information about schedules
+  type: collection
+  get:
+    description: |
+      Get information about my schedules
+    is: pageable, expandable
+    queryParameters: 
+      schedule-id:
+        description: |
+          schedule id
+        type: string
+        required: false
+        example: '1964401'
+      day:
+        description: |
+          schedule day
+        type: number
+        required: false
+        example: 30
+      month:
+        description: |
+          schedule month
+        type: string
+        required: false
+        example: 'January'
+      year:
+        description: |
+          schedule year
+        type: number
+        required: false
+        example: 2019
+      time:
+        description: |
+          schedule time
+        type: string
+        required: false
+        example: '10:00am'
+    responses: 
+      200:
+        description: Ok: Successful response, get schedule
+        body:
+          application/json:
+            type: schedules
+            example: !include examples/schedules/get_200.json
+  post:
+    description: |
+      Create a new schedule
+    body:
+      application/json:
+        example: !include examples/schedule/post_request.json
+        description: JSON input example for the call POST /schedules
+        displayName: Full JSON input example
+        type: petshop.schedule
+    responses: 
+      200:
+        description: Ok: Successful created
+        body:
+          application/json:
+            example: |
+              { 
+                "status": 200, 
+                "message": "Successful created!" 
+              }
+            type: schedules
+  /{schedule-id}:
+    description: |
+      Detail of schedule from id
+    type: collection-item
+    uriParameters:
+      schedule-id:
+        type: string
+        description: ID unique for schedule
+    get:
+      description: |
+        Get information about id, from schedule
+      responses:
+        200:
+          description: Ok: Successful response, get schedule
+          body:
+            application/json:
+              type: petshop.schedule
+              example: !include examples/schedules/schedule-id/get_200.json 
+    put:
+      description: | 
+        Update all information for one register of schedule
+      body:
+        application/json:
+          example: !include examples/schedules/schedule/put_request.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for one schedule
+        body:
+          application/json:
+            example: !include examples/schedules/schedule/patch_200.json
+            type: petshop.schedule
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.schedule
+          data: 
+            type: petshop.schedule
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about schedule
+        responses:
+          204:
+          description: No Content.
+  /{day}:
+    description: |
+      Detail of day
+    type: collection-item
+    uriParameters:
+      day:
+        type: number
+        description: Day of schedule
+    get:
+      description: |
+        Get information about day schedule
+      responses:
+        200:
+          description: Ok: Successful response, get description
+          body:
+            application/json:
+              type: petshop.schedule
+              example: !include examples/schedules/day/get_200.json 
+    put:
+      description: | 
+        Update all information for one day
+      body:
+        application/json:
+          example: !include examples/schedules/day/put_request.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for a day
+        body:
+          application/json:
+            example: !include examples/schedules/day/patch_200.json
+            type: petshop.schedule
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.schedule
+          data: 
+            type: petshop.schedule
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about day, from schedule
+        responses:
+          204:
+          description: No Content.
+  /{month}:
+    description: |
+      Detail of month schedule
+    type: collection-item
+    uriParameters:
+      month:
+        type: string
+        description: Month of schedule
+    get:
+      description: |
+        Get information month
+      responses:
+        200:
+          description: Ok: Successful response, get month
+          body:
+            application/json:
+              type: petshop.schedule
+              example: !include examples/schedules/month/get_200.json 
+    put:
+      description: | 
+        Update all information for one month
+      body:
+        application/json:
+          example: !include examples/schedules/month/put_request.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for month
+        body:
+          application/json:
+            example: !include examples/schedules/month/patch_200.json
+            type: petshop.schedule
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.schedule
+          data: 
+            type: petshop.schedule
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about month
+        responses:
+          204:
+          description: No Content.
+  /{year}:
+    description: |
+      Detail of year schedule
+    type: collection-item
+    uriParameters:
+      year:
+        type: number
+        description: year of schedule
+    get:
+      description: |
+        Get information year
+      responses:
+        200:
+          description: Ok: Successful response, get year
+          body:
+            application/json:
+              type: petshop.schedule
+              example: !include examples/schedules/year/get_200.json 
+    put:
+      description: | 
+        Update all information for one year
+      body:
+        application/json:
+          example: !include examples/schedules/year/put_request.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for year
+        body:
+          application/json:
+            example: !include examples/schedules/year/patch_200.json
+            type: petshop.schedule
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.schedule
+          data: 
+            type: petshop.schedule
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about year
+        responses:
+          204:
+          description: No Content.
+  /{time}:
+    description: |
+      Detail of time schedule
+    type: collection-item
+    uriParameters:
+      time:
+        type: string
+        description: time of schedule
+    get:
+      description: |
+        Get information time
+      responses:
+        200:
+          description: Ok: Successful response, get time
+          body:
+            application/json:
+              type: petshop.schedule
+              example: !include examples/schedules/time/get_200.json 
+    put:
+      description: | 
+        Update all information for one time
+      body:
+        application/json:
+          example: !include examples/schedules/time/put_request.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (All)
+          body:
+            application/json:
+              type: object
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (All)" 
+                }
+      patch:
+        description: |
+          Update partial information for time
+        body:
+          application/json:
+            example: !include examples/schedules/time/patch_200.json
+            type: petshop.schedule
+        responses: 
+          200:
+            description: Ok: Successful response, update information (partial)
+            body:
+              application/json:
+                example: |
+                  { 
+                    "status": 200, 
+                    "message": "Successful updated! (Partial)" 
+                  }
+                type: petshop.schedule
+          data: 
+            type: petshop.schedule
+          204: 
+            description: No Content.
+      delete:
+        description: |
+          Delete information about time
+        responses:
+          204:
+          description: No Content.
 /employees:
   description: |
     employees of the petshop
@@ -1229,35 +1769,37 @@ traits:
 /services:
   description: |
     services collection resource used to create new services
-  type: services
+  type: service
   get:
-    is: [ assets.paging ]
     description: |
-      lists all services of a specific shop
+      lists of all services on specific shop
+    is: pageable, expandable
     queryParameters:
-      service.id:
+      service-id:
         description: |
           service id
-        type: number
+        type: string
         required: false
-        example: 1964401
-      service.type:
+        example: '1964401'
+      kind:
         description: |
           type of service
-        enum:
-          - vaccine 
-          - beauty 
-          - consultation
+        type: string
+        enum: [vaccine, beauty, consultation]
+        enumDescription:
+          - vaccine: vaccination scheme application  
+          - beauty: haircut, nail cutting, showers
+          - consultation: check with a doctor
         required: false
-        example: [vaccine, beauty, consultation]
       petshop-id:
         description: |
           petshop id
-        type: number
+        type: string
         required: false
-        example: 589
+        example: '589'
     responses:
       200:
+        description: Successful
         body:
           application/json:
             type: service
@@ -1267,104 +1809,87 @@ traits:
       Post a new service
     body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/post_request.json
+        description: JSON input example for the call POST /service
+        displayName: Full JSON input example
+        type: petshop.service
     responses:
       200:
+        description: Successful
         body:
           application/json:
             type: service
             example: !include examples/services/post_200.json
   /{service-id}:
+    description: |
+      Resource for managing the detail of the service
+    type: collection-item
+    uriParameters:
+      service-id:
+        type: string
+        description: service identifier
     get:
       description: |
         Get a specific service
-      uriParameters:
-        service-id:
-          type: number
-          description: service identifier
       responses:
         200:
+          description: Successful
           body:
             application/json:
-              type: service
+              type: petshop.service
               example: !include examples/services/service_id/get_200.json
     put:
       description: |
-        Put a specific service
+        Resource to manage the update of the service of the pet store, except its identifier.
       body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/service_id/put_request.json
+				type: petshop.service
       responses:
         200:
+          description: Successful
           body:
             application/json:
-              type: service
+              type: object
               example: !include examples/services/service_id/put_200.json
     patch:
       description: |
         Patch a specific service
       body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/service_id/patch_request.json
+				type: petshop.service
       responses:
         200:
+          description: Successful
           body:
             application/json:
-              type: service
+              type: object
               example: !include examples/services/service_id/patch_200.json
+        data: 
+          type: petshop.service
+        204: 
+          description: No Content.
     delete:
+      description: |
+        Delete a specific service
       responses:
-        200:
-          body:
-            application/json:
-              type: service
-              example: !include examples/services/service_id/delete_200.json
-  /{type}:
+        204:
+          description: No Content.
+  /{kind}:
+    description: |
+      Resource for managing the detail of kind of service
+    type: collection-item
+    uriParameters:
+      kind:
+        type: enum
+        description: kind enum
     get:
       description: |
-        Get a type of service
-      uriParameters:
-        type:
-          type: enum
-          description: service type
+        Get a kind of service
       responses:
         200:
+          description: Successful
           body:
             application/json:
               type: service
@@ -1374,66 +1899,53 @@ traits:
         Put a type of service
       body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/kind/put_request.json
+				type: petshop.service
       responses:
         200:
+          description: Successful
           body:
             application/json:
-              type: service
-              example: !include examples/services/type/put_200.json
+              type: object
+              example: !include examples/services/kind/put_200.json
     patch:
       description: |
         Patch a type of service
       body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/kind/patch_request.json
+				type: petshop.service
       responses:
         200:
+          description: Successful
           body:
             application/json:
               type: service
               example: !include examples/services/type/patch_200.json
+        data: 
+          type: petshop.service
+        204: 
+          description: No Content.
     delete:
+      description: |
+        Delete a specific kind of service
       responses:
-        200:
-          body:
-            application/json:
-              type: service
-              example: !include examples/services/type/delete_200.json
+        204:
+          description: No Content.
   /{petshop-id}:
+    description: |
+      Resource for managing the detail of kind of service
+    type: collection-item
+    uriParameters:
+      petshop_id:
+        type: string
+        description: indentifier of petshop
     get:
       description: |
         Get a petShop id of Service
-      uriParameters:
-        type:
-          type: number
-          description: petShop id type
       responses:
         200:
+          description: Successful
           body:
             application/json:
               type: service
@@ -1443,21 +1955,11 @@ traits:
         Put a petShop of service
       body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/petshop/put_request.json
+				type: petshop.service
       responses:
         200:
+          description: Successful
           body:
             application/json:
               type: service
@@ -1467,32 +1969,25 @@ traits:
         Patch a petShop of service
       body:
       application/json:
-        properties:
-          service.id:
-            type: number
-            required: true
-            example: 1964401
-          service.type:
-            type: enum
-            required: true
-            example: [vaccine, beauty, consultation]
-          service.petshop-id:
-            type: number
-            required: true
-            example: 589
+        example: !include examples/services/petshop/patch_request.json
+				type: petshop.service
       responses:
         200:
+          description: Successful
           body:
             application/json:
               type: service
               example: !include examples/services/petshop/patch_200.json
+        data: 
+          type: petshop.service
+        204: 
+          description: No Content.
     delete:
+      description: |
+        Delete a specific pet shop
       responses:
-        200:
-          body:
-            application/json:
-              type: service
-              example: !include examples/services/petshop/delete_200.json
+        204:
+          description: No Content.
 /food:
   description: |
     food in the shop
@@ -1629,7 +2124,7 @@ traits:
       petshop.id:
         description: |
           petshop id
-        type: number
+        type: string
         required: false
         example: 1964401
       service.id:
