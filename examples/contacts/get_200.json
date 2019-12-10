@@ -1,0 +1,22 @@
+{
+	"data": [
+		{
+			"contact-id": 1,
+			"address-id": 1,
+			"phone-id": 2,
+      "emai-id": 3
+		},
+		{
+			"contact-id": 2,
+			"address-id": 2,
+			"phone-id": 1,
+      "emai-id": 1
+    },
+    {
+			"contact-id": 3,
+			"address-id": 3,
+			"phone-id": 3,
+      "emai-id": 2
+		}
+	]
+}

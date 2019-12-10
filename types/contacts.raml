@@ -2,12 +2,12 @@
 uses:
   annotations: ../glapi-global-apis-commons/annotations/annotationsLibrary.raml
 types:
-  clients:
+  contacts:
     type: array
-    description: Entity that represent an Client
+    description: Represent my entity contact
     items: 
       properties: 
-        client-id: 
+        contact-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -22,9 +22,9 @@ types:
               input: "REQUIRED"
               output: "REQUIRED"
           type: string
-          description: identify of the Client
+          description: identify of the pet shop
           required: false
-        name: 
+        address-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -39,26 +39,9 @@ types:
               input: "OPTIONAL"
               output: "OPTIONAL"
           type: string
-          description: Full name of the client
+          description: id of address entity, that represent relation between contact-address
           required: false
-        age: 
-          (annotations.bindingDefinition):
-            - method: "GET"
-              input: "OPTIONAL"
-              output: "OPTIONAL"
-            - method: "POST"
-              input: "REQUIRED"
-              output: "REQUIRED"
-            - method: "PUT"
-              input: "REQUIRED"
-              output: "REQUIRED"
-            - method: "PATCH"
-              input: "OPTIONAL"
-              output: "OPTIONAL"
-          type: number
-          description: Age of the client
-          required: false
-        pet: 
+        phone-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -73,9 +56,9 @@ types:
               input: "OPTIONAL"
               output: "OPTIONAL"
           type: string
-          description: description of the pet
+          description: id of phone entity, that represent relation between contact-phone
           required: false
-        contact-id: 
+        email-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -90,22 +73,5 @@ types:
               input: "OPTIONAL"
               output: "OPTIONAL"
           type: string
-          description: id of contact entity, that represent relation between client-contact
-          required: false
-        petshop-id: 
-          (annotations.bindingDefinition):
-            - method: "GET"
-              input: "OPTIONAL"
-              output: "OPTIONAL"
-            - method: "POST"
-              input: "REQUIRED"
-              output: "REQUIRED"
-            - method: "PUT"
-              input: "REQUIRED"
-              output: "REQUIRED"
-            - method: "PATCH"
-              input: "OPTIONAL"
-              output: "OPTIONAL"
-          type: string
-          description: id of petshop entity, that represent relation between client-pethsop
+          description: id of email entity, that represent relation between contact-email
           required: false

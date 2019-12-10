@@ -1,33 +1,76 @@
 #%RAML 1.0
+uses:
+  annotations: ../glapi-global-apis-commons/annotations/annotationsLibrary.raml
 types:
   petshop:
     type: object
-    description: Entity that represent a petShop
-    properties:
-      id:
-        type: number
-        description: identify of the petShop
-        required: true
-      address:
+    description: Entity that represent a pet shop
+    properties: 
+      petshop-id: 
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "NONE"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
         type: string
-        description: petShop address
+        description: identify of the pet shop
         required: true
-      contact:
-        type: number
-        description: petShop contact
-        required: true
-      schedule:
+      contact-id: 
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: petShop schedule
+        description: id of contact entity, that represent relation between petshop-contact
         required: true
-      logo:
+      schedule: 
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: petShop logo
+        description: pet shop schedule
         required: true
-      name:
+      name: 
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: petShop name
+        description: pet shop name
         required: true
-    
-      
-    

@@ -1,7 +1,7 @@
 {
-	"data":
-		{
-			"code": 1,
-            "message": "La petshop ha sido dada alta correctamente"
-		}
+	"data": {
+		"code": 200,
+		"id": 4,
+		"message": "Petshop creado con éxito"
+	}
 }
