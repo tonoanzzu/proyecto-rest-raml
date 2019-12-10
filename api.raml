@@ -586,7 +586,7 @@ traits:
    sales of the shop
   type: collection
   get:
-    is: [pageable]
+    is: [pageable, expandable]
     description: |
       petshops lists
     queryParameters:
@@ -1161,7 +1161,7 @@ traits:
     employees of the petshop
   type: collection
   get: 
-    is: [pageable]
+    is: [pageable , expandable]
     description: |
       employee list
     queryParameters:

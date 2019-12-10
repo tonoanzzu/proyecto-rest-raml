@@ -1,46 +1,180 @@
 #%RAML 1.0
+#%RAML 1.0 Library
+uses:
+  annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
+
 types:
   sale:
     type:object
     description: Entity that represent a sale
     properties:
       sale_id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+		      - method: "POST"
+            input: "NONE"
+            output: "REQUIRED"
+		      - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
         type: string
         description: identify of the sale
         required: false
       num_ticket:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: number
         description: number of the ticket
         required: false
       total_amount:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: number
         description: identify the total amount
         required: false
       invoice:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify the invoice
         required: false
       sale_date:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify the date sale
         required: false
       method_payment:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify of method of payment
         required: false
       petshop_id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify of petshop sale
         required: false
       client_id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify of client identity
         required: false
       product_id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify of product
         required: false
       employee_id:
+      (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: identify the employee
         required: false  
