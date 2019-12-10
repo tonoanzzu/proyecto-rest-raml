@@ -184,7 +184,7 @@ traits:
       get:
 /accesories:
   description: |
-    accesories in the shop
+   accesories in the shop
   type: collection
   get: 
     is: [pageable]
@@ -582,13 +582,230 @@ traits:
             application/json:
               example: !include examples/animals/animal_id/delete_200.json
 /sales:
-  get: 
+  description: |
+   sales of the shop
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      petshops lists
+    queryParameters:
+      sales.sale_id:
+        description: |
+          sale id
+        type: string
+        required: false
+        example: 1
+      sales.num_ticket:
+        description: |
+          ticket number of the sale
+        type: string
+        required: false
+        example: "5543245"
+      sales.total_amount:
+        description: |
+          total amount of the sale
+        type: number
+        required: false
+        example: 400.00
+      sales.invoice:
+        description: |
+          invoice of the sale
+        type: string
+        required: false
+        example: "axxx-vsdf-534-sfdf"
+      sales.method_payment:
+        description: |
+          payment method of the sale
+        type: string
+        required: false
+        example: "cash"
+      sales.petshop_id:
+        description: |
+            petShop identifier
+          type: string
+          required: false
+          example: "1"
+      sales.client_id:
+        description: |
+          petShop identifier
+        type: string
+        required: false
+        example: "106"
+      sales.product_id:
+        description: |
+          petShop identifier
+        type: string
+        required: false
+        example: "22"
+      sales.employee_id:
+        description: |
+          petShop identifier
+        type: string
+        required: false
+        example: "12"
+    responses:
+      200:
+        body:
+          application/json:
+            type: sales
+            example: !include examples/sales/get_200.json
+
+
   post:
+    body: 
+      application/json:
+        properties: 
+          sale_id:
+            type: string
+            required: false
+            example: 1
+          num_ticket:
+            type: string
+            required: false
+            example: "5543245"
+          total_amount:
+            type: number
+            required: false
+            example: 400.00
+          invoice:
+            type: string
+            required: false
+            example: "axxx-vsdf-534-sfdf"
+          method_payment:
+            type: string
+            required: false
+            example: "cash"
+          petshop_id:
+            type: string
+            required: false
+            example: "1"
+          client_id:
+            type: string
+            required: false
+            example: "106"
+          product_id:
+            type: string
+            required: false
+            example: "22"
+          employee_id:
+            type: string
+            required: false
+            example: "12"
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: sale
+            example: !include examples/sales/post_200.json
   /{sale-id}:
     get:
+      uriParameters:
+        sale_id:
+          type: number
+          description: sale identifier
+      responses:
+        200:
+          body: 
+            application/json:
+              type: sale
+              example: !include examples/sales/sale_id/get_200.json
     put:
+      body:
+        application/json:
+          properties:
+            sale_id:
+              type: string
+              required: false
+              example: 1
+            num_ticket:
+              type: string
+              required: false
+              example: "5543245"
+            total_amount:
+              type: number
+              required: false
+              example: 400.00
+            invoice:
+              type: string
+              required: false
+              example: "axxx-vsdf-534-sfdf"
+            method_payment:
+              type: string
+              required: false
+              example: "cash"
+            petshop_id:
+              type: string
+              required: false
+              example: "1"
+            client_id:
+              type: string
+              required: false
+              example: "106"
+            product_id:
+              type: string
+              required: false
+              example: "22"
+            employee_id:
+              type: string
+              required: false
+              example: "12"
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/sales/sale_id/put_200.json
     patch:
+      body:
+        application/json:
+          properties:
+            sale_id:
+              type: string
+              required: false
+              example: 1
+            num_ticket:
+              type: string
+              required: false
+              example: "5543245"
+            total_amount:
+              type: number
+              required: false
+              example: 400.00
+            invoice:
+              type: string
+              required: false
+              example: "axxx-vsdf-534-sfdf"
+            method_payment:
+              type: string
+              required: false
+              example: "cash"
+            petshop_id:
+              type: string
+              required: false
+              example: "1"
+            client_id:
+              type: string
+              required: false
+              example: "106"
+            product_id:
+              type: string
+              required: false
+              example: "22"
+            employee_id:
+              type: string
+              required: false
+              example: "12"
+      responses: 
+        200:
+          body: 
+            application/json:
+              example: !include examples/sales/sale_id/patch_200.json
     delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/sales/sale_id/delete_200.json
 /clients:
   description: |
     clients in the town

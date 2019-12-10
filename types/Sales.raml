@@ -1,11 +1,11 @@
 #%RAML 1.0
 types:
   sale:
-    type:object
+    type: object
     description: Entity that represent a sale
     properties:
-      id:
-        type: number
+      sale_id:
+        type: string
         description: identify of the sale
         required: false
       num_ticket:
@@ -28,5 +28,19 @@ types:
         type: string
         description: identify of method of payment
         required: false
-      
-    
+      petshop_id:
+        type: string
+        description: identify of petshop sale
+        required: false
+      client_id:
+        type: string
+        description: identify of client identity
+        required: false
+      product_id:
+        type: string
+        description: identify of product
+        required: false
+      employee_id:
+        type: string
+        description: identify the employee
+        required: false  
