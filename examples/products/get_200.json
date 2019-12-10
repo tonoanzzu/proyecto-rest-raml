@@ -1,0 +1,48 @@
+{
+  "data": [
+    {
+      "id": "FDA001",
+      "type": "Adult dog food",
+      "price": 100,
+      "quantity": 1000,
+      "description": "Adult dog food",
+      "animal-id": "DASB01",
+      "food-id": "FDAS01",
+      "accessory-id": "KCP01",
+      "petshop-id": "MXAZC01"
+    },
+    {
+      "id": "FDP001",
+      "type": "Puppy food",
+      "price": "Purple",
+      "quantity": "Cotton",
+      "description": "Karruter",
+      "animal-id": "DASB01",
+      "food-id": "FDAS01",
+      "accessory-id": "KCP01",
+      "petshop-id": "MXAZC01"
+    },
+    {
+      "id": "FCA001",
+      "type": "Adult cat food",
+      "price": "Purple",
+      "quantity": "Cotton",
+      "description": "Karruter",
+      "animal-id": "DASB01",
+      "food-id": "FDAS01",
+      "accessory-id": "KCP01",
+      "petshop-id": "MXAZC01"
+    },
+    {
+      "id": "FRG001",
+      "type": "Rodent food",
+      "price": "Purple",
+      "quantity": "Cotton",
+      "description": "Karruter",
+      "animal-id": "DASB01",
+      "food-id": "FDAS01",
+      "accessory-id": "KCP01",
+      "petshop-id": "MXAZC01"
+    }
+  ]
+}

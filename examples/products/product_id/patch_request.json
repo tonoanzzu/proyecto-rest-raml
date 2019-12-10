@@ -1,0 +1,9 @@
+{
+  "data": 
+  {
+    "id": "FDA001",
+    "type": "Adult dog food",
+    "price": 200,
+    "quantity": 100
+  }
+}

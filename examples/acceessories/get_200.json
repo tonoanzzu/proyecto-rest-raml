@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "KCP01",
+      "type": "Large dog leash",
+      "color": "Purple",
+      "material": "Cotton",
+      "brand": "Karruter"
+    },
+    {
+      "id": "KCP02",
+      "type": "Medium dog leash",
+      "color": "Red",
+      "material": "Cotton",
+      "brand": "Fenixton"
+    },
+    {
+      "id": "KCP03",
+      "type": "Leash for small dog",
+      "color": "Green",
+      "material": "Cotton",
+      "brand": "Likittu"
+    },
+    {
+      "id": "KCP04",
+      "type": "Miniature dog leash",
+      "color": "Blue",
+      "material": "Cotton",
+      "brand": "Wlatomer"
+    }
+  ]
+}

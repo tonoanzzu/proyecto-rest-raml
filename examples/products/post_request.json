@@ -1,0 +1,14 @@
+{
+  "data": 
+  {
+    "id": "FDA002",
+    "type": "Special food for adult dogs",
+    "price": 500,
+    "quantity": 200,
+    "description": "Low fat food",
+    "animal-id": "DASB02",
+    "food-id": "FDAS02",
+    "accessory-id": "KCP02",
+    "petshop-id": "MXAZC02"
+  }
+}

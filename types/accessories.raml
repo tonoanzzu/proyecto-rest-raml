@@ -1,26 +1,91 @@
 #%RAML 1.0
 types:
   accessories:
-    type:array
-    description: Entity that represent an accessories
+    type: array
+    description: List of accessories from a pet store
     properties:
       id:
-        type: number
-        description: identify of the accessories
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: string
+        description: Identifier of a list of accessories
         required: true
       type:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: accessories type
+        description: Type of accessories
         required:false
       color:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: accessories color
+        description: Accessories color
         required: false
       material:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: identify of the material accessories
+        description: Accessories Material
         required: false
       brand:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
-        description: identify the color of the accessories
+        description: Accessories brand
         required: false

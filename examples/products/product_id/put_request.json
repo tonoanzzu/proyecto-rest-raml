@@ -1,0 +1,14 @@
+{
+  "data": 
+  {
+    "id": "FDA001",
+    "type": "Adult dog food",
+    "price": 100,
+    "quantity": 1000,
+    "description": "Adult dog food",
+    "animal-id": "DASB01",
+    "food-id": "FDAS01",
+    "accessory-id": "KCP01",
+    "petshop-id": "MXAZC01"
+  }
+}

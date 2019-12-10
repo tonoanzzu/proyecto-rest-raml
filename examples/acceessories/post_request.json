@@ -1,0 +1,11 @@
+{
+  "data": 
+    {
+      "type": "Large dog collar",
+      "color": "Black",
+      "material": "Nylon",
+      "brand": "Petwake",
+      "status": 200,
+      "responsee": "Accessory created successfully"
+    }
+}

@@ -5,16 +5,7 @@ version: 0.0
 baseUri: http://localhost:8081/petshop/v0
 
 uses:
-  petshop:  !include types/petshop.raml
-  service:  types/service.raml
   accesory:  types/accesory.raml
-  animal:  types/animal.raml
-  client:  types/client.raml
-  date:  types/date.raml
-  employee:  types/employee.raml
-  food:  types/food.raml
-  product:  types/product.raml
-  sale:  types/sale.raml
   pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
 resourceTypes: 
@@ -23,270 +14,322 @@ resourceTypes:
 traits: 
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
-/petshops:
+/accessories:
   description: |
-    petshops in the town
+    Accessories sold by the pet store
   type: collection
   get:
-    is: [pageable]
+    is: [pageable, expandable]
     description: |
-      petshops lists
+      Accessory List
     queryParameters:
-      petshop.id:
+      id:
         description: |
-          petshop id
-        type: number
-        required: true
-        example: 1
-      petshop.address:
-        description: |
-          petshop address
+          Accessory List Identifier
         type: string
         required: true
-        example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-      petshop.contact:
+        example: "KCP01"
+      type:
         description: |
-          petshop contact
-        type: number
-        required: true
-        example: 55674309
-      petshop.schedule:
-        description: |
-          petshop schedule
+          Type of accessories
         type: string
         required: true
-        example: "Lunes a Domingo de 9:00am a 8:00pm"
-      petshop.logo:
+        example: "Large dog leash"
+      material:
         description: |
-          petshop logo
+          Material from which it is made
         type: string
         required: true
-        example: "logo.jpg"
+        eexample: "Cotton"
+      color:
+        description: |
+          Accessories color
+        type: string
+        required: true
+        example: "Black"
+      brand:
+        description: |
+          Accessory brand
+        type: string
+        required: true
+        example: "Karruter"
     responses:
       200:
         body:
           application/json:
-            type: petshops
-            example: !include examples/petshops/get_200.json
+            type: accesory
+            example: !include examples/accesories/get_200.json
   post:
     body:
       application/json:
         properties:
-          petshop.address:
+          type:
             type: string
             required: true
-            example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-          petshop.contact:
-            type: number
-            required: true
-            example: 55674309
-          petshop.schedule:
+            example: "Medium dog leash"
+          material:
             type: string
             required: true
-            example: "Lunes a Domingo de 9:00am a 8:00pm"
-          petshop.logo:
+            example: "Plastic"
+          color:
             type: string
-            required: false
-            example: "logo.jpg"
-    responses:
-        200:
-          body:
-            application/json:
-              type: petshop
-              example: !include examples/petshops/petshop_id/post_200.json
-  /{petshop-id}:
-    get:
-      uriParameters:
-        petshop-id:
-          type: string
-          description: petshop identifier
-          # minLength: 1
-          # maxLength: 10
-      responses:
-        200:
-          body:
-            application/json:
-              type: petshop
-              example: !include examples/petshops/petshop_id/get_200.json
-    put:
-      body:
-        application/json:
-          properties:
-            petshop.address:
-              type: string
-              required: true
-              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-            petshop.contact:
-              type: number
-              required: true
-              example: 55674309
-            petshop.schedule:
-              type: string
-              required: false
-              example: "Lunes a Domingo de 9:00am a 8:00pm"
-            petshop.logo:
-              type: string
-              required: false
-              example: "logo.jpg"
-            petshop.name:
-              type: string
-              required: true
-              example: "logo.jpg"
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/petshops/petshop_id/put_200.json
-    patch:
-      body:
-        application/json:
-          properties:
-            petshop.address:
-              type: string
-              required: false
-              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-            petshop.contact:
-              type: number
-              required: false
-              example: 55674309
-            petshop.schedule:
-              type: string
-              required: false
-              example: "Lunes a Domingo de 9:00am a 8:00pm"
-            petshop.logo:
-              type: string
-              required: false
-              example: "logo.jpg"
-            petshop.name:
-              type: string
-              required: false
-              example: "logo.jpg"
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/petshops/petshop_id/patch_200.json
-    delete:
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/petshops/petshop_id/delete_200.json
-    /clients:
-      get:
-    /employees:
-      get:
-    /products:
-      get:
-    /dates:
-      get:
-
-/services:
-  description: |
-    services collection resource used to create new services
-  type: services
-  get:
-    is: [ assets.paging ]
-    description: |
-      lists all services of a specific user
-    queryParameters:
-      service.id:
-        description: |
-          services id
-        type: number
-        required: true
-        example: 1964401a
-      service.type:
-        description: |
-          type of service
-        enum:
-          - vaccine 
-          - beauty 
-          - consultation
-        required: true
-        example: [vaccine, beauty, consultation]
+            required: true
+            example: "Orange"
+          brand:
+            type: string
+            required: true
+            example: "Jimborroso"
     responses:
       200:
         body:
           application/json:
-            type: service
-            example: !include examples/services/get_200.json
-  post:
-  /{service-id}:
-    get:
-    put:
-    patch:
-    delete:
-/sales:
-  get: 
-  post:
-  /{sale-id}:
-    get:
-    put:
-    patch:
-    delete:
-/clients:
-  get: 
-  post:
-  /{client-id}:
-    get:
-    put:
-    patch:
-    delete:
-/employees:
-  get: 
-  post:
-  /{employee-id}:
-    get:
-    put:
-    patch:
-    delete:
-/dates:
-  get: 
-  post:
-  /{date-id}:
-    get:
-    put:
-    patch:
-    delete:
-/accesories:
-  get: 
-  post:
-  /{accesory-id}:
-    get:
-    put:
-    patch:
-    delete:
-/food:
-  get: 
-  post:
-  /{food-id}:
-    get:
-    put:
-    patch:
-    delete:
-/animals:
-  get: 
-  post:
-  /{animal-id}:
-    get:
-    put:
-    patch:
-    delete:
-/products:
-  type: union
-  of:
-    - animal
-    - accesory
-    - food
-  get:
-  post:
-  /{product-id}:
-    get:
-    put:
-    patch:
-    delete:
+            type: accesory
+            example: !include examples/accessories/post_200.json
 
-# Servicio restless (Vacunas)
-/getDatesReport:
+  /{accesories-id}:
+    get:
+      uriParameters:
+        id:
+          type: string
+          description: Accessory Identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: accesory
+              example: !include examples/accessories/accesory_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+            type:
+              type: string
+              required: true
+              example: "Large dog leash"
+            color:
+              type: string
+              required: true
+              example: "Green"
+            material:
+              type: string
+              required: true
+              example: "Cotton"
+            brand:
+              type: string
+              required: true
+              example: "Karruter"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/accesories/accesory_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties: 
+            type:
+              type: string
+              required: false
+              example: "Large dog leash"
+            color:
+              type: string
+              required: false
+              example: "Purple"
+            material:
+              type: string
+              required: falsee
+              example: "Cotton"
+            brand:
+              type: string
+              required: false
+              example: "Karruter"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/accessories/accessory_id/patch_200.json
+
+/products:
+  description: |
+    List of products from a pet store
+  type: products
   get:
+    is: [assets.paging, expandable]
+    description: |
+      List of products from a pet store
+    queryParameters: 
+      id:
+        description: |
+          Product List Identifier
+        type: string
+        required: true
+        example: "FDA001"
+      type:
+        description: |
+         Kind of product
+        type: string
+        required: true
+        example: "Adult dog food" 
+      price:
+        description: |
+          Price of the product
+        type: string
+        required: true
+        example: 1000
+      quantity:
+        description: |
+          Quantity of products requested
+        type: number
+        required: true
+        example: 1000
+      description:
+        description: |
+          Product description
+        type: stirng
+        required: true
+        example: "Adult dog food"
+      animal-id:
+        description: |
+          Animal identifier related to the product
+        type: string
+        required: true
+        example: "DASB01"
+      food-id:
+        description: |
+          Product food identifier
+        type: string
+        required: true
+        example: "FDAS01"
+      accessory-id:
+        description: |
+          Accessory product Identifier
+        type: string
+        required: true
+        example: "KCP01"
+      petshop-id:
+        description: |
+          Identifier of the store where the product is located
+        type: string
+        required: true
+        example: "MXAZC01"
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/products/get_200.json
+  post:
+    body:
+      application/json:
+        properties:
+          type:
+            type: string
+            required: true
+            example: "Adult dog food" 
+          price:
+            type: string
+            required: true
+            example: 1000
+          quantity:
+            type: number
+            required: true
+            example: 1000
+          description:
+            type: stirng
+            required: true
+            example: "Adult dog food"
+          animal-id:
+            type: string
+            required: true
+            example: "DASB01"
+          food-id:
+            type: string
+            required: true
+            example: "FDAS01"
+          accessory-id:
+            type: string
+            required: true
+            example: "KCP01"
+          petshop-id:
+            type: string
+            required: true
+            example: "MXAZC01"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/post_200.json
+
+  /{products-id}:
+    get:
+      uriParameters:
+        id:
+          type: string
+          description: Product Identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: accesory
+              example: !include examples/products/product_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+          id:
+            type: string
+            required: true
+            example: "FDA001"
+          type:
+            type: string
+            required: true
+            example: "Big dog house"
+          price:
+            type: string
+            required: true
+            example: 10000
+          quantity:
+            type: number
+            required: true
+            example: 10
+          description:
+            type: stirng
+            required: true
+            example: "House for large dogs"
+          animal-id:
+            type: string
+            required: true
+            example: "DASB0"
+          food-id:
+            type: string
+            required: true
+            example: "FDAS01"
+          accessory-id:
+            type: string
+            required: true
+            example: "KCP01"
+          petshop-id:
+            type: string
+            required: true
+            example: "MXAZC01"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties: 
+            id:
+              type: string
+              required: true
+              example: "FDA001"
+            quantity:
+              type: number
+              required: true
+              example: 2
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/patch_200.json
