@@ -1,35 +1,30 @@
 #%RAML 1.0
 types:
-  animal:
-    type:array
-    description: Entity that represent an animal
-    items:
-      properties:
-        id:
-          type: string
-          description: identify of the animal
-          required: false
-        specie:
-          type: enum
-          description: animal specie
-          required: false
-        age:
-          type: string
-          description: animal age
-          required: false
-        weight:
-          type: number
-          description: animal's weight
-          required: false
-        size:
-          type: enum
-          description: animal's size
-          required: false
-        color:
-          type: string
-          description: animal color
-          required: false
-        type:
-          type: enum
-          description: animal type
-          required: false
+animal:
+  type:object
+  description: Entity that represent an animal
+  properties:
+    id:
+      type: number
+      description: identify of the animal
+      required: false
+    type:
+      type: enum
+      description: animal type
+      required:false
+    edad:
+      type: number
+      description: animal age
+      required: true
+    peso:
+      type: string
+      description: identify of the Hard Disk
+      required: true
+    tamanio:
+      type: string
+      description: identify of the animal
+      required: true
+    color:
+      type: string
+      description: identify of the animal
+      required: true
