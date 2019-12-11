@@ -23,6 +23,8 @@ uses:
   food:  types/food.raml
   product:  types/product.raml
   sale:  types/sale.raml
+  accesory:  types/accesory.raml
+  product: types/product.raml
   pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
 annotations:
@@ -2247,3 +2249,323 @@ traits:
       responses:
         204:
           description: No Content.
+            
+/accessories:
+  description: |
+    Accessories sold by the pet store
+  type: collection
+  get:
+    is: [pageable, expandable]
+    description: |
+      Accessory List
+    queryParameters:
+      id:
+        description: |
+          Accessory List Identifier
+        type: string
+        required: true
+        example: "KCP01"
+      type:
+        description: |
+          Type of accessories
+        type: string
+        required: true
+        example: "Large dog leash"
+      material:
+        description: |
+          Material from which it is made
+        type: string
+        required: true
+        eexample: "Cotton"
+      color:
+        description: |
+          Accessories color
+        type: string
+        required: true
+        example: "Black"
+      brand:
+        description: |
+          Accessory brand
+        type: string
+        required: true
+        example: "Karruter"
+    responses:
+      200:
+        body:
+          application/json:
+            type: accesory
+            example: !include examples/accesories/get_200.json
+  post:
+    body:
+      application/json:
+        properties:
+          type:
+            type: string
+            required: true
+            example: "Medium dog leash"
+          material:
+            type: string
+            required: true
+            example: "Plastic"
+          color:
+            type: string
+            required: true
+            example: "Orange"
+          brand:
+            type: string
+            required: true
+            example: "Jimborroso"
+    responses:
+      200:
+        body:
+          application/json:
+            type: accesory
+            example: !include examples/accessories/post_200.json
+
+  /{accesories-id}:
+    get:
+      uriParameters:
+        id:
+          type: string
+          description: Accessory Identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: accesory
+              example: !include examples/accessories/accesory_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+            type:
+              type: string
+              required: true
+              example: "Large dog leash"
+            color:
+              type: string
+              required: true
+              example: "Green"
+            material:
+              type: string
+              required: true
+              example: "Cotton"
+            brand:
+              type: string
+              required: true
+              example: "Karruter"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/accesories/accesory_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties: 
+            type:
+              type: string
+              required: false
+              example: "Large dog leash"
+            color:
+              type: string
+              required: false
+              example: "Purple"
+            material:
+              type: string
+              required: falsee
+              example: "Cotton"
+            brand:
+              type: string
+              required: false
+              example: "Karruter"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/accessories/accessory_id/patch_200.json
+
+/products:
+  description: |
+    List of products from a pet store
+  type: products
+  get:
+    is: [assets.paging, expandable]
+    description: |
+      List of products from a pet store
+    queryParameters: 
+      id:
+        description: |
+          Product List Identifier
+        type: string
+        required: true
+        example: "FDA001"
+      type:
+        description: |
+         Kind of product
+        type: string
+        required: true
+        example: "Adult dog food" 
+      price:
+        description: |
+          Price of the product
+        type: string
+        required: true
+        example: 1000
+      quantity:
+        description: |
+          Quantity of products requested
+        type: number
+        required: true
+        example: 1000
+      description:
+        description: |
+          Product description
+        type: stirng
+        required: true
+        example: "Adult dog food"
+      animal-id:
+        description: |
+          Animal identifier related to the product
+        type: string
+        required: true
+        example: "DASB01"
+      food-id:
+        description: |
+          Product food identifier
+        type: string
+        required: true
+        example: "FDAS01"
+      accessory-id:
+        description: |
+          Accessory product Identifier
+        type: string
+        required: true
+        example: "KCP01"
+      petshop-id:
+        description: |
+          Identifier of the store where the product is located
+        type: string
+        required: true
+        example: "MXAZC01"
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/products/get_200.json
+  post:
+    body:
+      application/json:
+        properties:
+          type:
+            type: string
+            required: true
+            example: "Adult dog food" 
+          price:
+            type: string
+            required: true
+            example: 1000
+          quantity:
+            type: number
+            required: true
+            example: 1000
+          description:
+            type: stirng
+            required: true
+            example: "Adult dog food"
+          animal-id:
+            type: string
+            required: true
+            example: "DASB01"
+          food-id:
+            type: string
+            required: true
+            example: "FDAS01"
+          accessory-id:
+            type: string
+            required: true
+            example: "KCP01"
+          petshop-id:
+            type: string
+            required: true
+            example: "MXAZC01"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/post_200.json
+
+  /{products-id}:
+    get:
+      uriParameters:
+        id:
+          type: string
+          description: Product Identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: accesory
+              example: !include examples/products/product_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+          id:
+            type: string
+            required: true
+            example: "FDA001"
+          type:
+            type: string
+            required: true
+            example: "Big dog house"
+          price:
+            type: string
+            required: true
+            example: 10000
+          quantity:
+            type: number
+            required: true
+            example: 10
+          description:
+            type: stirng
+            required: true
+            example: "House for large dogs"
+          animal-id:
+            type: string
+            required: true
+            example: "DASB0"
+          food-id:
+            type: string
+            required: true
+            example: "FDAS01"
+          accessory-id:
+            type: string
+            required: true
+            example: "KCP01"
+          petshop-id:
+            type: string
+            required: true
+            example: "MXAZC01"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties: 
+            id:
+              type: string
+              required: true
+              example: "FDA001"
+            quantity:
+              type: number
+              required: true
+              example: 2
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/products/product_id/patch_200.json
