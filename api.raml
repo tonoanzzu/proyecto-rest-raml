@@ -886,7 +886,7 @@ traits:
       Create a new appointment
     body:
       application/json:
-        example: !include examples/appointmets/post_request.json
+        example: !include examples/appointments/post_request.json
         description: JSON input example for the call POST /appointments
         displayName: Full JSON input example
         type: petshop.appointment
@@ -924,7 +924,7 @@ traits:
         Update all information for one register of date from appointment
       body:
         application/json:
-          example: !include examples/appointments/appointment/put_request.json
+          example: !include examples/appointments/appointment-id/put_request.json
           type: petshop.appointment
       responses: 
         200:
@@ -942,7 +942,7 @@ traits:
           Update partial information for one register of date from appointment
         body:
           application/json:
-            example: !include examples/appointments/appointment/patch_200.json
+            example: !include examples/appointments/appointment-id/patch_request.json
             type: petshop.appointment
         responses: 
           200:
@@ -1144,7 +1144,7 @@ traits:
       Create a new schedule
     body:
       application/json:
-        example: !include examples/schedule/post_request.json
+        example: !include examples/schedules/post_request.json
         description: JSON input example for the call POST /schedules
         displayName: Full JSON input example
         type: petshop.schedule
@@ -1182,7 +1182,7 @@ traits:
         Update all information for one register of schedule
       body:
         application/json:
-          example: !include examples/schedules/schedule/put_request.json
+          example: !include examples/schedules/schedule-id/put_request.json
           type: petshop.schedule
       responses: 
         200:
@@ -1200,7 +1200,7 @@ traits:
           Update partial information for one schedule
         body:
           application/json:
-            example: !include examples/schedules/schedule/patch_200.json
+            example: !include examples/schedules/schedule-id/patch_200.json
             type: petshop.schedule
         responses: 
           200:
@@ -1893,7 +1893,7 @@ traits:
           body:
             application/json:
               type: service
-              example: !include examples/services/type/get_200.json
+              example: !include examples/services/kind/get_200.json
     put:
       description: |
         Put a type of service
@@ -1921,7 +1921,7 @@ traits:
           body:
             application/json:
               type: service
-              example: !include examples/services/type/patch_200.json
+              example: !include examples/services/kind/patch_200.json
         data: 
           type: petshop.service
         204: 
