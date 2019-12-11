@@ -823,8 +823,9 @@ traits:
       responses:
         204:
           description: No Content.
-/dates:
-  description: Used for interact with information about dates
+/appointments:
+  description: |
+    Used for interact with information about appointments
   type: collection
   get:
     description: |
@@ -1000,34 +1001,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for one description
-        body:
-          application/json:
-            example: !include examples/appointments/description/patch_200.json
-            type: petshop.appointment
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.appointment
-          data: 
-            type: petshop.appointment
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about date, from appointment
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for one description
+      body:
+        application/json:
+          example: !include examples/appointments/description/patch_200.json
+          type: petshop.appointment
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.appointment
+        data: 
+          type: petshop.appointment
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about date, from appointment
+      responses:
+        204:
+        description: No Content.
   /{price}:
     description: |
       Detail of price
@@ -1064,34 +1065,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for price
-        body:
-          application/json:
-            example: !include examples/appointments/price/patch_200.json
-            type: petshop.appointment
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.appointment
-          data: 
-            type: petshop.appointment
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about price
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for price
+      body:
+        application/json:
+          example: !include examples/appointments/price/patch_200.json
+          type: petshop.appointment
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.appointment
+        data: 
+          type: petshop.appointment
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about price
+      responses:
+        204:
+        description: No Content.
 /schedules:
   description: |
     Used for interact with information about schedules
@@ -1194,34 +1195,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for one schedule
-        body:
-          application/json:
-            example: !include examples/schedules/schedule-id/patch_200.json
-            type: petshop.schedule
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.schedule
-          data: 
-            type: petshop.schedule
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about schedule
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for one schedule
+      body:
+        application/json:
+          example: !include examples/schedules/schedule-id/patch_200.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.schedule
+        data: 
+          type: petshop.schedule
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about schedule
+      responses:
+        204:
+        description: No Content.
   /{day}:
     description: |
       Detail of day
@@ -1258,34 +1259,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for a day
-        body:
-          application/json:
-            example: !include examples/schedules/day/patch_200.json
-            type: petshop.schedule
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.schedule
-          data: 
-            type: petshop.schedule
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about day, from schedule
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for a day
+      body:
+        application/json:
+          example: !include examples/schedules/day/patch_200.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.schedule
+        data: 
+          type: petshop.schedule
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about day, from schedule
+      responses:
+        204:
+        description: No Content.
   /{month}:
     description: |
       Detail of month schedule
@@ -1322,34 +1323,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for month
-        body:
-          application/json:
-            example: !include examples/schedules/month/patch_200.json
-            type: petshop.schedule
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.schedule
-          data: 
-            type: petshop.schedule
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about month
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for month
+      body:
+        application/json:
+          example: !include examples/schedules/month/patch_200.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.schedule
+        data: 
+          type: petshop.schedule
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about month
+      responses:
+        204:
+        description: No Content.
   /{year}:
     description: |
       Detail of year schedule
@@ -1386,34 +1387,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for year
-        body:
-          application/json:
-            example: !include examples/schedules/year/patch_200.json
-            type: petshop.schedule
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.schedule
-          data: 
-            type: petshop.schedule
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about year
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for year
+      body:
+        application/json:
+          example: !include examples/schedules/year/patch_200.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.schedule
+        data: 
+          type: petshop.schedule
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about year
+      responses:
+        204:
+        description: No Content.
   /{time}:
     description: |
       Detail of time schedule
@@ -1450,34 +1451,34 @@ traits:
                   "status": 200, 
                   "message": "Successful updated! (All)" 
                 }
-      patch:
-        description: |
-          Update partial information for time
-        body:
-          application/json:
-            example: !include examples/schedules/time/patch_200.json
-            type: petshop.schedule
-        responses: 
-          200:
-            description: Ok: Successful response, update information (partial)
-            body:
-              application/json:
-                example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
-                  }
-                type: petshop.schedule
-          data: 
-            type: petshop.schedule
-          204: 
-            description: No Content.
-      delete:
-        description: |
-          Delete information about time
-        responses:
-          204:
+    patch:
+      description: |
+        Update partial information for time
+      body:
+        application/json:
+          example: !include examples/schedules/time/patch_200.json
+          type: petshop.schedule
+      responses: 
+        200:
+          description: Ok: Successful response, update information (partial)
+          body:
+            application/json:
+              example: |
+                { 
+                  "status": 200, 
+                  "message": "Successful updated! (Partial)" 
+                }
+              type: petshop.schedule
+        data: 
+          type: petshop.schedule
+        204: 
           description: No Content.
+    delete:
+      description: |
+        Delete information about time
+      responses:
+        204:
+        description: No Content.
 /employees:
   description: |
     employees of the petshop
