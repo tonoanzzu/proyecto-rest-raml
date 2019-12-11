@@ -1,18 +1,61 @@
 #%RAML 1.0
+#%RAML 1.0 Library
+uses:
+  annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
+
 types:
   service:
     type: object
     description: Entity that represent a service
     properties:
-      id:
-        type: number
+      service-id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "NONE"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
         description: identify of the service
-        required: true
-      type:
+        required: false
+      kind:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: enum
         description: type of service
-        required: true
+        required: false
       petshop-id:
-        type: number
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
         description: petshop that provides the service
-        required: true
+        required: false

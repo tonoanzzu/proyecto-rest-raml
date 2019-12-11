@@ -2,24 +2,24 @@
 	"data": [
 		{
 			"id": 1,
-			"address": "Insurgentes Sur 345, Hipódromo, 06170, CDMX",
+			"city": "CDMX",
 			"contact": 55674309,
-			"schedule": "Lunes a Domingo de 9:00am a 8:00pm",
-			"logo": "logo.jpg"
+			"schedule": "9:00am a 8:00pm",
+			"name": "Central Petco"
 		},
 		{
-			"id": 1,
-			"address": "Insurgentes Sur 345, Hipódromo, 06170, CDMX",
-			"contact": 55674309,
-			"schedule": "Lunes a Domingo de 9:00am a 8:00pm",
-			"logo": "logo.jpg"
+			"id": 2,
+			"city": "EDOMEX",
+			"contact": 55677865,
+			"schedule": "9:00am a 6:00pm",
+			"name": "North Petco"
 		},
 		{
-			"id": 1,
-			"address": "Insurgentes Sur 345, Hipódromo, 06170, CDMX",
-			"contact": 55674309,
-			"schedule": "Lunes a Domingo de 9:00am a 8:00pm",
-			"logo": "logo.jpg"
+			"id": 3,
+			"city": "JAL",
+			"contact": 44768903,
+			"schedule": "9:00am a 9:00pm",
+			"name": "Central Petco"
 		}
 	]
 }

@@ -1,0 +1,40 @@
+{
+	"data": [
+		{
+						"sale_id": "1",
+            "num_ticket": 5543245,
+            "total_amount": 400.00,
+            "invoice": "axxx-vsdf-534-sfdf",
+            "sale_date": "2001-11-30T14:40:43",
+            "method_payment":"cash",
+            "petshop_id":"1",
+            "client_id":"106",
+            "product_id":"22",
+            "employee_id":"12"
+		},
+		{
+						"sale_id": "2",
+            "num_ticket": 5543247,
+            "total_amount": 500.00,
+            "invoice": "a09x-vsdf-532-sfhf",
+            "sale_date": "2001-12-01T16:40:43",
+            "method_payment":"cash",
+            "petshop_id":"2",
+            "client_id":"467",
+            "product_id":"20",
+            "employee_id":"11"
+		},
+		{
+						"sale_id": "3",
+            "num_ticket": 5543255,
+            "total_amount": 100.00,
+            "invoice": "bx34-bssf-534g-stdw",
+            "sale_date": "2001-12-02T19:33:43",
+            "method_payment":"cash",
+            "petshop_id":"1",
+            "client_id":"106",
+            "product_id":"22",
+            "employee_id":"12"
+		}
+	]
+}

@@ -1,22 +1,61 @@
 #%RAML 1.0
+#%RAML 1.0 Library
+uses:
+  annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
+
 types:
   services:
     type: array
     description: Entity that represent a services
-    items:
-      properties:
-        id:
-          type: number
-          description: identify of the services
-          required: true
-        type:
-          type: enum
-          description: type of service
-          required: true
-        petshop-id:
-          type: number
-          description: petshop that provides the service
-          required: true
-    
-      
-    
+    properties:
+      services-id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "NONE"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
+        description: identify of the services
+        required: false
+      kind:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: enum
+        description: type of services
+        required: false
+      petshop-id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
+        description: petshop that provides the services
+        required: false

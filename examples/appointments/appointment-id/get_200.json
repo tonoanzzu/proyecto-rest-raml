@@ -1,0 +1,12 @@
+{
+  "data":
+    {
+      "appointment-id": "4",
+      "description": "Cita para chequeo general y vacunas.",
+      "price": 1500,
+      "service-id": "4",
+      "petshop-id": "1",
+      "client-id": "2",
+      "schedule-id": "1"
+    }
+}

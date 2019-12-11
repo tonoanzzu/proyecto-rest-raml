@@ -1,0 +1,95 @@
+#%RAML 1.0
+#%RAML 1.0 Library
+uses:
+  annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
+
+types:
+  schedule:
+    type: object
+    description: Entity that represent a schedule
+    properties:
+      schedule-id:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "NONE"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
+        description: identify of the schedule
+        required: false
+      day:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: number
+        description: day of schedule
+        required: false
+      month:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
+        description: month of schedule
+        required: false
+			year:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+        type: number
+        description: year of schedule
+        required: false
+			time:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+          - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
+        description: time of schedule
+        required: false
