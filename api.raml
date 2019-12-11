@@ -323,264 +323,164 @@ traits:
               example: !include examples/accesories/accesory_id/delete_200.json
 /animals:
   description: |
-    animals in the shop
+    animals' list in the shop
   type: collection
   get: 
-    is: [pageable]
     description: |
       animals list
+    is: [pageable, expandable]
     queryParameters: 
-      animal.id:
+      animal_id:
         description: |
           animal id
-        type: number
-        required: true
+        type: string
+        required: false
         example: 1
-      animal.specie:
+      specie:
         description: |
           animal species
-        type: enum
-        enum: 
-          - dog
-          - cat
-          - bird
-          - fish
-          - reptile
-        required: true
+        type: string
+        enum: [dog, cat, bird, fish, reptile]
+        enumDescription: 
+          - dog: carnivorous mammal of the canid family
+          - cat: carnivorous mammal of the family Felidae
+          - bird: vertebrate animals that walk, jump or can fly
+          - fish: primarily aquatic vertebrate animals, usually ectothermic and with gill breathing
+          - reptile: vertebrate amniotic animals with keratin epidermal scales
+        required: false
         example: [dog, cat, bird, fish, reptile]
-      animal.age:
+      age:
         description: |
           animal's age
         type: number
-        required: true
+        required: false
         example: 2
-      animal.weight:
+      weight:
         description: |
           animal's weight
         type: number
         required: false
         example: 5
-      animal.size:
+      size:
         description: |
           animal's size
-        type: enum
-        enum:
-          - small
-          - medium
-          - big
-        required: true
+        type: string
+        enum: [small, medium, big]
+        enumDescription:
+          - small: small breed size
+          - medium: medium race size
+          - big: large breed size
+        required: false
         example: [small, medium, big] 
-      animal.color:
+      color:
         description: |
           animal's color
         type: string
         required: false
         example: "beige"
-      animal.type:
+      type:
         description: |
           animal's type
-        type: enum
-        enum: 
-          - husky
-          - labrador
-          - persian
-          - siamese
-          - turtle
-          - chamaleon
-          - parakeet
-          - canary
-          - goldfish
-          - angelfish
-        required: true
+        type: string
+        enum: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+        enumDescription:
+          - husky: dog originally from Russia, specifically from Siberia, who was born as a working animal for the Chukchi tribe
+          - labrador: dog breed originating in Newfoundland, its exceptional affability, gentleness, intelligence, nobility, energy and kindness make the farmers are generally considered as good companions for people of all ages, as well as reliable working dogs
+          - persian: Cat breed characterized by having a wide and flat face and a large abundant coat of varied colors. They are commonly considered as aristocratic cats
+          - siamese: Cat breed from ancient Thailand, with elegant, slender, stylized, flexible and well muscled body
+          - turtle: reptile characterized by having a broad and short trunk, and a shell that protects the internal organs of your body. They are the oldest reptile group that exists
+          - chamaleon: Small scaly reptiles are famous for their ability to change color according to the circumstances, for their rapid and elongated tongue, and for their eyes, which can be moved independently of each other.
+          - parakeet: one of many small to medium-sized species of parrot, in multiple genera, that generally have long tail feathers
+          - canary: easy-to-care-for small bird that is an ideal pet for beginners or those without a lot of time to interact with a pet bird
+          - goldfish: species of freshwater fish of the Cyprinidae family
+          - angelfish: small genus of freshwater fish of the family Cichlidae
+        required: false
         example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
     responses: 
         200:
+          description: ok.
           body: 
             application/json:
               type: animals
               example: !include examples/animals/get_200.json
   post:
+    description: |
+      Service to meet the animals that are in the pet store
     body: 
       application/json:
-        properties:
-          animal.specie:
-            type: enum
-            enum: 
-              - dog
-              - cat
-              - bird
-              - fish
-              - reptile
-            required: true
-            example: [dog, cat, bird, fish, reptile]
-          animal.age:
-            type: number
-            required: true
-            example: 2
-          animal.weight:
-            type: number
-            required: false
-            example: 5
-          animal.size:
-            type: enum
-            enum:
-              - small
-              - medium
-              - big
-            required: true
-            example: [small, medium, big] 
-          animal.color:
-            type: string
-            required: false
-            example: "beige"
-          animal.type:
-            type: enum
-            enum: 
-              - husky
-              - labrador
-              - persian
-              - siamese
-              - turtle
-              - chamaleon
-              - parakeet
-              - canary
-              - goldfish
-              - angelfish
-            required: true
-            example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+        example: !include examples/animals/post_request.json
+        description: JSON input example for the call POST /animals
+        displayName: Full JSON input example
+        type: petshop.animal
+
     responses: 
         200:
+          description: ok.
           body: 
             application/json:
               type: animals
               example: !include examples/animals/post_200.json
       
   /{animal-id}:
-    get:
-      uriParameters:
+    description: |
+      Resource for managing the detail of the pet
+    type: collection
+    uriParameters:
         animal-id:
           type: string
           description: animal's identifier
+    get:
+      description: |
+        Service for retrieving the detail of a pet
       responses: 
         200:
+          description: ok.
           body: 
             application/json:
-              type: animal
+              type: petshop.animal
               example: !include examples/animals/animal_id/get_200.json
     put:
+      description: |
+        Resource to manage the list of the pets
       body:
         application/json:
-          properties:
-            animal.specie:
-              type: enum
-              enum: 
-                - dog
-                - cat
-                - bird
-                - fish
-                - reptile
-              required: true
-              example: [dog, cat, bird, fish, reptile]
-            animal.age:
-              type: number
-              required: true
-              example: 2
-            animal.weight:
-              type: number
-              required: false
-              example: 5
-            animal.size:
-              type: enum
-              enum:
-                - small
-                - medium
-                - big
-              required: true
-              example: [small, medium, big] 
-            animal.color:
-              type: string
-              required: false
-              example: "beige"
-            animal.type:
-              type: enum
-              enum: 
-                - husky
-                - labrador
-                - persian
-                - siamese
-                - turtle
-                - chamaleon
-                - parakeet
-                - canary
-                - goldfish
-                - angelfish
-              required: true
-              example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
+          example: !include examples/animals/animal_id/put_request.json
+          type: petshop.animal    
       responses: 
         200:
+          description: ok
           body: 
             application/json:
+              type: object
               example: !include examples/animals/animal_id/put_200.json
-    patch:
-      body:
-        application/json:
           properties:
-            animal.specie:
-              type: enum
-              enum: 
-                - dog
-                - cat
-                - bird
-                - fish
-                - reptile
-              required: true
-              example: [dog, cat, bird, fish, reptile]
-            animal.age:
-              type: number
-              required: true
-              example: 2
-            animal.weight:
-              type: number
-              required: false
-              example: 5
-            animal.size:
-              type: enum
-              enum:
-                - small
-                - medium
-                - big
-              required: true
-              example: [small, medium, big] 
-            animal.color:
-              type: string
-              required: false
-              example: "beige"
-            animal.type:
-              type: enum
-              enum: 
-                - husky
-                - labrador
-                - persian
-                - siamese
-                - turtle
-                - chamaleon
-                - parakeet
-                - canary
-                - goldfish
-                - angelfish
-              required: true
-              example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
-      responses: 
-        200:
-          body: 
-            application/json:
-              example: !include examples/animals/animal_id/patch_200.json
-    delete:
-      responses:
-        200:
+            data:
+              type: petshop.animal
+    patch:
+      description: |
+        Resource to manage the list of the pets
           body:
             application/json:
-              example: !include examples/animals/animal_id/delete_200.json
+              example: !!include examples/animals/animal_id/patch_request.json
+              type: petshop.animal
+      responses: 
+        200:
+          description: ok
+          body: 
+            application/json:
+              type: object
+              example: !include examples/animals/animal_id/patch_200.json
+            properties:
+              data:
+                type: petshop.animal
+        204:
+          description: No content.
+    delete:
+      description: |
+			  Service for delete a pet.
+        responses:
+        204:
+          description: No Content.
 /sales:
   get: 
   post:
@@ -1495,125 +1395,116 @@ traits:
               example: !include examples/services/petshop/delete_200.json
 /food:
   description: |
-    food in the shop
+    animals' food in the pet shop
   type: collection
-  get: 
-    is: [pageable]
+  get:
     description: |
       food list
+    is: [pageable, expandable]
     queryParameters: 
-      food.id:
+      food_id:
         description: |
           food id
-        type: number
-        required: true
-        example: 1
-      food.pet:
+        type: string
+        required: false
+        example: "1"
+      pet:
         description: |
         type: string
-        required: true
-        example: ""
-      food.brand:
+        required: false
+        example: "cat"
+      brand:
         description: |
         type: string
-        required: true
-        example: ""
-      food.presentation:
+        required: false
+        example: "sheba"
+      presentation:
         description: |
         type: string
-        required: true
-        example: ""
+        required: false
+        example: "dry food"
     responses: 
       200:
+        description: ok.
         body: 
           application/json:
             type: foods
             example: !include examples/foods/get_200.json
   post:
+    description: |
+      Service to register the animals' food
     body: 
       application/json:
-        food.id:
-          type: number
-          required: true
-          example: 1
-        food.pet:
-          type: string
-          required: true
-          example: ""
-        food.brand:
-          type: string
-          required: true
-          example: ""
-        food.presentation:
-          type: string
-          required: true
-          example: ""
+        example: !include examples/foods/post_request.json
+        description: JSON input example for the call POST /foods
+        displayName: Full JSON input example
+        type: petshop.food
     responses: 
       200:
+        description: ok.
         body: 
           application/json:
             type: food
             example: !include examples/foods/post_200.json
   /{food-id}:
+    description: |
+      Resource for managing the detail of the animal food.
+    type: collection
+    uriParameters:
+      food-id:
+      type: string
+      description: food identifier
     get:
-      uriParameters:
-        food-id:
-          type: number
-          description: food identifier
+      description: |
+        Service for retrieving the detail of animal food
       responses:
         200:
+          description: ok
           body: 
             application/json:
-              type: food
+              type: petshop.food
               example: !include examples/foods/food_id/get_200.json
     put:
+      description: |
+        Resource to manage the update of the registration of the animals' food, except its identifier.
       body:
         application/json:
-          properties:
-            food.pet:
-              type: string
-              required: true
-              example: ""
-            food.brand:
-              type: string
-              required: true
-              example: ""
-            food.presentation:
-              type: string
-              required: true
-              example: ""
+          example: !include examples/foods/food_id/put_request.json
+          type: petshop:food
       responses: 
         200:
+          description: ok
           body: 
             application/json:
+              type: object
               example: !include examples/foods/food_id/put_200.json
+          properties:
+            data:
+              type: petshop.food
     patch:
+      description: |
+        Resource to manage the partial update of the pet food registry, except its identifier.
       body:
         application/json:
-          properties:
-            food.pet:
-              type: string
-              required: true
-              example: ""
-            food.brand:
-              type: string
-              required: true
-              example: ""
-            food.presentation:
-              type: string
-              required: true
-              example: ""
+          example: !include examples/foods/food_id/patch_request.json
       responses: 
         200:
+          description: ok
           body: 
             application/json:
+              type: object
               example: !include examples/foods/food_id/patch_200.json
+          properties:
+            data:
+              type: petshop.food
+		    204:
+          description: No content.
     delete:
+      description: |
+			  Service to eliminate a pet food product.
       responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/foods/food_id/delete_200.json
+        204:
+			    description: No Content.
 # Servicio restless (Vacunas)
 /getDatesReport:
   get:

@@ -1,22 +1,77 @@
 #%RAML 1.0
+#%RAML 1.0 Library
+uses:
+  annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
 types:
   food:
     type: object
     description: Entity that represent a Food
     properties:
       id:
-        type: number
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+		      - method: "POST"
+            input: "NONE"
+            output: "REQUIRED"
+		      - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
+        type: string
         description: identify of the Food
         required: false
       pet:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+		      - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
         type: string
         description: identify the pets that can eat Food
         required: false
       brand:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "REQUIRED"
+		      - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PATCH"
+            input: "REQUIRED"
+            output: "REQUIRED"
         type: string
         description: identify the brand of Food 
         required: false
       presentation:
+        (annotations.bindingDefinition):
+          - method: "GET"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
+		      - method: "POST"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PUT"
+            input: "REQUIRED"
+            output: "REQUIRED"
+		      - method: "PATCH"
+            input: "OPTIONAL"
+            output: "OPTIONAL"
         type: string
         description: describes the presentation of the Food
         required: false

@@ -1,0 +1,9 @@
+{
+    "id": "PSC01",
+    "specie": "cat",
+    "age": 1,
+    "weight": 1,
+    "size": "small",
+    "color": "gray",
+    "type": "persian"
+}

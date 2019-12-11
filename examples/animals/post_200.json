@@ -1,6 +1,7 @@
 {
   "data": {
-    "code": 1,
+    "code": 200,
+    "id": 1,
     "message": "El animal se ha dado de alta correctamente"
   }
 }

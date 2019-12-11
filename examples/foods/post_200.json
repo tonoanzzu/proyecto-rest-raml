@@ -1,6 +1,7 @@
 {
     "data": {
-      "code": 1,
-      "message": "El alimento se ha dado de alta correctamente"
+      "code": 200,
+      "id": 1,
+      "message": "El alimento para mascota se ha dado de alta correctamente"
     }
   }
