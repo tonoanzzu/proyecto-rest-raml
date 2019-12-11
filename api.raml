@@ -1670,9 +1670,9 @@ traits:
     employees of the petshop
   type: collection
   get: 
-    is: [pageable , expandable]
     description: |
       employee list
+    is: [pageable , expandable]
     queryParameters:
       employee.id:
         description: |
@@ -1735,11 +1735,13 @@ traits:
         body:
           application/json:
             type: employee
-            example: !include examples/employees/post_200.json
+            example: !include examples/employees/get_200.json
   /{employee-id}:
     get:
+      description: |
+        Service to get a employee information
       uriParameters:
-        employee-id:
+        employee_id:
           type: string
           description: employee identifier
           # minLength: 1
@@ -1751,22 +1753,28 @@ traits:
               type: employee
               example: !include examples/employees/employee_id/get_200.json
     put:
+      description: |
+        Service to update a employee
       body:
         application/json:
           properties:
-            employee.name:
+            employee_id:
               type: string
               required: true
+              example: 1
+            name:
+              type: string
+              required: false
               example: "Francisco Arellano Torres"
-            employee.age:
+            age:
               type: number
               required: true
               example: 30
-            employee.position:
+            position:
               type: string
               required: false
               example: "Veterinario"
-            employee.contact:
+            contact:
               type: string
               required: false
               example: 3392849394
@@ -1776,22 +1784,28 @@ traits:
             application/json:
               example: !include examples/employees/employee_id/put_200.json
     patch:
+      description: |
+        Service to update a employee
       body:
         application/json:
           properties:
-            employee.name:
+            employee_id:
+              type: string
+              required: true
+              example: 1
+            name:
               type: string
               required: true
               example: "Francisco Arellano Torres"
-            employee.age:
+            age:
               type: number
               required: true
               example: 30
-            employee.position:
+            position:
               type: string
               required: false
               example: "Veterinario"
-            employee.contact:
+            contact:
               type: string
               required: false
               example: 3392849394
@@ -1801,11 +1815,13 @@ traits:
             application/json:
               example: !include examples/employees/employee_id/patch_200.json
     delete:
+      description: |
+        Service to delete a employee
       responses:
-        200:
+        204:
           body:
             application/json:
-              example: !include examples/employees/employee_id/delete_200.json
+              example: !include examples/employees/employee_id/delete_204.json
 /products:
   type: union
   of:
