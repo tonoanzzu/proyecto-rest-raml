@@ -1,10 +1,9 @@
 {
 	"data": 
 		{
-			"id": 1,
-			"city": "CDMX",
-			"contact": 55674309,
-			"horary": "9:00am a 8:00pm",
-			"name": "Central Petshop"
+			"petshop-id": 1,
+			"contact-id": 3,
+			"schedule": "Lunes a Domingo de 9:00am a 8:00pm",
+			"name": "Huellas Pet shop"
 		}
 }

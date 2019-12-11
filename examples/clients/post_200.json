@@ -1,7 +1,7 @@
 {
-	"data":
-		{
-			"code": 1,
-            "message": "El cliente ha sido dada alta correctamente"
-		}
+	"data":{
+    "code": 200,
+		"id": 4,
+    "message": "Cliente creado con éxito"
+	}
 }

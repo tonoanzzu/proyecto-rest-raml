@@ -11,11 +11,14 @@ uses:
   services:  types/services.raml
   accesory:  types/accesory.raml
   animal:  types/animal.raml
+  clients:  types/clients.raml
   client:  types/client.raml
   appointment:  types/appointment.raml
   appointment:  types/appointments.raml
   schedule: types/schedule.raml
   schedules: types/schedules.raml
+  contacts:  types/contacts.raml
+  contact:  types/contact.raml
   employee:  types/employee.raml
   food:  types/food.raml
   product:  types/product.raml
@@ -35,164 +38,96 @@ traits:
   expandable: !include glapi-global-apis-commons-commons/traits/expandable.raml
 
 /petshops:
-  description: |
-    petshops in the town
+  description: petshops in the town
   type: collection
   get:
-    description: |
-      petshops lists
-    is: [pageable]
+    description: List of all petshops
+    is: [pageable, expandable]
     queryParameters:
-      petshop.city:
-        description: |
-          petshop city
+      petshop-id:
+        description: petshop id
         type: string
         required: false
-        example: "CDMX"
-      petshop.contact:
-        description: |
-          petshop contact
-        type: number
-        required: false
-        example: 55674309
-      petshop.horary:
-        description: |
-          petshop horary
+        example: "1"
+      contact-id: 
+        description: id of contact entity, that represent relation between petshop-contact
         type: string
         required: false
-        example: "9:00am a 8:00pm"
-      petshop.name:
-        description: |
-          petshop name
+        example: "3"
+      name: 
+        description: name of petshop
         type: string
         required: false
-        example: "Central Petshop"
+        example: "Huellas Pet shop"
     responses:
-      200:
+      200: 
+        description: Get all petshops, with status: OK
         body:
           application/json:
-            type: petshops
+            type: petshop.petshops
             example: !include examples/petshops/get_200.json
   post:
+    description: Create a new petshop
     body:
       application/json:
-        properties:
-          petshop.city:
-            description: |
-              petshop city
-            type: string
-            required: false
-            example: "CDMX"
-          petshop.contact:
-            description: |
-              petshop contact
-            type: number
-            required: false
-            example: 55674309
-          petshop.horary:
-            description: |
-              petshop horary
-            type: string
-            required: false
-            example: "9:00am a 8:00pm"
-          petshop.name:
-            description: |
-              petshop name
-            type: string
-            required: false
-            example: "Central Petshop"
-    responses:
-        200:
-          body:
-            application/json:
-              type: petshop
-              example: !include examples/petshops/petshop_id/post_200.json
+        example: !include examples/petshops/post_request.json
+        description: JSON input example for the call POST /petshops
+        displayName: Full JSON input example
+    responses: 
+      200:
+        description: Petshop successful created
+        body:
+          application/json:
+            type: petshop.petshop
+            example: !include examples/petshops/post_200.json
+
   /{petshop-id}:
+    description: Resource for managing the detail of the pet shop
+    type: collection-item
+    uriParameters: 
+      petshop-id: 
+        type: string
+        description: identifier of petshop
     get:
-      uriParameters:
-        petshop-id:
-          type: string
-          description: petshop identifier
-          # minLength: 1
-          # maxLength: 10
+      description: Service for retrieving the detail of a pet shop
       responses:
-        200:
+        200: 
+          description: Get detail about petshop
           body:
             application/json:
-              type: petshop
+              type: petshop.petshop
               example: !include examples/petshops/petshop_id/get_200.json
     put:
+      description: Resource to manage the update of the registration of the pet store, except its identifier.
       body:
         application/json:
-          properties:
-            petshop.address:
-              type: string
-              required: true
-              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-            petshop.contact:
-              type: number
-              required: true
-              example: 55674309
-            petshop.schedule:
-              type: string
-              required: false
-              example: "Lunes a Domingo de 9:00am a 8:00pm"
-            petshop.logo:
-              type: string
-              required: false
-              example: "logo.jpg"
-            petshop.name:
-              type: string
-              required: true
-              example: "logo.jpg"
+          type: petshop.petshop
+          example: !include examples/petshops/petshop_id/put_request.json
       responses:
-        200:
+        200: 
+          description: Petshop successful updated
           body:
             application/json:
+              type: petshop.petshop
               example: !include examples/petshops/petshop_id/put_200.json
     patch:
+      description: Resource to manage the partial update of the pet store registration, except its identifier.
       body:
         application/json:
-          properties:
-            petshop.address:
-              type: string
-              required: false
-              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-            petshop.contact:
-              type: number
-              required: false
-              example: 55674309
-            petshop.schedule:
-              type: string
-              required: false
-              example: "Lunes a Domingo de 9:00am a 8:00pm"
-            petshop.logo:
-              type: string
-              required: false
-              example: "logo.jpg"
-            petshop.name:
-              type: string
-              required: false
-              example: "logo.jpg"
+          type: petshop.petshop
+          example: !include examples/petshops/petshop_id/patch_request.json
       responses:
-        200:
+        200: 
+          description: Petshop partial successful updated
           body:
             application/json:
+              type: petshop.petshop
               example: !include examples/petshops/petshop_id/patch_200.json
     delete:
+      description: Service for delete a pet store.
       responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/petshops/petshop_id/delete_200.json
-    /clients:
-      get:
-    /employees:
-      get:
-    /products:
-      get:
-    /appointments:
-      get:
+        204:
+          description: No Content.
 /accesories:
   description: |
    accesories in the shop
@@ -787,231 +722,107 @@ traits:
             application/json:
               example: !include examples/sales/sale_id/delete_200.json
 /clients:
-  description: |
-    clients in the town
+  description: clients registered in petshop
   type: collection
   get:
-    is: [pageable]
-    description: |
-      clients lists
+    description: List of all clients that exist in petshop
+    is: [pageable, expandable]
     queryParameters:
-      client.id:
-        description: |
-          client id
-        type: number
-        required: true
+      client-id:
+        description: id of client
+        type: string
+        required: false
         example: 1
-      client.name:
-        description: |
-          client name
-        type: string
-        required: true
-        example: "Antonio Anzures"
-      client.age:
-        description: |
-          client age
+      age:
+        description: client age
         type: number
-        required: true
+        required: false
         example: 31
-      client.pet:
-        description: |
-          client pet
+      pet:
+        description: Description of client pet
         type: string
-        required: true
+        required: false
         example: "Dog"
-      client.contact:
-        description: |
-          contact number of client
-        type: number
-        required: true
-        example: 5536553644
-      client.petshop-id:
-        description: |
-          petshop subscribed
-        type: number
-        required: true
+      contact-id:
+        description: id of contact entity, that represent relation between client-contact
+        type: string
+        required: false
+        example: 3
+      petshop-id:
+        description: id of pet shop entity, that represent relation between client-petshop
+        type: string
+        required: false
         example: 1
     responses:
       200:
+        description: Get all clients that exist in petshop, with status: OK
         body:
           application/json:
-            type: clients
+            type: petshop.clients
             example: !include examples/clients/get_200.json
   post:
-    body:
+    description: Create a new client for petshop
+    body:   
       application/json:
-        properties:
-          client.name:
-            type: string
-            required: true
-            example: "Antonio Anzures"
-          client.age:
-            type: number
-            required: true
-            example: 31
-          client.contact:
-            type: string
-            required: true
-            example: 5536553644
-          client.pet:
-            type: string
-            required: true
-            example: "Dog"
-          client.petshop-id:
-            type: string
-            required: true
-            example: 1
-            
+        example: !include examples/clients/post_request.json
+        description: JSON input example for the call POST /clients
+        displayName: Full JSON input example
     responses:
         200:
+          description: Client successful created
           body:
             application/json:
-              type: client
+              type: petshop.client
               example: !include examples/clients/post_200.json
   /{client-id}:
+    description: Resource for managing the detail of the client
+    type: collection-item
+    uriParameters: 
+      client-id: 
+        type: string
+        description: identifier of client
     get:
-      uriParameters:
-        client-id:
-          type: string
-          description: client identifier
-          # minLength: 1
-          # maxLength: 10
+      description: Service for retrieving the detail of a client
       responses:
         200:
+          description: Get detail about a client
           body:
             application/json:
-              type: client
+              type: petshop.client
               example: !include examples/clients/client_id/get_200.json
     put:
+      description: Resource to manage the update of the registration of the client, except its identifier.
       body:
         application/json:
-          properties:
-            client.name:
-            type: string
-            required: true
-            example: "Antonio Anzures"
-          client.age:
-            type: number
-            required: true
-            example: 31
-          client.contact:
-            type: string
-            required: true
-            example: 5536553644
-          client.pet:
-            type: string
-            required: true
-            example: "Dog"
-          client.petshop-id:
-            type: string
-            required: true
-            example: 1
+          type: petshop.client
+          example: !include examples/clients/client_id/put_request.json
       responses:
-        200:
+        200: 
+          description: Client successful updated
           body:
             application/json:
+              type: petshop.client
               example: !include examples/clients/client_id/put_200.json
     patch:
+      description: Resource to manage the partial update of the client registration, except its identifier.
       body:
         application/json:
-          properties:
-            client.name:
-            type: string
-            required: true
-            example: "Antonio Anzures"
-          client.age:
-            type: number
-            required: true
-            example: 31
-          client.contact:
-            type: string
-            required: true
-            example: 5536553644
-          client.pet:
-            type: string
-            required: true
-            example: "Dog"
-          client.petshop-id:
-            type: string
-            required: true
-            example: 1
+          type: petshop.client
+          example: !include examples/clients/client_id/patch_request.json
       responses:
-        200:
+        200: 
+          description: Client partial successful updated
           body:
             application/json:
+              type: petshop.client
               example: !include examples/clients/client_id/patch_200.json
     delete:
+      description: Service for delete a client.
       responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/clients/client_id/delete_200.json
-    /purchases:
-      get:
-        is: [pageable]
-        description: |
-          List of purchases for a specific client
-        queryParameters:
-          employee.id:
-            description: |
-              employee id
-            type: number
-            required: false
-            example: 1964401
-          product.id:
-            description: |
-              product id
-            type: number
-            required: false
-            example: 1964401
-          petshop.id:
-            description: |
-              petshop id
-            type: string
-            required: false
-            example: 1964401
-          sale.method_payment:
-            description: |
-              payment method
-            type: string
-            required: true
-            example: "plastic"
-          sale.sale_date:
-            description: |
-              date when the purchase was made
-            type: string
-            required: true
-            example: "Cobe"
-          sale.total_amount:
-            description: |
-              total amount for the sale
-            type: string
-            required: true
-            example: "Cobe"
-        responses:
-          200:
-            body:
-              application/json:
-                type: client
-                example: !include examples/clients/client_id/purchases/get_200.json
-      /{sale-id}:
-        description: Detail of a purchase of a client
-        type: collection-item
-        get:
-          uriParameters:
-            sale-id:
-              type: number
-              description: Sale id
-              example: 1
-          responses:
-            200:
-              body:
-                application/json:
-                  type: collection-item
-                  example: !include examples/clients/client_id/purchases/sale_id/get_200.json 
-/appointments:
-  description: |
-    Used for interact with information about appointments
+        204:
+          description: No Content.
+/dates:
+  description: Used for interact with information about dates
   type: collection
   get:
     description: |
@@ -2341,3 +2152,98 @@ traits:
           application/json:
             type: service
             example: !include examples/getDatesReport/get_200.json
+/contacts:
+  description: contacts registered in pet shop
+  type: collection
+  get:
+    description: List of all contacts that exist in petshop
+    is: [pageable, expandable]
+    queryParameters:
+      contact-id:
+        description: id of contact
+        type: string
+        required: false
+        example: 1
+      address-id:
+        description: id of address entity, that represent relation between contact-address
+        type: number
+        required: false
+        example: 1
+      phone-id:
+        description: id of phone entity, that represent relation between contact-phone
+        type: string
+        required: false
+        example: 1
+      email-id:
+        description: id of email entity, that represent relation between contact-email
+        type: string
+        required: false
+        example: 1
+    responses:
+      200:
+        description: Get all contacts that exist in petshop, with status: OK
+        body:
+          application/json:
+            type: petshop.contacts
+            example: !include examples/contacts/get_200.json
+  post:
+    description: Create a new contact for petshop
+    body: 
+      application/json: 
+        example: !include examples/contacts/post_request.json
+        description: JSON input example for the call POST /contacts
+        displayName: Full JSON input example
+    responses:
+        200:
+          description: Contact successful created
+          body:
+            application/json:
+              type: petshop.contact
+              example: !include examples/contacts/post_200.json
+  /{contact-id}:
+    description: Resource for managing the detail of the contact
+    type: collection-item
+    uriParameters: 
+      contact-id: 
+        type: string
+        description: identifier of contact
+    get:
+      description: Service for retrieving the detail of a contact
+      responses:
+        200:
+          description: Get detail about a contact
+          body:
+            application/json:
+              type: petshop.contact
+              example: !include examples/contacts/contact_id/get_200.json
+    put:
+      description: Resource to manage the update of the registration of the contact, except its identifier.
+      body:
+        application/json:
+          type: petshop.contact
+          example: !include examples/contacts/contact_id/put_request.json
+      responses:
+        200: 
+          description: Contact successful updated
+          body:
+            application/json:
+              type: petshop.contact
+              example: !include examples/contacts/contact_id/put_200.json
+    patch:
+      description: Resource to manage the partial update of the contact registration, except its identifier.
+      body:
+        application/json:
+          type: petshop.contact
+          example: !include examples/contacts/contact_id/patch_request.json
+      responses:
+        200: 
+          description: Contact partial successful updated
+          body:
+            application/json:
+              type: petshop.contact
+              example: !include examples/contacts/contact_id/patch_200.json
+    delete:
+      description: Service for delete a contact.
+      responses:
+        204:
+          description: No Content.

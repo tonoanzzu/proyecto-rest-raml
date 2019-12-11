@@ -1,7 +1,7 @@
 {
-	"data": 
-		{
-			"code": 1,
-            "message": "El cliente ha sido actualizado con exito"
-		}
+	"data": {
+    "code": 200,
+	  "id": 1,
+    "message": "Cliente actualizado parcialmente con éxito"
+	}
 }

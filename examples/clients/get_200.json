@@ -1,28 +1,28 @@
 {
 	"data": [
 		{
-			"id": 1,
-			"name": "Antonio Anzures",
-			"age": 5567430932,
+			"client-id": 1,
+			"name": "Pepe Le Pew",
+			"age": 23,
 			"pet": "Dog",
-			"contact": 555555555, 
-			"petshop-id":1
+			"contact-id": 3, 
+			"petshop-id": 2
 		},
 		{
-			"id": 2,
-			"name": "Javier Jaramillo",
-			"age": 5567430952,
+			"client-id": 2,
+			"name": "Penelope Kitty",
+			"age": 34,
+			"pet": "Dog",
+			"contact-id": 2, 
+			"petshop-id": 1
+		},
+		{
+			"client-id": 3,
+			"name": "Bugs Bunny",
+			"age": 58,
 			"pet": "Cat",
-			"contact": 555555555, 
-			"petshop-id":1
-		},
-		{
-			"id": 3,
-			"name": "Edgar Castillo",
-			"age": 556656234,
-			"pet": "Dog",
-			"contact": 555555555, 
-			"petshop-id":1
+			"contact-id": 4,
+			"petshop-id": 3
 		}
 	]
 }

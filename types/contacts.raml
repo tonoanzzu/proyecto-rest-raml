@@ -2,12 +2,12 @@
 uses:
   annotations: ../glapi-global-apis-commons/annotations/annotationsLibrary.raml
 types:
-  petshop:
+  contacts:
     type: array
-    description: Entity that represent a pet shop
+    description: Represent my entity contact
     items: 
       properties: 
-        petshop-id: 
+        contact-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -23,8 +23,8 @@ types:
               output: "REQUIRED"
           type: string
           description: identify of the pet shop
-          required: true
-        contact-id: 
+          required: false
+        address-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -39,9 +39,9 @@ types:
               input: "OPTIONAL"
               output: "OPTIONAL"
           type: string
-          description: id of contact entity, that represent relation between petshop-contact
-          required: true
-        schedule: 
+          description: id of address entity, that represent relation between contact-address
+          required: false
+        phone-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -56,9 +56,9 @@ types:
               input: "OPTIONAL"
               output: "OPTIONAL"
           type: string
-          description: pet shop schedule
-          required: true
-        name: 
+          description: id of phone entity, that represent relation between contact-phone
+          required: false
+        email-id: 
           (annotations.bindingDefinition):
             - method: "GET"
               input: "OPTIONAL"
@@ -73,5 +73,5 @@ types:
               input: "OPTIONAL"
               output: "OPTIONAL"
           type: string
-          description: pet shop name
-          required: true
+          description: id of email entity, that represent relation between contact-email
+          required: false

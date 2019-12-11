@@ -1,25 +1,22 @@
 {
 	"data": [
 		{
-			"id": 1,
-			"city": "CDMX",
-			"contact": 55674309,
-			"schedule": "9:00am a 8:00pm",
-			"name": "Central Petco"
+			"petshop-id": 1,
+			"contact-id": 3,
+			"schedule": "Lunes a Domingo de 9:00am a 8:00pm",
+			"name": "Huellas Pet shop"
 		},
 		{
-			"id": 2,
-			"city": "EDOMEX",
-			"contact": 55677865,
-			"schedule": "9:00am a 6:00pm",
-			"name": "North Petco"
-		},
-		{
-			"id": 3,
-			"city": "JAL",
-			"contact": 44768903,
-			"schedule": "9:00am a 9:00pm",
-			"name": "Central Petco"
+			"petshop-id": 2,
+			"contact-id": 1,
+			"schedule": "Lunes a Viernes de 9:00am a 7:00pm",
+			"name": "Cuerpi Pet shop"
+    },
+    {
+			"petshop-id": 3,
+			"contact-id": 2,
+			"schedule": "Lunes a Sábado de 10:00am a 6:00pm",
+			"name": "Pet shop México"
 		}
 	]
 }

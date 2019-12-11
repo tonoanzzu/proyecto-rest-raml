@@ -1,26 +1,111 @@
 #%RAML 1.0
+uses:
+  annotations: ../glapi-global-apis-commons/annotations/annotationsLibrary.raml
 types:
-  client:
-    type:object
+  clients:
+    type: array
     description: Entity that represent an Client
-    properties:
-      id:
-        type: number
-        description: identify of the Client
-        required: false
-      name:
-        type: string
-        description: identify the name of the client
-        required: false
-      age:
-        type: number
-        description: identify age of the client
-        required: false
-      pet:
-        type: string
-        description: identify of the Client
-        required: false
-      contact:
-        type: number
-        description: identify of the contact number
-        required: false
+    items: 
+      properties: 
+        client-id: 
+          (annotations.bindingDefinition):
+            - method: "GET"
+              input: "OPTIONAL"
+              output: "REQUIRED"
+            - method: "POST"
+              input: "NONE"
+              output: "REQUIRED"
+            - method: "PUT"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PATCH"
+              input: "REQUIRED"
+              output: "REQUIRED"
+          type: string
+          description: identify of the Client
+          required: false
+        name: 
+          (annotations.bindingDefinition):
+            - method: "GET"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+            - method: "POST"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PUT"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PATCH"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+          type: string
+          description: Full name of the client
+          required: false
+        age: 
+          (annotations.bindingDefinition):
+            - method: "GET"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+            - method: "POST"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PUT"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PATCH"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+          type: number
+          description: Age of the client
+          required: false
+        pet: 
+          (annotations.bindingDefinition):
+            - method: "GET"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+            - method: "POST"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PUT"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PATCH"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+          type: string
+          description: description of the pet
+          required: false
+        contact-id: 
+          (annotations.bindingDefinition):
+            - method: "GET"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+            - method: "POST"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PUT"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PATCH"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+          type: string
+          description: id of contact entity, that represent relation between client-contact
+          required: false
+        petshop-id: 
+          (annotations.bindingDefinition):
+            - method: "GET"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+            - method: "POST"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PUT"
+              input: "REQUIRED"
+              output: "REQUIRED"
+            - method: "PATCH"
+              input: "OPTIONAL"
+              output: "OPTIONAL"
+          type: string
+          description: id of petshop entity, that represent relation between client-pethsop
+          required: false
