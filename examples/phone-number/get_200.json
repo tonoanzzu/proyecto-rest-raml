@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "phone-number-id": 1,
+      "full-number": "55 6789 5046",
+      "extension": "456"
+    },
+    {
+      "phone-number-id": 2,
+      "full-number": "55 3456 1245",
+      "extension": "120"
+    },
+    {
+      "phone-number-id": 3,
+      "full-number": "55 0987 4573",
+      "extension": ""
+    }
+  ]
+}

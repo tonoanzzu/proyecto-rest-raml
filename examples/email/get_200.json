@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "email-id": 1,
+      "username": "ertio",
+      "domain": "gmail"
+    },
+    {
+      "email-id": 2,
+      "username": "laret",
+      "domain": "hotmail"
+    },
+    {
+      "email-id": 3,
+      "username": "njder",
+      "domain": "yahoo"
+    }
+  ]
+}

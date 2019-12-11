@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "type": "Juguete",
+      "color": "Amarillo",
+      "material": "Nailon",
+      "brand": "Bartholomew"
+    },
+    {
+      "id": 2,
+      "type": "Camas",
+      "color": "Gris",
+      "material": "Algodón",
+      "brand": "Xuxo Shops"
+    },
+    {
+      "id": 3,
+      "type": "Muebles",
+      "color": "Café",
+      "material": "Madera",
+      "brand": "Hummus & Soy Sauce"
+    }
+  ]
+}

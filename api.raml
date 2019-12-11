@@ -17,12 +17,15 @@ uses:
   food:  types/food.raml
   product:  types/product.raml
   sale:  types/sale.raml
+  address:  types/address.raml
+  email:  types/email.raml
+  phone-number:  types/phone-number.raml
   pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
-resourceTypes: 
+resourceTypes:
   collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
 
-traits: 
+traits:
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
 
 /petshops:
@@ -186,7 +189,7 @@ traits:
   description: |
     accesories in the shop
   type: collection
-  get: 
+  get:
     is: [pageable]
     description: |
       accesories list
@@ -221,16 +224,16 @@ traits:
         type: string
         required: true
         example: "Cobe"
-    responses: 
+    responses:
       200:
-        body: 
+        body:
           application/json:
             type: accesories
             example: !include examples/accesories/get_200.json
   post:
-    body: 
+    body:
       application/json:
-        properties: 
+        properties:
           accesory.type:
             type: string
             required: true
@@ -247,9 +250,9 @@ traits:
             type: string
             required: true
             example: "Cobe"
-    responses: 
+    responses:
       200:
-        body: 
+        body:
           application/json:
             type: accesory
             example: !include examples/accesories/post_200.json
@@ -261,7 +264,7 @@ traits:
           description: accesory identifier
       responses:
         200:
-          body: 
+          body:
             application/json:
               type: accesory
               example: !include examples/accesories/accesory_id/get_200.json
@@ -285,9 +288,9 @@ traits:
               type: string
               required: true
               example: "Cobe"
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               example: !include examples/accesories/accesory_id/put_200.json
     patch:
@@ -310,9 +313,9 @@ traits:
               type: string
               required: true
               example: "Cobe"
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               example: !include examples/accesories/accesory_id/patch_200.json
     delete:
@@ -325,11 +328,11 @@ traits:
   description: |
     animals in the shop
   type: collection
-  get: 
+  get:
     is: [pageable]
     description: |
       animals list
-    queryParameters: 
+    queryParameters:
       animal.id:
         description: |
           animal id
@@ -340,7 +343,7 @@ traits:
         description: |
           animal species
         type: enum
-        enum: 
+        enum:
           - dog
           - cat
           - bird
@@ -369,7 +372,7 @@ traits:
           - medium
           - big
         required: true
-        example: [small, medium, big] 
+        example: [small, medium, big]
       animal.color:
         description: |
           animal's color
@@ -380,7 +383,7 @@ traits:
         description: |
           animal's type
         type: enum
-        enum: 
+        enum:
           - husky
           - labrador
           - persian
@@ -393,19 +396,19 @@ traits:
           - angelfish
         required: true
         example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
-    responses: 
+    responses:
         200:
-          body: 
+          body:
             application/json:
               type: animals
               example: !include examples/animals/get_200.json
   post:
-    body: 
+    body:
       application/json:
         properties:
           animal.specie:
             type: enum
-            enum: 
+            enum:
               - dog
               - cat
               - bird
@@ -428,14 +431,14 @@ traits:
               - medium
               - big
             required: true
-            example: [small, medium, big] 
+            example: [small, medium, big]
           animal.color:
             type: string
             required: false
             example: "beige"
           animal.type:
             type: enum
-            enum: 
+            enum:
               - husky
               - labrador
               - persian
@@ -448,22 +451,22 @@ traits:
               - angelfish
             required: true
             example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
-    responses: 
+    responses:
         200:
-          body: 
+          body:
             application/json:
               type: animals
               example: !include examples/animals/post_200.json
-      
+
   /{animal-id}:
     get:
       uriParameters:
         animal-id:
           type: string
           description: animal's identifier
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               type: animal
               example: !include examples/animals/animal_id/get_200.json
@@ -473,7 +476,7 @@ traits:
           properties:
             animal.specie:
               type: enum
-              enum: 
+              enum:
                 - dog
                 - cat
                 - bird
@@ -496,14 +499,14 @@ traits:
                 - medium
                 - big
               required: true
-              example: [small, medium, big] 
+              example: [small, medium, big]
             animal.color:
               type: string
               required: false
               example: "beige"
             animal.type:
               type: enum
-              enum: 
+              enum:
                 - husky
                 - labrador
                 - persian
@@ -516,9 +519,9 @@ traits:
                 - angelfish
               required: true
               example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               example: !include examples/animals/animal_id/put_200.json
     patch:
@@ -527,7 +530,7 @@ traits:
           properties:
             animal.specie:
               type: enum
-              enum: 
+              enum:
                 - dog
                 - cat
                 - bird
@@ -550,14 +553,14 @@ traits:
                 - medium
                 - big
               required: true
-              example: [small, medium, big] 
+              example: [small, medium, big]
             animal.color:
               type: string
               required: false
               example: "beige"
             animal.type:
               type: enum
-              enum: 
+              enum:
                 - husky
                 - labrador
                 - persian
@@ -570,9 +573,9 @@ traits:
                 - angelfish
               required: true
               example: [husky, labrador, persian, siamese, turtle, chamaleon, parakeet, canary, goldfish, angelfish]
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               example: !include examples/animals/animal_id/patch_200.json
     delete:
@@ -582,7 +585,7 @@ traits:
             application/json:
               example: !include examples/animals/animal_id/delete_200.json
 /sales:
-  get: 
+  get:
   post:
   /{sale-id}:
     get:
@@ -664,7 +667,7 @@ traits:
             type: string
             required: true
             example: 1
-            
+
     responses:
         200:
           body:
@@ -811,14 +814,14 @@ traits:
               body:
                 application/json:
                   type: collection-item
-                  example: !include examples/clients/client_id/purchases/sale_id/get_200.json 
+                  example: !include examples/clients/client_id/purchases/sale_id/get_200.json
 /dates:
   description: Used for interact with information about dates
   type: collection
   get:
     is: [pageable]
     description: Get information about my dates
-    queryParameters: 
+    queryParameters:
       price:
         description: |
           price of dates
@@ -843,7 +846,7 @@ traits:
         type: number
         required: true
         example: 100
-    responses: 
+    responses:
       200:
         description: Ok: Successful response, get dates
         body:
@@ -856,15 +859,15 @@ traits:
       type: date
       application/json:
         example: !include examples/dates/post_200.json
-    responses: 
+    responses:
       200:
         description: Ok: Successful created
         body:
           application/json:
             example: |
-              { 
-                "status": 200, 
-                "message": "Successful created!" 
+              {
+                "status": 200,
+                "message": "Successful created!"
               }
   /{date-id}:
     description: Detail of date from id
@@ -882,7 +885,7 @@ traits:
           body:
             application/json:
               type: date[]
-              example: !include examples/dates/date_id/get_200.json 
+              example: !include examples/dates/date_id/get_200.json
     put:
       description: Update all information for one register of date from {date-id}
       uriParameters:
@@ -894,15 +897,15 @@ traits:
         type: date
         application/json:
           example: !include examples/dates/date_id/put_200.json
-      responses: 
+      responses:
         200:
           description: Ok: Successful response, update information (All)
           body:
             application/json:
               example: |
-                { 
-                  "status": 200, 
-                  "message": "Successful updated! (All)" 
+                {
+                  "status": 200,
+                  "message": "Successful updated! (All)"
                 }
       patch:
         description: Update partial information for one register of date from {date-id}
@@ -915,15 +918,15 @@ traits:
           type: date
           application/json:
             example: !include examples/dates/date_id/patch_200.json
-        responses: 
+        responses:
           200:
             description: Ok: Successful response, update information (partial)
             body:
               application/json:
                 example: |
-                  { 
-                    "status": 200, 
-                    "message": "Successful updated! (Partial)" 
+                  {
+                    "status": 200,
+                    "message": "Successful updated! (Partial)"
                   }
       delete:
         description: Delete information about date, from {date-id}
@@ -938,12 +941,12 @@ traits:
             body:
               application/json:
               type: date[]
-              example: !include examples/dates/date_id/get_200.json 
+              example: !include examples/dates/date_id/get_200.json
 /employees:
   description: |
     employees of the petshop
   type: collection
-  get: 
+  get:
     is: [pageable]
     description: |
       employee list
@@ -985,7 +988,7 @@ traits:
             type: employees
             example: !include examples/employees/get_200.json
   post:
-    body: 
+    body:
       application/json:
         properties:
           employee.name:
@@ -1123,7 +1126,7 @@ traits:
           product description
         type: string
         required: true
-        example: "Pechera de cuero para perro raza grande, adulto"      
+        example: "Pechera de cuero para perro raza grande, adulto"
     responses:
       200:
         body:
@@ -1245,8 +1248,8 @@ traits:
         description: |
           type of service
         enum:
-          - vaccine 
-          - beauty 
+          - vaccine
+          - beauty
           - consultation
         required: false
         example: [vaccine, beauty, consultation]
@@ -1497,11 +1500,11 @@ traits:
   description: |
     food in the shop
   type: collection
-  get: 
+  get:
     is: [pageable]
     description: |
       food list
-    queryParameters: 
+    queryParameters:
       food.id:
         description: |
           food id
@@ -1523,14 +1526,14 @@ traits:
         type: string
         required: true
         example: ""
-    responses: 
+    responses:
       200:
-        body: 
+        body:
           application/json:
             type: foods
             example: !include examples/foods/get_200.json
   post:
-    body: 
+    body:
       application/json:
         food.id:
           type: number
@@ -1548,9 +1551,9 @@ traits:
           type: string
           required: true
           example: ""
-    responses: 
+    responses:
       200:
-        body: 
+        body:
           application/json:
             type: food
             example: !include examples/foods/post_200.json
@@ -1562,7 +1565,7 @@ traits:
           description: food identifier
       responses:
         200:
-          body: 
+          body:
             application/json:
               type: food
               example: !include examples/foods/food_id/get_200.json
@@ -1582,9 +1585,9 @@ traits:
               type: string
               required: true
               example: ""
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               example: !include examples/foods/food_id/put_200.json
     patch:
@@ -1603,9 +1606,9 @@ traits:
               type: string
               required: true
               example: ""
-      responses: 
+      responses:
         200:
-          body: 
+          body:
             application/json:
               example: !include examples/foods/food_id/patch_200.json
     delete:
@@ -1614,6 +1617,270 @@ traits:
           body:
             application/json:
               example: !include examples/foods/food_id/delete_200.json
+/address:
+  description: |
+    address to build a contact
+  type: collection
+  get:
+    is: [pageable, expandable]
+    description: |
+      address list
+    queryParameters:
+      city:
+        description: |
+          city of address
+        type: string
+        required: false
+        example: "Mexico"
+      postal-code:
+        description: |
+          postal-code of address
+        type: string
+        required: false
+        example: "07170"
+      mayoralty:
+        description: |
+        type: string
+        required: false
+        example: "Gustavo A. Madero"
+      colony:
+        description: |
+        type: string
+        required: false
+        example: "Vallejo"
+      street:
+        description: |
+        type: string
+        required: false
+        example: "Calzada de los misterios"
+    responses:
+      200:
+        body:
+          application/json:
+            type: petshop.address
+            example: !include examples/address/get_200.json
+  post:
+    description: |
+      Service to register an address
+    body:
+      application/json:
+        example: !include examples/address/post_request.json
+        description: JSON input example for the call POST /address
+        displayName: Full JSON input example
+        type: petshop.address
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/address/post_200.json
+  /{address-id}:
+    get:
+      uriParameters:
+        address-id:
+          type: string
+          description: address identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: petshop.address
+              example: !include examples/address/address_id/get_200.json
+    put:
+      body:
+        application/json:
+          example: !include examples/address/put_request.json
+          description: JSON input example for the call PUT /address
+          displayName: Full JSON input example
+          type: petshop.address
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/address/address_id/put_200.json
+    patch:
+      body:
+        application/json:
+          example: !include examples/address/patch_request.json
+          description: JSON input example for the call PUT /address
+          displayName: Full JSON input example
+          type: petshop.address
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/address/address_id/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/address/address_id/delete_200.json
+/email:
+  description: |
+    email to build a contact
+  type: collection
+  get:
+    is: [pageable, expandable]
+    description: |
+      email list
+    queryParameters:
+      username:
+        description: |
+          username of email
+        type: string
+        required: false
+        example: "jesdalara"
+      domain:
+        description: |
+          domain of email
+        type: string
+        required: false
+        example: "gmail"
+    responses:
+      200:
+        body:
+          application/json:
+            type: petshop.email
+            example: !include examples/email/get_200.json
+  post:
+    description: |
+      Service to register an email
+    body:
+      application/json:
+        example: !include examples/email/post_request.json
+        description: JSON input example for the call POST /email
+        displayName: Full JSON input example
+        type: petshop.email
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/email/post_200.json
+  /{address-id}:
+    get:
+      uriParameters:
+        address-id:
+          type: string
+          description: address identifier
+      responses:
+        200:
+          body:
+            application/json:
+              type: petshop.email
+              example: !include examples/email/email_id/get_200.json
+    put:
+      body:
+        application/json:
+          example: !include examples/email/put_request.json
+          description: JSON input example for the call PUT /email
+          displayName: Full JSON input example
+          type: petshop.email
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/email/email_id/put_200.json
+    patch:
+      body:
+        application/json:
+          example: !include examples/email/patch_request.json
+          description: JSON input example for the call PUT /email
+          displayName: Full JSON input example
+          type: petshop.email
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/email/email_id/patch_200.json
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/email/email_id/delete_200.json
+  /phone-number:
+    description: |
+      phone-number to build a contact
+    type: collection
+    get:
+      is: [pageable, expandable]
+      description: |
+        phone-number list
+      queryParameters:
+        full-number:
+          description: |
+            full-number of phone-number
+          type: string
+          required: false
+          example: "55 4034 5678"
+        extension:
+          description: |
+            extension of phone-number
+          type: string
+          required: false
+          example: "3345"
+      responses:
+        200:
+          body:
+            application/json:
+              type: petshop.phone-number
+              example: !include examples/phone-number/get_200.json
+    post:
+      description: |
+        Service to register an phone-number
+      body:
+        application/json:
+          example: !include examples/phone-number/post_request.json
+          description: JSON input example for the call POST /phone-number
+          displayName: Full JSON input example
+          type: petshop.phone-number
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/phone-number/post_200.json
+    /{phone-number-id}:
+      get:
+        uriParameters:
+          phone-number-id:
+            type: string
+            description: phone-number identifier
+        responses:
+          200:
+            body:
+              application/json:
+                type: petshop.email
+                example: !include examples/phone-number/phone-number_id/get_200.json
+      put:
+        body:
+          application/json:
+            example: !include examples/email/put_request.json
+            description: JSON input example for the call PUT /phone-number
+            displayName: Full JSON input example
+            type: petshop.phone-number
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/phone-number/phone-number_id/put_200.json
+      patch:
+        body:
+          application/json:
+            example: !include examples/phone-number/patch_request.json
+            description: JSON input example for the call PUT /phone-number
+            displayName: Full JSON input example
+            type: petshop.phone-number
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/phone-number/phone-number_id/patch_200.json
+      delete:
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/phone-number/phone-number_id/delete_200.json
 # Servicio restless (Vacunas)
 /getDatesReport:
   get:

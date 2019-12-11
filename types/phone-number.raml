@@ -3,11 +3,11 @@ uses:
   annotations : ../../glapi-global-apis-commons-commons/annotations/annotationsLibrary.raml
 
 types:
-  petshop:
+  phone-number:
     type: object
     description: Entity that represent a petShop
     properties:
-      id:
+      phone-number-id:
 		(annotations.bindingDefinition):
           - method: "GET"
             input: "OPTIONAL"
@@ -24,7 +24,7 @@ types:
         type: number
         description: identify of the petShop
         required: false
-      address:
+      full-number:
 		(annotations.bindingDefinition):
           - method: "GET"
             input: "OPTIONAL"
@@ -41,7 +41,7 @@ types:
         type: string
         description: petShop address
         required: false
-      contact:
+      extension:
 		(annotations.bindingDefinition):
           - method: "GET"
             input: "OPTIONAL"
@@ -58,54 +58,4 @@ types:
         type: number
         description: petShop contact
         required: false
-      schedule:
 		(annotations.bindingDefinition):
-          - method: "GET"
-            input: "OPTIONAL"
-            output: "OPTIONAL"
-		  - method: "POST"
-            input: "REQUIRED"
-            output: "REQUIRED"
-		  - method: "PUT"
-            input: "REQUIRED"
-            output: "REQUIRED"
-		 - method: "PATCH"
-            input: "OPTIONAL"
-            output: "OPTIONAL"
-        type: string
-        description: petShop schedule
-        required: false
-      logo:
-		(annotations.bindingDefinition):
-          - method: "GET"
-            input: "OPTIONAL"
-            output: "OPTIONAL"
-		  - method: "POST"
-            input: "REQUIRED"
-            output: "REQUIRED"
-		  - method: "PUT"
-            input: "REQUIRED"
-            output: "REQUIRED"
-		 - method: "PATCH"
-            input: "OPTIONAL"
-            output: "OPTIONAL"
-        type: string
-        description: petShop logo
-        required: false
-      name:
-		(annotations.bindingDefinition):
-          - method: "GET"
-            input: "OPTIONAL"
-            output: "REQUIRED"
-		  - method: "POST"
-            input: "REQUIRED"
-            output: "REQUIRED"
-		  - method: "PUT"
-            input: "REQUIRED"
-            output: "REQUIRED"
-		 - method: "PATCH"
-            input: "OPTIONAL"
-            output: "OPTIONAL"
-        type: string
-        description: petShop name
-        required: false
